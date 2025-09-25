@@ -1,0 +1,49 @@
+# Versión de Docker Compose
+version: '3.8'
+
+# Definición de los contenedores (servicios) que se van a levantar
+services:
+
+  # Servicio web: Apache + PHP
+  web:
+    image: php:8.2-apache        # Imagen oficial de PHP 8.2 con Apache
+    container_name: fitrail_web  # Nombre del contenedor
+    ports:
+      - "8080:80"                # Mapea el puerto 80 del contenedor al 8080 de la máquina local
+    volumes:
+      - ./app:/var/www/html      # Conecta la carpeta local ./app con la raíz web del contenedor
+    depends_on:
+      - db                        # Este contenedor depende de que el contenedor 'db' esté levantado
+
+  # Servicio de base de datos MySQL
+  db:
+    image: mysql:8.0              # Imagen oficial de MySQL 8.0
+    container_name: fitrail_db    # Nombre del contenedor
+    restart: always               # Reinicia automáticamente si falla o se reinicia Docker
+    environment:                  # Variables de entorno para inicializar MySQL
+      MYSQL_ROOT_PASSWORD: root123 # Contraseña del usuario root
+      MYSQL_DATABASE: fitrail      # Base de datos que se crea al iniciar
+      MYSQL_USER: user             # Usuario adicional
+      MYSQL_PASSWORD: pass         # Contraseña del usuario adicional
+    ports:
+      - "3306:3306"               # Mapea el puerto MySQL al de la máquina local
+    volumes:
+      - db_data:/var/lib/mysql    # Volumen persistente para que los datos no se pierdan
+
+  # Servicio phpMyAdmin para gestión visual de la base de datos
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin  # Imagen oficial de phpMyAdmin
+    container_name: fitrail_phpmyadmin # Nombre del contenedor
+    restart: always               # Reinicio automático si falla
+    environment:                  # Variables de entorno de conexión a MySQL
+      PMA_HOST: db                # Nombre del host de la base de datos
+      PMA_USER: root              # Usuario para conectarse a la base de datos
+      PMA_PASSWORD: root123       # Contraseña del usuario root
+    ports:
+      - "8081:80"                 # Mapea el puerto 80 del contenedor al 8081 de la máquina local
+    depends_on:
+      - db                        # Depende de que la base de datos esté levantada
+
+# Definición de volúmenes persistentes
+volumes:
+  db_data:                        # Volumen para almacenar los datos de MySQL de forma persistente
