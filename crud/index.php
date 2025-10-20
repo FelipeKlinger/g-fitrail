@@ -7,12 +7,13 @@ $usuarios = leerUsuarios();
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<title>Listado de usuarios</title>
+<title>Listadosss de usuarios</title>
+
 <body>
 
   <h1>Lista de usuarios</h1>
 
-  <p><a href="registro.php">Agregar nuevo usuario</a></p>
+  <p><a href="registrar.php">Agregar nuevo usuario</a></p>
 
   <?php if (empty($usuarios)): ?>
     <p>No hay usuarios registrados.</p>
@@ -40,4 +41,5 @@ $usuarios = leerUsuarios();
   <?php endif; ?>
 
 </body>
+
 </html>
