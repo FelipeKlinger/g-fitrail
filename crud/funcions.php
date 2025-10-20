@@ -26,8 +26,18 @@ function PDOconect()
         return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');
     }
 
+};
+
+
+function leerUsuarios(){
+
+  $pdo = PDOconect(); 
+
+
+  $leer = $pdo->query('SELECT * FROM usuaris ORDER BY id');
+  return $leer->fetchAll();
 }
-;
+
 
 
 
