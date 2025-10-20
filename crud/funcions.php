@@ -28,15 +28,50 @@ function PDOconect()
 
 };
 
-
 function leerUsuarios(){
 
   $pdo = PDOconect(); 
 
-
-  $leer = $pdo->query('SELECT * FROM usuaris ORDER BY id');
+  $leer = $pdo->query('SELECT * FROM cliente ORDER BY id');
   return $leer->fetchAll();
 }
+
+
+function AltaUsuarios(){
+
+ $pdo = PDOconect();
+ 
+    $missatge = '';
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $nom   = trim($_POST['nom'] ?? '');
+  $email = trim($_POST['email'] ?? '');
+  $pass1 = $_POST['password']  ?? '';
+  $pass2 = $_POST['password2'] ?? '';
+
+  if ($nom === '' || $email === '' || $pass1 === '' || $pass2 === '') {
+    $missatge = 'Omple tots els camps.';
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $missatge = 'Email no vàlid.';
+  } elseif ($pass1 !== $pass2) {
+    $missatge = 'Les contrasenyes no coincideixen.';
+  } else {
+    $stmt = $pdo->prepare('SELECT id FROM usuaris WHERE email = :email');
+    $stmt->execute(['email' => $email]);
+    if ($stmt->fetch()) {
+      $missatge = 'Ja existeix un usuari amb aquest email.';
+    } else {
+      $hash = password_hash($pass1, PASSWORD_DEFAULT);
+      $stmt = $pdo->prepare(
+        'INSERT INTO usuaris (nom, email, password_hash) VALUES (:nom, :email, :hash)'
+      );
+      $stmt->execute(['nom' => $nom, 'email' => $email, 'hash' => $hash]);
+      $missatge = 'Registre complet! Ara pots iniciar sessió.';
+    }
+  }
+}
+}
+
+
 
 
 
