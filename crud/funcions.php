@@ -36,41 +36,37 @@ function leerUsuarios()
 }
 
 
-function AltaUsuarios($nombre, $email, $pass1, $pass2)
+function AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2)
 {
-
 
   $pdo = PDOconect();
 
-
-  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
-
-    $nombre   = trim($_POST['nombre'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $pass1 = $_POST['password']  ?? '';
-    $pass2 = $_POST['password2'] ?? '';
-
-
-    if ($nombre === '' || $email === '' || $pass1 === '' || $pass2 === '') {
-      echo 'Rellena todos los campos.';
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-      echo 'Email no valido.';
-    } elseif ($pass1 !== $pass2) {
-      echo 'Les contraseñas no coinciden.';
+  if ($nombre === '' || $email === '' || $edad === '' || $altura === '' || $peso  === ''  || $objetivo === '' || $pass1 === '' || $pass2 === '') {
+    echo 'Rellena todos los campos.';
+  } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    echo 'Email no valido.';
+  } elseif ($pass1 !== $pass2) {
+    echo 'Les contraseñas no coinciden.';
+  } else {
+    $stmt = $pdo->prepare('SELECT id FROM cliente WHERE email = :email');
+    $stmt->execute(['email' => $email]);
+    if ($stmt->fetch()) {
+      echo 'Ya existe un usuario con este Email.';
     } else {
-      $stmt = $pdo->prepare('SELECT id FROM cliente WHERE email = :email');
-      $stmt->execute(['email' => $email]);
-      if ($stmt->fetch()) {
-        echo 'Ya existe un usuario con este Email.';
-      } else {
-        $hash = password_hash($pass1, PASSWORD_DEFAULT);
-        $stmt = $pdo->prepare(
-          'INSERT INTO cliente (nombre, email, password_hash) VALUES (:nombre, :email, :hash)'
-        );
-        $stmt->execute(['nombre' => $nombre, 'email' => $email, 'hash' => $hash]);
-        echo 'Registo completo, Usuario creado.';
-      }
+      $hash = password_hash($pass1, PASSWORD_DEFAULT);
+      $stmt = $pdo->prepare(
+        'INSERT INTO cliente (nombre, email, edad, altura, peso, objetivo, password_hash) VALUES (:nombre, :email, :edad, :altura, :peso, :objetivo, :hash)'
+      );
+      $stmt->execute([
+        'nombre' => $nombre,
+        'email' => $email,
+        'edad' => $edad,
+        'peso' => $peso,
+        'altura' => $altura,
+        'objetivo' => $objetivo,
+        'hash' => $hash
+      ]);
+      echo 'Registo completo, Usuario creado.';
     }
   }
 }
@@ -94,23 +90,25 @@ function EditarUsuari($id, $nombre, $email, $pass1, $pass2)
     $stmt = $pdo->prepare("
             UPDATE cliente SET nombre = :nombre, email = :email, password_hash = :password WHERE id = :id
         ");
-    $stmt->execute([':nombre' => $nombre,':email' => $email,':password' => $password_hash, ':id' => $id
+    $stmt->execute([
+      ':nombre' => $nombre,
+      ':email' => $email,
+      ':password' => $password_hash,
+      ':id' => $id
     ]);
     return "Usuario actualizado correctamente con nueva contraseña.";
   } else {
     $stmt = $pdo->prepare("
             UPDATE cliente SET nombre = :nombre, email = :email WHERE id = :id");
     $stmt->execute([
-      ':nombre' => $nombre, ':email' => $email, ':id' => $id
+      ':nombre' => $nombre,
+      ':email' => $email,
+      ':id' => $id
     ]);
 
     return "Usuario actualizado correctamente (sin cambiar la contraseña).";
   }
 }
-
-
-
-
 
 function ElimnarUsuari($id)
 {

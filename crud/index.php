@@ -7,7 +7,7 @@ $usuarios = leerUsuarios();
 <!DOCTYPE html>
 <html lang="es">
 <meta charset="utf-8">
-<title>Listadosss de usuarios</title>
+<title>Listados de usuarios</title>
 
 <body>
 
@@ -23,6 +23,10 @@ $usuarios = leerUsuarios();
         <th>ID</th>
         <th>Nombre</th>
         <th>Email</th>
+        <th>Edad</th>
+        <th>Altura</th>
+        <th>Peso</th>
+        <th>Objetivo</th>
         <th>Acciones</th>
       </tr>
 
@@ -31,6 +35,11 @@ $usuarios = leerUsuarios();
           <td><?= $usuari['id'] ?></td>
           <td><?= $usuari['nombre'] ?></td>
           <td><?= $usuari['email'] ?></td>
+          <td><?= $usuari['edad'] ?></td>
+          <td><?= $usuari['altura'] ?> cm</td>
+          <td><?= $usuari['peso'] ?> kg</td>
+          <td><?= $usuari['objetivo'] ?></td>
+
           <td>
             <a href="editar.php?id=<?= $usuari['id'] ?>">Editar</a> |
             <a href="eliminar.php?id=<?= $usuari['id'] ?>">Eliminar</a>
