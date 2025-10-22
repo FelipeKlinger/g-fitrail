@@ -62,10 +62,10 @@
         <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br>
 
         <label>Nova contrasenya:</label><br>
-        <input type="password" name="password"><br>
+        <input type="password" name="password" value="<?php echo htmlspecialchars($_POST['password'] ?? ''); ?>"> <br>
 
         <label>Confirmar contrasenya:</label><br>
-        <input type="password" name="password2"><br>
+        <input type="password" name="password2" value="<?php echo htmlspecialchars($_POST['password2'] ?? ''); ?>"> <br>
 
         <?php
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
