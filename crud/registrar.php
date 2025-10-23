@@ -1,20 +1,3 @@
-<?php
-require __DIR__ . '/funcions.php';
-
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nombre = trim($_POST['nombre'] ?? '');
-    $email = trim($_POST['email'] ?? '');
-    $edad = trim($_POST['edad'] ?? '');
-    $altura = trim($_POST['altura'] ?? '');
-    $peso = trim($_POST['peso'] ?? '');
-    $objetivo = trim($_POST['objetivo'] ?? '');
-    $pass1 = trim($_POST['password'] ?? '');
-    $pass2 = trim($_POST['password2'] ?? '');
-    AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
-}
-?>
-
 <html lang="es">
 <meta charset="utf-8">
 <title>Registro</title>
@@ -28,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <form method="post">
 
             <label>Nombre
-                <input name="nombre" value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>" required> 
+                <input name="nombre" value="<?php echo htmlspecialchars($_POST['nombre'] ?? ''); ?>" required>
             </label><br>
 
             <label>Correo electrónico
@@ -55,14 +38,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </option>
                 <option value="Recomposición corporal">Recomposición corporal</option>
             </select><br>
-            
+
             <label>Contraseña <input type="password" name="password" required></label><br>
             <label>Repetir contraseña <input type="password" name="password2" required></label><br>
             <button>Crear cuenta</button>
         </form>
-    </div>
 
     <a href="./index.php" class="contenedor">Volver al inicio</a>
-</body>
+
+    </div>
+
+
+    <?php
+    require __DIR__ . '/funcions.php';
+
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $nombre = trim($_POST['nombre'] ?? '');
+        $email = trim($_POST['email'] ?? '');
+        $edad = trim($_POST['edad'] ?? '');
+        $altura = trim($_POST['altura'] ?? '');
+        $peso = trim($_POST['peso'] ?? '');
+        $objetivo = trim($_POST['objetivo'] ?? '');
+        $pass1 = trim($_POST['password'] ?? '');
+        $pass2 = trim($_POST['password2'] ?? '');
+        AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
+
+        echo '<p class="mensaje-exito">¡Usuario creado correctamente!.</p';
+    }
+    ?>
+
+    
 
 </html>

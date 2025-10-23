@@ -66,7 +66,6 @@ function AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1,
         'objetivo' => $objetivo,
         'hash' => $hash
       ]);
-      echo 'Registo completo, Usuario creado.';
     }
   }
 }
