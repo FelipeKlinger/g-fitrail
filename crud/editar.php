@@ -5,28 +5,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Usuari</title>
-    <style>
-        body {
-            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-            padding: 20px;
-        }
+    <link rel="stylesheet" href="src/formularios.css" type="text/css">
 
-        input {
-            padding: 6px;
-            margin-bottom: 8px;
-            width: 250px;
-        }
-
-        button {
-            padding: 10px;
-            margin-top: 20px;
-            cursor: pointer;
-        }
-
-        h1 {
-            text-align: center;
-        }
-    </style>
 </head>
 
 <body>
@@ -52,37 +32,45 @@
 
     ?>
 
-    <h1>Editar Usuari</h1>
 
-    <form method="POST">
-        <label>Nom:</label><br>
-        <input type="text" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required><br>
 
-        <label>Email:</label><br>
-        <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br>
+    <div class="contenedor">
+        <h1>Editar</h1>
 
-        <label>Nova contrasenya:</label><br>
-        <input type="password" name="password" value="<?php echo htmlspecialchars($_POST['password'] ?? ''); ?>"> <br>
+        <form method="POST">
+            <label>Nom:</label><br>
+            <input type="text" name="nombre" value="<?php echo htmlspecialchars($nombre); ?>" required><br>
 
-        <label>Confirmar contrasenya:</label><br>
-        <input type="password" name="password2" value="<?php echo htmlspecialchars($_POST['password2'] ?? ''); ?>"> <br>
+            <label>Email:</label><br>
+            <input type="email" name="email" value="<?php echo htmlspecialchars($email); ?>" required><br>
 
-        <?php
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $nombre = trim($_POST['nombre'] ?? '');
-            $email = trim($_POST['email'] ?? '');
-            $pass1 = $_POST['password'] ?? '';
-            $pass2 = $_POST['password2'] ?? '';
-            EditarUsuari($id, $nombre, $email, $pass1, $pass2);
-            echo '<p>Usuario editado correctamente</p>';
-        }
-        ?>
+            <label>Nova contrasenya:</label><br>
+            <input type="password" name="password" value="<?php echo htmlspecialchars($_POST['password'] ?? ''); ?>">
+            <br>
 
-        <button type="submit">Editar</button>
-    </form>
+            <label>Confirmar contrasenya:</label><br>
+            <input type="password" name="password2" value="<?php echo htmlspecialchars($_POST['password2'] ?? ''); ?>">
+            <br>
+
+
+
+            <?php
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $nombre = trim($_POST['nombre'] ?? '');
+                $email = trim($_POST['email'] ?? '');
+                $pass1 = $_POST['password'] ?? '';
+                $pass2 = $_POST['password2'] ?? '';
+                EditarUsuari($id, $nombre, $email, $pass1, $pass2);
+                echo '<p>Usuario editado correctamente</p>';
+            }
+            ?>
+
+            <button type="submit">Editar</button>
+        </form>
+    </div>
 
     <br>
-    <button><a href="./index.php">Torna a l'inici</a></button>
+    <a href="./index.php" class="inicio">Torna a l'inici</a>
 
 </body>
 

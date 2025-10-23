@@ -4,41 +4,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/formularios.css" type="text/css">
+
     <title>Eliminar</title>
 </head>
 
 <style>
-    body {
-
-        font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-
-    }
-
-    input {
-
-        padding: 6px;
-        margin-bottom: 8px;
-
-    }
-
+    p,
+    h3,
     button {
 
-        padding: 10px;
-        margin-top: 30px;
-    }
-
-    h2 {
-
-        justify-content: center;
-        text-align: center;
-    }
-
-    a {
-
-        text-decoration: none;
-        color: black;
+        margin-left: 500px;
+        border-radius: 20px;
+        padding: 15px;
     }
 </style>
+
 
 <body>
 
@@ -86,6 +67,7 @@
         <button type="submit" name="aceptar" value="true">Sí, eliminar</button>
         <button type="submit" name="rechazar" value="false">No, cancelar</button>
     </form>
+
 
     <?php echo "<button><a href='./index.php'> Torna al inici </a> </button>"; ?>
 

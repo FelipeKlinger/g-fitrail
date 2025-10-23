@@ -3,7 +3,6 @@
 <title>Registro</title>
 <link rel="stylesheet" href="src/formularios.css" type="text/css">
 
-
 <body>
 
     <div class="contenedor">
@@ -43,11 +42,9 @@
             <label>Repetir contraseña <input type="password" name="password2" required></label><br>
             <button>Crear cuenta</button>
         </form>
-
-    <a href="./index.php" class="contenedor">Volver al inicio</a>
-
     </div>
 
+    <a href="./index.php" class="inicio">Volver al inicio</a>
 
     <?php
     require __DIR__ . '/funcions.php';
@@ -68,6 +65,6 @@
     }
     ?>
 
-    
+
 
 </html>
