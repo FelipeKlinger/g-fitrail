@@ -12,10 +12,10 @@ class clienteModel
   }
 
 
-function listarClientes(){
-  $pdo = PDOconect();
-  $leer = $pdo->query('SELECT * FROM cliente ORDER BY id');
-  return $leer->fetchAll();
+ public function listarClientes(){
+  
+  $stmt = $this->pdo->query('SELECT * FROM cliente ORDER BY id');
+  return $stmt->fetchAll();
 }
 
 
