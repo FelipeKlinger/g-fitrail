@@ -5,24 +5,21 @@ require __DIR__ . '../config/db.php';
 class clienteModel
 {
     private $pdo;
-    
+
   public function __construct($pdo)
   {
     $this->pdo = $pdo;
   }
 
 
-function leerUsuarios()
-{
-
+function listarClientes(){
   $pdo = PDOconect();
-
   $leer = $pdo->query('SELECT * FROM cliente ORDER BY id');
   return $leer->fetchAll();
 }
 
 
-function AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2)
+function agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2)
 {
 
   $pdo = PDOconect();
@@ -57,7 +54,7 @@ function AltaUsuarios($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1,
 }
 
 
-function EditarUsuari($id, $nombre, $email, $pass1, $pass2)
+function editarClientes($id, $nombre, $email, $pass1, $pass2)
 {
   $pdo = PDOconect();
 
@@ -95,7 +92,7 @@ function EditarUsuari($id, $nombre, $email, $pass1, $pass2)
   }
 }
 
-function ElimnarUsuari($id)
+function eliminarClientes($id)
 {
   $pdo = PDOconect();
 
