@@ -22,8 +22,6 @@ class clienteModel
 function agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2)
 {
 
-  $pdo = PDOconect();
-
   if ($nombre === '' || $email === '' || $edad === '' || $altura === '' || $peso  === ''  || $objetivo === '' || $pass1 === '' || $pass2 === '') {
     echo 'Rellena todos los campos.';
   } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
@@ -31,13 +29,13 @@ function agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pas
   } elseif ($pass1 !== $pass2) {
     echo 'Les contraseñas no coinciden.';
   } else {
-    $stmt = $pdo->prepare('SELECT id FROM cliente WHERE email = :email');
+    $stmt = $this->pdo->prepare('SELECT id FROM cliente WHERE email = :email');
     $stmt->execute(['email' => $email]);
     if ($stmt->fetch()) {
       echo 'Ya existe un usuario con este Email.';
     } else {
       $hash = password_hash($pass1, PASSWORD_DEFAULT);
-      $stmt = $pdo->prepare(
+      $stmt = $this->pdo->prepare(
         'INSERT INTO cliente (nombre, email, edad, altura, peso, objetivo, password_hash) VALUES (:nombre, :email, :edad, :altura, :peso, :objetivo, :hash)'
       );
       $stmt->execute([
@@ -56,7 +54,6 @@ function agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pas
 
 function editarClientes($id, $nombre, $email, $pass1, $pass2)
 {
-  $pdo = PDOconect();
 
   if (empty($nombre) || empty($email)) {
     return "El nombre y el email son obligatorios.";
@@ -69,7 +66,7 @@ function editarClientes($id, $nombre, $email, $pass1, $pass2)
       return "Las contraseñas no coinciden.";
     }
     $password_hash = password_hash($pass1, PASSWORD_DEFAULT);
-    $stmt = $pdo->prepare("
+    $stmt = $this->pdo->prepare("
             UPDATE cliente SET nombre = :nombre, email = :email, password_hash = :password WHERE id = :id
         ");
     $stmt->execute([
@@ -80,7 +77,7 @@ function editarClientes($id, $nombre, $email, $pass1, $pass2)
     ]);
     return "Usuario actualizado correctamente con nueva contraseña.";
   } else {
-    $stmt = $pdo->prepare("
+    $stmt = $this->pdo->prepare("
             UPDATE cliente SET nombre = :nombre, email = :email WHERE id = :id");
     $stmt->execute([
       ':nombre' => $nombre,
@@ -94,11 +91,10 @@ function editarClientes($id, $nombre, $email, $pass1, $pass2)
 
 function eliminarClientes($id)
 {
-  $pdo = PDOconect();
 
   try {
 
-    $stmt = $pdo->prepare("DELETE FROM cliente WHERE id = :id");
+    $stmt = $this->pdo->prepare("DELETE FROM cliente WHERE id = :id");
 
     $stmt->execute(['id' => $id]);
   } catch (PDOException $e) {
