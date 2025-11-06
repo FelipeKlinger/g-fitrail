@@ -1,30 +1,29 @@
 <?php
 
 require __DIR__ . '/config/db.php';
-require_once __DIR__ . '/controllers/clienteController.php';
 
 $controller = new clienteController($pdo);
 
  
-$accio = $_GET['accion'];
+$accio = $_GET['accio'] ?? 'llista';
 
 switch ($accio) {
 
-    case 'agregar':
-        $controller->agregarClientes();
+    case 'afegir':
+        $controller->AfegirJoc();
         break;
 
     case 'editar':
-        $controller->editarClientes();
+        $controller->EditarJoc();
         break;
 
     case 'eliminar':
-        $controller->eliminarClientes();
+        $controller->EliminarJoc();
         break;
 
     default:
 
-        $controller->listarClientes();
+        $controller->llistarJocs();
         break;
 
 }
