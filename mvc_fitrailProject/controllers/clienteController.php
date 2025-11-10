@@ -9,48 +9,76 @@ class clienteController
 
     public function __construct($pdo)
     {
-
-        $this->model = new clienteModel($pdo);
-    }
-
-
-
-    public function listarClientes()
-    {
-
-        $leerclientes = $this->model->listarClientes();
-
-        require __DIR__ . '/../views/lista.php';
-
-    }
-
-
-    public function agregarClientes(){
-
-
-        require __DIR__ . '/../views/agregar.php';
-
-
-    }
-
-
-    public function editarClientes(){
-
-    }
-
-    public function eliminarClientes(){
-
+    $this->model = new clienteModel($pdo);
     }
     
+    public function listarClientes()
+    {
+    $leerclientes = $this->model->listarClientes();
+                require __DIR__ . '/../views/lista.php';
+ }
+    public function agregarClientes()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $nombre   = $_POST['nombre'] ?? '';
+            $email    = $_POST['email'] ?? '';
+            $edad     = $_POST['edad'] ?? '';
+            $altura   = $_POST['altura'] ?? '';
+            $peso     = $_POST['peso'] ?? '';
+            $objetivo = $_POST['objetivo'] ?? '';
+            $pass1    = $_POST['pass1'] ?? '';
+            $pass2    = $_POST['pass2'] ?? '';
+
+            // Guardar cliente y redirigir al listado
+            $this->model->agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
+            header('Location: index.php?accion=listarClientes');
+            exit;
+        } else {
+            require __DIR__ . '/../views/agregar.php';
+        }
+    }
 
 
+    public function editarClientes()
+    {
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $id     = $_POST['id'] ?? '';
+            $nombre = $_POST['nombre'] ?? '';
+            $email  = $_POST['email'] ?? '';
+            $pass1  = $_POST['pass1'] ?? '';
+            $pass2  = $_POST['pass2'] ?? '';
 
+            $result = $this->model->editarClientes($id, $nombre, $email, $pass1, $pass2);
 
+            header('Location: index.php?accion=listarClientes');
+            exit;
+        } else {
+            $id = $_GET['id'] ?? '';
+            $cliente = null;
 
+            // Buscar el cliente actual por su id
+            if ($id) {
+                $clientes = $this->model->listarClientes();
+                foreach ($clientes as $c) {
+                    if ($c['id'] == $id) {
+                        $cliente = $c;
+                        break;
+                    }
+                }
+            }
+            require __DIR__ . '/../views/editar.php';
+        }
+    }
 
+    public function eliminarClientes()
+    {
+        $id = $_GET['id'] ?? '';
+        if ($id !== '') {
+            $this->model->eliminarClientes($id);
+        }
+        header('Location: index.php?accion=listarClientes');
+        exit;
+    }
+    
 }
-
-
-
-
 ?>
