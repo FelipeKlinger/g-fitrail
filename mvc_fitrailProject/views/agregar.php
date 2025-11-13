@@ -6,7 +6,9 @@
     <title>JOJI</title>
 </head>
 <body>
-    
+
+
+<a href="index.php?accion=lista">volver a lista</a>
 
 <h1>jiuhiui</h1>
 </body>
