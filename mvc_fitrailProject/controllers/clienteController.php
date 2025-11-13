@@ -29,7 +29,6 @@ class clienteController
             $pass1    = $_POST['pass1'] ?? '';
             $pass2    = $_POST['pass2'] ?? '';
 
-            // Guardar cliente y redirigir al listado
             $this->model->agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
             header('Location: index.php?accion=listarClientes');
             exit;
@@ -56,7 +55,6 @@ class clienteController
             $id = $_GET['id'] ?? '';
             $cliente = null;
 
-            // Buscar el cliente actual por su id
             if ($id) {
                 $clientes = $this->model->listarClientes();
                 foreach ($clientes as $c) {
@@ -79,6 +77,7 @@ class clienteController
         header('Location: index.php?accion=listarClientes');
         exit;
     }
-    
 }
+        require __DIR__ . '/../views/eliminar.php';
+
 ?>
