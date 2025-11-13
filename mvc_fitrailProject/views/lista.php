@@ -36,8 +36,8 @@
                     <td><?= htmlspecialchars($cliente['peso']) ?></td>
                     <td><?= htmlspecialchars($cliente['objetivo']) ?></td>
                     <td>
-                        <a href="index.php?accion=editar&id=<?= urlencode($cliente['id']) ?>">Editar</a> |
-                        <a href="index.php?accion=eliminar&id=<?= urlencode($cliente['id']) ?>">Eliminar</a>
+                        <a href="index.php?accion=editar&id=">Editar</a> |
+                        <a href="index.php?accion=eliminar&id=">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>
