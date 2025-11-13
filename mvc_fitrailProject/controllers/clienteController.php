@@ -73,11 +73,12 @@ class clienteController
         $id = $_GET['id'] ?? '';
         if ($id !== '') {
             $this->model->eliminarClientes($id);
+            header('Location: index.php');
+            exit;
         }
-        header('Location: index.php?accion=listarClientes');
-        exit;
+    
+        require __DIR__ . "/../views/eliminar.php";
     }
 }
-        require __DIR__ . '/../views/eliminar.php';
 
 ?>

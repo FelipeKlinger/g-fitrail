@@ -6,9 +6,9 @@ require_once __DIR__ . '/controllers/clienteController.php';
 $controller = new clienteController($pdo);
 
  
-$accio = $_GET['accion'];
+$accion = $_GET['accion'] ?? 'Location: index.php';
 
-switch ($accio) {
+switch ($accion) {
 
     case 'agregar':
         $controller->agregarClientes();
@@ -23,7 +23,6 @@ switch ($accio) {
         break;
 
     default:
-
         $controller->listarClientes();
         break;
 
