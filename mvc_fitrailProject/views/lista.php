@@ -10,7 +10,7 @@
 <body>
 
 <h1>Lista</h1>
-<a href="index.php?accion=agregar">Agregar Cliente</a> <br> <br>
+<a href="index.php?accion=agregar">Agregar Cliente</a> <br><br>
 <table border="1" cellpadding="5" cellspacing="0">
     <thead>
         <tr>
