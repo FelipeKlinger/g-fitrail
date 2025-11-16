@@ -17,10 +17,13 @@
         <label>Objetivo:</label>
         <select name="objetivo"> 
         <option value="">--Selecciona una opción--</option>
-                <option value="Perder peso (déficit calórico)" <?= $cliente['objetivo'] === 'Perder peso (déficit calórico)' ? 'selected' : '' ?>>Perder peso (déficit calórico)</option>
-                <option value="Ganar masa muscular (superávit calórico)" <?= $cliente['objetivo'] === 'Ganar masa muscular (superávit calórico)' ? 'selected' : '' ?>>Ganar masa muscular (superávit calórico)
+                <option value="Perder peso (déficit calórico)"
+                <?= $cliente['objetivo'] === 'Perder peso (déficit calórico)' ? 'selected' : '' ?>>Perder peso (déficit calórico)</option>
+                <option value="Ganar masa muscular (superávit calórico)"
+                <?= $cliente['objetivo'] === 'Ganar masa muscular (superávit calórico)' ? 'selected' : '' ?>>Ganar masa muscular (superávit calórico)
                 </option>
-                <option value="Recomposición corporal" <?= $cliente['objetivo'] === 'Recomposición corporal' ? 'selected' : '' ?>>Recomposición corporal</option>
+                <option value="Recomposición corporal"
+                <?= $cliente['objetivo'] === 'Recomposición corporal' ? 'selected' : '' ?>>Recomposición corporal</option>
             </select><br>
         <label>Nueva contraseña: <input type="password" name="pass1"></label><br>
 		<label>Repetir nueva contraseña: <input type="password" name="pass2"></label><br>
