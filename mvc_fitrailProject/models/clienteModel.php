@@ -51,11 +51,11 @@ function agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pas
 }
 
 
-function editarClientes($id, $nombre, $email, $pass1, $pass2)
+function editarClientes($id, $nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2)
 {
 
-  if (empty($nombre) || empty($email)) {
-    return "El nombre y el email son obligatorios.";
+  if (empty($nombre) || empty($email) || empty($edad) || empty($altura) || empty($peso) || empty($objetivo)) {
+    return "Todos los campos son obligatorios excepto la contraseña.";
   }
   if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
     return "El email no tiene un formato válido.";
@@ -66,21 +66,29 @@ function editarClientes($id, $nombre, $email, $pass1, $pass2)
     }
     $password_hash = password_hash($pass1, PASSWORD_DEFAULT);
     $stmt = $this->pdo->prepare("
-            UPDATE cliente SET nombre = :nombre, email = :email, password_hash = :password WHERE id = :id
+            UPDATE cliente SET nombre = :nombre, email = :email, edad = :edad, altura = :altura, peso = :peso, objetivo = :objetivo, password_hash = :password WHERE id = :id
         ");
     $stmt->execute([
       ':nombre' => $nombre,
       ':email' => $email,
+      ':edad' => $edad,
+      ':altura' => $altura,
+      ':peso' => $peso,
+      ':objetivo' => $objetivo,
       ':password' => $password_hash,
       ':id' => $id
     ]);
     return "Usuario actualizado correctamente con nueva contraseña.";
   } else {
     $stmt = $this->pdo->prepare("
-            UPDATE cliente SET nombre = :nombre, email = :email WHERE id = :id");
+            UPDATE cliente SET nombre = :nombre, email = :email, edad = :edad, altura = :altura, peso = :peso, objetivo = :objetivo WHERE id = :id");
     $stmt->execute([
       ':nombre' => $nombre,
       ':email' => $email,
+      ':edad' => $edad,
+      ':altura' => $altura,
+      ':peso' => $peso,
+      ':objetivo' => $objetivo,
       ':id' => $id
     ]);
 

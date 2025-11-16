@@ -10,7 +10,7 @@
 <body>
 
 <h1>Lista</h1>
-<a href="index.php?accion=agregar">Agregar</a>
+<a href="index.php?accion=agregar">Agregar Cliente</a> <br> <br>
 <table border="1" cellpadding="5" cellspacing="0">
     <thead>
         <tr>
@@ -36,8 +36,8 @@
                     <td><?= htmlspecialchars($cliente['peso']) ?></td>
                     <td><?= htmlspecialchars($cliente['objetivo']) ?></td>
                     <td>
-                        <a href="index.php?accion=editar&id=">Editar</a> |
-                        <a href="index.php?accion=eliminar&id=">Eliminar</a>
+                        <a href="index.php?accion=editar&id=<?= htmlspecialchars($cliente['id']) ?>">Editar</a> |
+                        <a href="index.php?accion=eliminar&id=<?= htmlspecialchars($cliente['id']) ?>">Eliminar</a>
                     </td>
                 </tr>
             <?php endforeach; ?>

@@ -29,7 +29,7 @@ class clienteController
             $pass1    = $_POST['pass1'] ?? '';
             $pass2    = $_POST['pass2'] ?? '';
 
-            $this->model->agregarClientes($nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
+            $this->model->agregarClientes( $nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
             header('Location: index.php?accion=listarClientes');
             exit;
         } else {
@@ -41,13 +41,17 @@ class clienteController
     public function editarClientes()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $id     = $_POST['id'] ?? '';
-            $nombre = $_POST['nombre'] ?? '';
-            $email  = $_POST['email'] ?? '';
-            $pass1  = $_POST['pass1'] ?? '';
-            $pass2  = $_POST['pass2'] ?? '';
+            $id       = $_POST['id'] ?? '';
+            $nombre   = $_POST['nombre'] ?? '';
+            $email    = $_POST['email'] ?? '';
+            $edad     = $_POST['edad'] ?? '';
+            $altura   = $_POST['altura'] ?? '';
+            $peso     = $_POST['peso'] ?? '';
+            $objetivo = $_POST['objetivo'] ?? '';
+            $pass1    = $_POST['pass1'] ?? '';
+            $pass2    = $_POST['pass2'] ?? '';
 
-            $result = $this->model->editarClientes($id, $nombre, $email, $pass1, $pass2);
+            $result = $this->model->editarClientes($id, $nombre, $email, $edad, $altura, $peso, $objetivo, $pass1, $pass2);
 
             header('Location: index.php?accion=listarClientes');
             exit;
@@ -71,9 +75,21 @@ class clienteController
     public function eliminarClientes()
     {
         $id = $_GET['id'] ?? '';
-        if ($id !== '') {
+        $cliente = null;
+
+        if ($id) {
+            $clientes = $this->model->listarClientes();
+            foreach ($clientes as $c) {
+                if ($c['id'] == $id) {
+                    $cliente = $c;
+                    break;
+                }
+            }
+        }
+
+        if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['confirmar']) && $cliente) {
             $this->model->eliminarClientes($id);
-            header('Location: index.php');
+            header('Location: index.php?accion=listarClientes');
             exit;
         }
     
