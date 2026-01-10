@@ -1,59 +1,120 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Aplicación CRUD con Laravel sobre entidad clientes- Maquinistas
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## Finalidad de la aplicación
+ 
+La aplicación implementa un CRUD completo que permite **crear, listar, editar y eliminar** clientes de forma sencilla mediante una interfaz web intuitiva.
 
-## About Laravel
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+**Comandos Artisan utilizados**
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Hemos usado comandos básicos para crear modelos y hacer migraciones sobre bbdd.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+**Crear el modelo y la migración para la tabla clients**
 
-## Learning Laravel
+ make art cmd="make:model Client -m"
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+**Ejecutar las migraciones para crear las tablas en la base de datos**
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+  Usamos el comando make art cmd="migrate"
 
-## Laravel Sponsors
+**Organización del proyecto**
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Modelo (Client.php)
 
-### Premium Partners
+ El modelo `Client` se encuentra en `app/Models/Client.php` y representa la entidad Cliente en la base de datos.
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+Aquí se define el array `$fillable` con los campos rellenables
 
-## Contributing
+(nombre, email, edad, altura, peso, objetivo, password)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
 
-## Code of Conduct
+## Controlador (ClientController.php)
+El controlador `ClientController` está ubicado en `app/Http/Controllers/ClientController.php` y gestiona toda la lógica del CRUD.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Métodos implementados:**
 
-## Security Vulnerabilities
+- **`index()`**: Obtiene todos los clientes mediante `Client::all()` y los envía a la vista `index.blade.php` para mostrarlos en una tabla.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+- **`create()`**: Muestra el formulario para crear un nuevo cliente cargando la vista `create.blade.php`.
 
-## License
+- **`store()`**: Valida los datos del formulario y crea un nuevo cliente en la base de datos. La contraseña se encripta con `bcrypt()` antes de guardarla. Finalmente redirige al listado.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT). hola
+- **`edit($id)`**: Busca el cliente por su ID mediante `findOrFail()` y carga la vista `update.blade.php` con los datos actuales del cliente.
+
+- **`update($id)`**: Valida los datos del formulario de edición y actualiza el cliente en la base de datos. La contraseña solo se actualiza si se proporciona una nueva. Redirige al listado después de actualizar.
+
+- **`destroy($id)`**: Elimina el cliente de la base de datos mediante `delete()` y redirige al listado.
+
+### **Rutas (web.php)**
+En el archivo `routes/web.php` se ha definido la ruta de recursos que genera automáticamente todas las rutas necesarias para el CRUD:
+
+```php
+Route::resource('clients', ClientController::class);
+```
+
+Esto crea las siguientes rutas:
+- `GET /clients` → index (listar)
+- `GET /clients/create` → create (formulario crear)
+- `POST /clients` → store (guardar)
+- `GET /clients/{id}/edit` → edit (formulario editar)
+- `PUT /clients/{id}` → update (actualizar)
+- `DELETE /clients/{id}` → destroy (eliminar)
+
+
+## **Vistas**
+Las vistas están organizadas en `resources/views/clients/` y utilizan Blade como motor de plantillas.
+
+**`layout.blade.php`**: Plantilla principal que define la estructura base de la aplicación. Las demás vistas extienden de esta mediante `@extends('layout')`.
+
+**`index.blade.php`**: 
+Muestra el listado de todos los clientes en una tabla con sus datos. 
+Incluye un botón para añadir nuevos clientes y columnas con acciones para editar y eliminar cada cliente.
+
+**`create.blade.php`**: 
+Vista que muestra el formulario para crear un nuevo cliente.
+Incluye el parcial `_form.blade.php` que contiene el formulario completo con todos los campos.
+
+**`_form.blade.php`**: 
+Formulario parcial reutilizable que contiene todos los campos necesarios para crear un cliente:
+Nombre, email, edad, altura, peso, objetivo y contraseña.
+
+**`update.blade.php`**: 
+Vista que muestra el formulario para editar un cliente existente.
+Incluye el parcial `_formupdate.blade.php` y usa `@method('PUT')` para indicar que es una actualización.
+Envía los datos a la ruta `clients.update`.
+
+**`_formupdate.blade.php`**: 
+Formulario parcial para edición que es similar a `_form.blade.php`, pero:
+Pre-carga los datos actuales del cliente usando `old('campo', $client->campo)`.
+La contraseña es opcional: si se deja en blanco, se mantiene la contraseña actual.
+Incluye un texto informativo indicando que la contraseña es opcional.
+
+## Funcionamiento de la aplicación
+
+La aplicación muestra un listado de clientes en la página principal (`index.blade.php`).
+Cada cliente se muestra en una fila con sus datos personales y una columna de acciones con dos botones de editar y eliminar.
+
+**Crear un cliente:**
+Al hacer clic en "Añadir Cliente", se carga el formulario de creación donde se introducen todos los datos.
+Los datos se validan en el controlador mediante `$request->validate()` y, si son correctos, se guarda el nuevo.
+
+**Editar un cliente:**
+Al hacer clic en "Editar", se carga el formulario de edición con los datos actuales del cliente ya pre-cargados.
+
+**Eliminar un cliente:**
+Al hacer clic en "Eliminar", aparece un modal de confirmación que muestra el nombre del cliente.
+Si se confirma, se envía un formulario con el método DELETE que ejecuta `$client->delete()` en el controlador.
+
+## Capturas de pantalla
+
+### Listado de clientes
+<img src="public/images/crud/Listar.png" height="230px">
+
+### Crear cliente
+<img src="public/images/crud/Crear.png" height="230px">
+
+### Editar cliente
+<img src="public/images/crud/Editar.png" height="230px">
+
+### Modal de confirmación para eliminar
+<img src="public/images/crud/Eliminar.png" height="230px">
