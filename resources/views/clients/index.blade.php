@@ -71,6 +71,61 @@
     tr:hover td {
         background-color: #f1f7ff;
     }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0,0,0,0.5);
+    }
+
+    .modal-content {
+        background-color: white;
+        margin: 15% auto;
+        padding: 20px;
+        border-radius: 8px;
+        width: 90%;
+        max-width: 400px;
+        text-align: center;
+    }
+
+    .modal-buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+    }
+
+    .modal-btn {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: all 0.3s;
+    }
+
+    .modal-btn-cancel {
+        background-color: #6c757d;
+        color: white;
+    }
+
+    .modal-btn-cancel:hover {
+        background-color: #5a6268;
+    }
+
+    .modal-btn-confirm {
+        background-color: #dc3545;
+        color: white;
+    }
+
+    .modal-btn-confirm:hover {
+        background-color: #c82333;
+    }
 </style>
 
 <div class="container">
@@ -87,7 +142,8 @@
                 <th>Edad</th>
                 <th>Altura</th>
                 <th>Peso</th>
-                <th>Objetivo</th>                
+                <th>Objetivo</th>
+                <th>Acciones</th>                
             </tr>
         </thead>
         <tbody>
@@ -100,10 +156,42 @@
                     <td>{{ $client->altura }}</td>
                     <td>{{ $client->peso }}</td>
                     <td>{{ $client->objetivo}}</td>
+                    <td>
+                        <a href="{{ route('clients.edit', $client->id) }}" class="btn-action btn-edit">Editar</a>
+                        <button onclick="openDeleteModal({{ $client->id }}, '{{ $client->nombre }}')" class="btn-action btn-delete">Eliminar</button>
+                    </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
 </div>
+
+<div id="deleteModal" class="modal">
+    <div class="modal-content">
+        <h3>¿Confirmar eliminación?</h3>
+        <p>¿Estás seguro de que deseas eliminar al cliente <strong id="clientName"></strong>?</p>
+        
+        <div class="modal-buttons">
+            <button class="modal-btn modal-btn-cancel" onclick="closeDeleteModal()">Cancelar</button>
+            <form id="deleteForm" method="POST" style="display: inline;">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="modal-btn modal-btn-confirm">Eliminar</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    function openDeleteModal(clientId, clientName) {
+        document.getElementById('clientName').textContent = clientName;
+        document.getElementById('deleteForm').action = '/clients/' + clientId;
+        document.getElementById('deleteModal').style.display = 'block';
+    }
+
+    function closeDeleteModal() {
+        document.getElementById('deleteModal').style.display = 'none';
+    }
+</script>
 
 @endsection

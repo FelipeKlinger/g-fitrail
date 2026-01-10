@@ -59,7 +59,8 @@ class ClientController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        return view("clients.update", compact("client"));
     }
 
     /**
@@ -67,7 +68,28 @@ class ClientController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        
+        $validated = $request->validate([
+            'nombre'   => 'required|string|max:100',
+            'email'    => 'required|email|unique:clients,email,' . $id,
+            'edad'     => 'required|integer|min:15',
+            'altura'   => 'required|numeric|min:1.40|max:2.10',
+            'peso'     => 'required|numeric|min:40|max:200',
+            'objetivo' => 'required|in:perder peso,ganar masa muscular,tonificar,mantener forma,aumentar resistencia,mejorar flexibilidad,recomposición corporal',
+        ]);
+
+        // Solo actualizar la contraseña si se rellena el campo
+        if ($request->filled('password')) {
+            $request->validate([
+                'password' => 'string|min:6',
+            ]);
+            $validated['password'] = bcrypt($request->password);
+        }
+
+        $client->update($validated);
+
+        return redirect()->route('clients.index');
     }
 
     /**
@@ -75,6 +97,9 @@ class ClientController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $client = Client::findOrFail($id);
+        $client->delete();
+        
+        return redirect()->route('clients.index');
     }
 }
