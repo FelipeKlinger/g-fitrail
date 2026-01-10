@@ -1,46 +1,138 @@
-@csrf {{-- token de seguridad para formularios en Laravel --}} 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Cliente</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
 
-<label> nombre </label> <br>
-<input type="text" name="nombre" value="{{ old('nombre', $client->nombre ?? '' ) }}"> <br>
-@error('nombre') <div>{{ $message }}</div>
-@enderror
-<input type="email" name="email" value="{{ old('email', $client->email ?? '' ) }}"> <br>
-@error('email') <div>{{ $message }}</div>
-@enderror
-<label>edad</label> <br>
-<input type="number" name="edad" value="{{ old('edad', $client->edad ?? '' ) }}"> <br>
-@error('edad') <div>{{ $message }}</div>
-@enderror
+        .container {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 450px;
+        }
 
-<label>altura</label> <br>
-<input type="number" name="altura" step="0.01" min="0" max="999.99" value="{{ old('altura', $client->altura ?? '' ) }}"> <br>
-@error('altura') <div>{{ $message }}</div>
-@enderror
-<label>Peso</label> <br>
-<input type="number" name="peso" step="0.01" min="0" max="999.99" value="{{ old('peso', $client->peso ?? '' ) }}"> <br>
-@error('peso') <div>{{ $message }}</div>
-@enderror
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 1.5rem;
+        }
 
-<label>Objetivo</label> <br>
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
 
-<select name="objetivo"> 
-    @php
-    $objetivo = old('objetivo', $client->objetivo ?? '' );
-    @endphp
-    <option value="perder peso" {{ $objetivo == 'perder peso' ? 'selected' : '' }}>perder peso</option>
-    <option value="ganar masa muscular" {{ $objetivo == 'ganar masa muscular' ? 'selected' : '' }}>ganar masa muscular</option>
-    <option value="tonificar" {{ $objetivo == 'tonificar' ? 'selected' : '' }}>tonificar</option>
-    <option value="mantener forma" {{ $objetivo == 'mantener forma' ? 'selected' : '' }}>mantener forma</option>
-    <option value="aumentar resistencia" {{ $objetivo == 'aumentar resistencia' ? 'selected' : '' }}>aumentar resistencia</option>
-    <option value="mejorar flexibilidad" {{ $objetivo == 'mejorar flexibilidad' ? 'selected' : '' }}>mejorar flexibilidad</option>
-    <option value="recomposición corporal" {{ $objetivo == 'recomposición corporal' ? 'selected' : '' }}>recomposición corporal</option>
-</select> <br>
-@error('objetivo') <div>{{ $message }}</div>
-@enderror
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
 
-<label>Contraseña</label> <br>
-<input type="password" name="password" value="{{ old('password') }}"> <br>
-@error('password') <div>{{ $message }}</div>    
-@enderror
+        input:focus, select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
 
-<button type="submit">Enviar</button>
+        .error {
+            color: #dc3545;
+            font-size: 0.85rem;
+            margin-bottom: 15px;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Registrar Cliente</h1>
+
+        <form action="{{ route('clients.store') }}" method="POST">
+            @csrf 
+
+            <label>Nombre</label>
+            <input type="text" name="nombre" value="{{ old('nombre') }}">
+            @error('nombre') <div class="error">{{ $message }}</div> @enderror
+
+            <label>Email</label>
+            <input type="email" name="email" value="{{ old('email') }}">
+            @error('email') <div class="error">{{ $message }}</div> @enderror
+
+            <label>Edad</label>
+            <input type="number" name="edad" value="{{ old('edad') }}">
+            @error('edad') <div class="error">{{ $message }}</div> @enderror
+
+            <div style="display: flex; gap: 10px;">
+                <div style="width: 50%;">
+                    <label>Altura (cm)</label>
+                    <input type="number" name="altura" step="0.01" value="{{ old('altura') }}">
+                    @error('altura') <div class="error">{{ $message }}</div> @enderror
+                </div>
+                <div style="width: 50%;">
+                    <label>Peso (kg)</label>
+                    <input type="number" name="peso" step="0.01" value="{{ old('peso') }}">
+                    @error('peso') <div class="error">{{ $message }}</div> @enderror
+                </div>
+            </div>
+
+            <label>Objetivo</label>
+            <select name="objetivo"> 
+                <option value="">Selecciona...</option>
+                <option value="perder peso" {{ old('objetivo') == 'perder peso' ? 'selected' : '' }}>Perder peso</option>
+                <option value="ganar masa muscular" {{ old('objetivo') == 'ganar masa muscular' ? 'selected' : '' }}>Ganar masa muscular</option>
+                <option value="tonificar" {{ old('objetivo') == 'tonificar' ? 'selected' : '' }}>Tonificar</option>
+                <option value="mantener forma" {{ old('objetivo') == 'mantener forma' ? 'selected' : '' }}>Mantener forma</option>
+                <option value="aumentar resistencia" {{ old('objetivo') == 'aumentar resistencia' ? 'selected' : '' }}>Aumentar resistencia</option>
+                <option value="mejorar flexibilidad" {{ old('objetivo') == 'mejorar flexibilidad' ? 'selected' : '' }}>Mejorar flexibilidad</option>
+                <option value="recomposición corporal" {{ old('objetivo') == 'recomposición corporal' ? 'selected' : '' }}>Recomposición corporal</option>
+            </select>
+            @error('objetivo') <div class="error">{{ $message }}</div> @enderror
+
+            <label>Contraseña</label>
+            <input type="password" name="password">
+            @error('password') <div class="error">{{ $message }}</div> @enderror
+
+            <button type="submit">Guardar Cliente</button>
+        </form>
+    </div>
+
+</body>
+</html>

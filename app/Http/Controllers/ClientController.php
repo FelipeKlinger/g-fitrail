@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Client;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash; // Hash
 
 class ClientController extends Controller
 {
@@ -26,21 +27,24 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
-    {
-        $validated = $request->validate([
-            'nombre' => 'required|string|max:100',
-            'email' => 'required|email|unique:clients,email',
-            'edad' => 'required|integer|min:1',
-            'altura' => 'required|numeric|min:0',
-            'peso' => 'required|numeric|min:0',
-            'objetivo' => 'required|in:perder peso,ganar masa muscular,tonificar,mantener forma,aumentar resistencia,mejorar flexibilidad,recomposición corporal',
-            'password' => 'required|string|min:6',
-        ]);
+  public function store(Request $request)
+{
+    $validated = $request->validate([
+        'nombre'   => 'required|string|max:100',
+        'email'    => 'required|email|unique:clients,email',
+        'edad'     => 'required|integer|min:15',
+        'altura'   => 'required|numeric|min:1.40|max:2.10',
+        'peso'     => 'required|numeric|min:40|max:200',
+        'objetivo' => 'required|in:perder peso,ganar masa muscular,tonificar,mantener forma,aumentar resistencia,mejorar flexibilidad,recomposición corporal',
+        'password' => 'required|string|min:6',
+    ]);
 
-        Client::created($validated);
-        return redirect()->route('clients.index')->with('status', 'Cliente creado exitosamente.');
-    }
+    $validated['password'] = bcrypt($validated['password']);
+
+    Client::create($validated);
+
+    return redirect()->route('clients.index');
+}
 
     /**
      * Display the specified resource.
