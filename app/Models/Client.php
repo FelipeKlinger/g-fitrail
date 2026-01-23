@@ -7,13 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Client extends Model
 {
 
-
-    public function plan()
+    public function plans()
     {
-        return $this->belongsTo(Plan::class);
+        return $this->belongsToMany(Plan::class);
     }
 
-    
     protected $fillable = [ //campos que se pueden asignar 
         'nombre',
         'email',
@@ -22,6 +20,5 @@ class Client extends Model
         'peso',
         'objetivo',
         'password',
-        'plan_id',
     ];
 }

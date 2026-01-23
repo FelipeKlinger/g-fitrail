@@ -6,13 +6,18 @@ use Illuminate\Database\Eloquent\Model;
 
 class Plan extends Model
 {
- 
 
-public function clients()
+    protected $fillable = [
+        "nombre",
+        "descripcion",
+        "precio",
+    ];
+
+    public function clients()
     {
-        return $this->hasMany(Client::class);
+        return $this->belongsToMany(Client::class);
     }
 
-    
+
 
 }

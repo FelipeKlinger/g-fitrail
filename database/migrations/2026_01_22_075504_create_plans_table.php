@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre', 100);
+            $table->string('descripcion', 500);
+            $table->decimal('precio', 8, 2); 
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('plans');
