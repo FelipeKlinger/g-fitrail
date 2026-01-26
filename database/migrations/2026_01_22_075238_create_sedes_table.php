@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('ciudad', 100)->default('Tarragona');
             $table->time('horario_apertura');
             $table->time('horario_cierre');
+            $table->timestamps();
         });
     }
 

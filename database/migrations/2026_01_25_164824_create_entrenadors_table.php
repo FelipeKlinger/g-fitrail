@@ -24,8 +24,9 @@ return new class extends Migration
                 'Yoga',
                 'Rehabilitación'
             ]);
-            $table->string("password", 20)->nullable(); //nullable para permitir valores nulos
+            $table->string("password");
             $table->foreignId("sede_id")->constrained("sedes")->cascadeOnDelete();
+            $table->timestamps();
         });
     }
 

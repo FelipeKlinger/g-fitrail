@@ -13,6 +13,7 @@ class Entrenador extends Model
         "direccion",
         "especialidad",
         "password",
+        "sede_id"
     ];
 
 public function sedes()
