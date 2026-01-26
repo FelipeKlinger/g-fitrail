@@ -25,7 +25,7 @@ return new class extends Migration
                 'Rehabilitación'
             ]);
             $table->string("password", 20)->nullable(); //nullable para permitir valores nulos
-            $table->timestamps();
+            $table->foreignId("sede_id")->constrained("sedes")->cascadeOnDelete();
         });
     }
 

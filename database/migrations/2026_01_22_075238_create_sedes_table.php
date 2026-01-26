@@ -13,7 +13,11 @@ return new class extends Migration
     {
         Schema::create('sedes', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('direccion', 150);
+            $table->string('telefono', 20)->unique();
+            $table->string('ciudad', 100)->default('Tarragona');
+            $table->time('horario_apertura');
+            $table->time('horario_cierre');
         });
     }
 
