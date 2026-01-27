@@ -21,6 +21,8 @@ public function sedes()
         return $this->belongsTo(Sede::class);
     }   
 
-
+    public function entrenamientos(){
+        return $this->hasMany(entrenamiento::class);
+    }
 
 }
