@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Entrenador extends Model
 {
-    protected $fillable = [
+    protected $fillable = [ // Campos que se pueden asignar masivamente
         "nombre",
         "email",
         "telefono",
