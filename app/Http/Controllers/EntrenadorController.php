@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrenador;
+use App\Models\Sede;
 use Illuminate\Http\Request;
+
 
 class EntrenadorController extends Controller
 {
@@ -21,7 +23,8 @@ class EntrenadorController extends Controller
      */
     public function create()
     {
-        return view("entradores.create");
+        $sedes = Sede::all(); // Obtener todas las sedes para el select en la vista create
+        return view("entrenadores.create", compact("sedes"));
     }
 
     /**
@@ -29,18 +32,18 @@ class EntrenadorController extends Controller
      */
     public function store(Request $request) // store() se utiliza para manejar la lógica de almacenamiento de nuevos registros
     {
-        $validate = $request->validate([
+        $validated = $request->validate([
 
             "nombre" => "required|string|max:100",
             "email" => "required|email|unique:entrenadors,email",
             "telefono" => "required|string|",
             "direccion" => "required|string|",
             "especialidad" => "required|in:Musculación,CrossFit,Funcional,Yoga,Rehabilitación",
-            "password" => "requiered|string|min:6",
+            "password" => "required|string|min:6",
             "sede_id" => "required|exists:sedes,id" // Verifica que la sede_id exista en la tabla sedes
         ]);
 
-        Entrenador::create($validate);
+        Entrenador::create($validated);
 
         return redirect()->route("entrenadores.index")->with("status", "Entrenador creado exitosamente");
     }
@@ -58,7 +61,9 @@ class EntrenadorController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $entrenador= Entrenador::findOrFail($id);
+        return view("entrenadores.update", compact("emtrenador"));        
+
     }
 
     /**

@@ -85,9 +85,8 @@
     <div class="container">
         <h1>Registrar Cliente</h1>
 
-        <form action="{{ route('clients.store') }}" method="POST">
-            @csrf 
-
+        <form action="{{ route('clients.store') }}" method="POST"> <!-- Ajusta la ruta según tu configuración -->
+            @csrf
             <label>Nombre</label>
             <input type="text" name="nombre" value="{{ old('nombre') }}">
             @error('nombre') <div class="error">{{ $message }}</div> @enderror

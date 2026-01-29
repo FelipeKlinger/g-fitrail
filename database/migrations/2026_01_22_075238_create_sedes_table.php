@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('direccion', 150);
             $table->string('telefono', 20)->unique();
-            $table->string('ciudad', 100)->default('Tarragona');
+            $table->enum('ciudad', ["Tarragona", "Barcelona"])->default('Tarragona');
             $table->time('horario_apertura');
             $table->time('horario_cierre');
             $table->timestamps();

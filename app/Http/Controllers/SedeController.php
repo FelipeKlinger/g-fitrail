@@ -32,14 +32,14 @@ class SedeController extends Controller
         $validated = $request->validate([
             'direccion' => 'required|string|max:255',
             'telefono' => 'required|string|max:20',
-            'ciudad' => 'required|string|max:100',
-            'horario_apertura' => 'required|date_format:H:i',
-            'horario_cierre' => 'required|date_format:H:i|after:horario_apertura',
+            'ciudad' => 'required|string|in:Tarragona,Barcelona',
+            'horario_apertura' => 'required|date_format:H:i', // Formato de hora HH:MM ej: 14:30
+            'horario_cierre' => 'required|date_format:H:i|after:horario_apertura', // Debe ser después de la hora de apertura
         ]);
 
         Sede::create($validated);
 
-        return redirect()->route('sedes.index');
+        return redirect()->route('sedes.index')->with('status', 'Sede creada exitosamente'); //PRG
     }
 
     /**

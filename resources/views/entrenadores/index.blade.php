@@ -4,9 +4,10 @@
 
 @section('content')
 
+<a href="{{ route('entrenadores.create') }}">Crear Entrenador</a>
 <h1>Entrenadores</h1>
 
-<table>
+<table style="width:60%" border="1">
     <thead>
         <tr>
             <th>Id</th>
@@ -32,9 +33,10 @@
             <td>{{ $entrenador->especialidad }}</td>
             <td>{{ $entrenador->password }}</td>
             <td>{{ $entrenador->sede_id }}</td>
-        
+
         </tr>
         @endforeach
 
     </tbody>
 </table>
+@endsection
