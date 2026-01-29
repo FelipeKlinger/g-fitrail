@@ -1,7 +1,7 @@
 @extends('layout')
 
 @section('title', 'LLista de entrenadors')
-
+s
 @section('content')
 
 <a href="{{ route('entrenadores.create') }}">Crear Entrenador</a>
