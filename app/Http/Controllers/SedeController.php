@@ -21,8 +21,7 @@ class SedeController extends Controller
      */
     public function create()
     {
-        
-    return view("sedes.index");
+        return view("sedes.create");
     }
 
     /**
@@ -30,9 +29,17 @@ class SedeController extends Controller
      */
     public function store(Request $request)
     {
+        $validated = $request->validate([
+            'direccion' => 'required|string|max:255',
+            'telefono' => 'required|string|max:20',
+            'ciudad' => 'required|string|max:100',
+            'horario_apertura' => 'required|date_format:H:i',
+            'horario_cierre' => 'required|date_format:H:i|after:horario_apertura',
+        ]);
 
-    
+        Sede::create($validated);
 
+        return redirect()->route('sedes.index');
     }
 
     /**
@@ -48,7 +55,8 @@ class SedeController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        return view("sedes.update", compact("sede"));
     }
 
     /**
@@ -56,7 +64,19 @@ class SedeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        
+        $validated = $request->validate([
+            'direccion' => 'required|string|max:255',
+            'telefono' => 'required|string|max:20',
+            'ciudad' => 'required|string|max:100',
+            'horario_apertura' => 'required|date_format:H:i',
+            'horario_cierre' => 'required|date_format:H:i|after:horario_apertura',
+        ]);
+
+        $sede->update($validated);
+
+        return redirect()->route('sedes.index');
     }
 
     /**
@@ -64,6 +84,9 @@ class SedeController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $sede = Sede::findOrFail($id);
+        $sede->delete();
+        
+        return redirect()->route('sedes.index');
     }
 }
