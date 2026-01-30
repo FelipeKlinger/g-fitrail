@@ -32,7 +32,7 @@ s
             <td>{{ $entrenador->direccion }}</td>
             <td>{{ $entrenador->especialidad }}</td>
             <td>{{ $entrenador->password }}</td>
-            <td>{{ $entrenador->sede_id }}</td>
+            <td> {{ $entrenador->sede->direccion }}, {{ $entrenador->sede->ciudad }} </td>
 
         </tr>
         @endforeach

@@ -3,7 +3,7 @@
 
 @section("content")
 <h1>Entrenamientos disponibles</h1>
-<table>
+<table style="width:50% " border="1"> >
     <thead>
         <tr>
             <th>Nombre</th>
@@ -18,8 +18,11 @@
         @foreach ($entrenamientos as $entrenamiento)
         <tr>
             <td>{{ $entrenamiento->nombre }}</td>
-            <td>{{ $entrenamiento->duracion }}</td>
-            <td>{{ $entrenamiento->nivel }}</td>
+            <td>{{ $entrenamiento->descripcion }}</td>
+            <td>{{ $entrenamiento->capacidad }}</td>
+            <td>{{ $entrenamiento->fecha_inicio }}</td>
+            <td>{{ $entrenamiento->fecha_fin }}</td>
+            <td>{{ $entrenamiento->entrenador->nombre }}, {{ $entrenamiento->entrenador->especialidad }} </td>
         </tr>
         @endforeach
     </tbody>

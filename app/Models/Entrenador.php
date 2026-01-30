@@ -16,7 +16,7 @@ class Entrenador extends Model
         "sede_id"
     ];
 
-public function sedes()
+public function sede()
     {
         return $this->belongsTo(Sede::class);
     }   
