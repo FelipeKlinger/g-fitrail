@@ -15,7 +15,7 @@ class EntrenadorController extends Controller
     public function index()
     {
         $entrenadores = Entrenador::all();
-        return view("entrenadores.index", compact("entrenadores")); // compact para pasar variables a la vista
+        return view("entrenadors.index", compact("entrenadores")); // compact para pasar variables a la vista
     }
 
     /**
@@ -24,7 +24,7 @@ class EntrenadorController extends Controller
     public function create()
     {
         $sedes = Sede::all(); // Obtener todas las sedes para el select en la vista create
-        return view("entrenadores.create", compact("sedes"));
+        return view("entrenadors.create", compact("sedes"));
     }
 
     /**
@@ -45,7 +45,7 @@ class EntrenadorController extends Controller
 
         Entrenador::create($validated);
 
-        return redirect()->route("entrenadores.index")->with("status", "Entrenador creado exitosamente");
+        return redirect()->route("entrenadors.index")->with("status", "Entrenador creado exitosamente");
     }
 
     /**
@@ -59,26 +59,41 @@ class EntrenadorController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Entrenador $entrenador)  // edit() se utiliza para mostrar el formulario de edición de un registro existente
     {
-        $entrenador= Entrenador::findOrFail($id);
-        return view("entrenadores.update", compact("emtrenador"));        
+        $sedes = Sede::all();
+        return view("entrenadors.update", compact("entrenador", "sedes"));        
 
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Entrenador $entrenador)
     {
-        //
+     
+           $validated = $request->validate([
+
+            "nombre" => "required|string|max:100",
+            "email" => "required|email|unique:entrenadors,email," . $entrenador->id,
+            "telefono" => "required|string|",
+            "direccion" => "required|string|",
+            "especialidad" => "required|in:Musculación,CrossFit,Funcional,Yoga,Rehabilitación",
+            "password" => "required|string|min:6",
+            "sede_id" => "required|exists:sedes,id" // Verifica que la sede_id exista en la tabla sedes
+        ]);
+        $entrenador->update($validated);
+        return redirect()->route("entrenadors.index")->with("status", "Entrenador actualizado exitosamente");
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Entrenador $entrenador)
     {
-        //
+        $entrenador->delete();
+        return redirect()->route("entrenadors.index")->with("status", "Entrenador eliminado exitosamente");
+
     }
 }

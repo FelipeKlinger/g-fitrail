@@ -28,12 +28,12 @@
         <br>
 
         <label>Fecha de inicio</label>
-        <input type="text" name="fecha_inicio" value="{{ old('fecha_inicio', $entrenamiento->fecha_inicio ?? '') }}">
+        <input type="datetime-local" name="fecha_inicio" value="{{ old('fecha_inicio', isset($entrenamiento->fecha_inicio) ? date('Y-m-d\TH:i', strtotime($entrenamiento->fecha_inicio)) : '') }}">
         @error('fecha_inicio') <div>{{ $message }}</div> @enderror
         <br>
 
         <label>Fecha fin</label>
-        <input type="text" name="fecha_fin" value="{{ old('fecha_fin', $entrenamiento->fecha_fin ?? '') }}">
+        <input type="datetime-local" name="fecha_fin" value="{{ old('fecha_fin', isset($entrenamiento->fecha_fin) ? date('Y-m-d\TH:i', strtotime($entrenamiento->fecha_fin)) : '') }}">
         @error('fecha_fin') <div>{{ $message }}</div> @enderror
         <br>
 

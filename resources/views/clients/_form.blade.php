@@ -6,15 +6,10 @@
     <title>Crear Cliente</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f0f2f5;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #f4f4f4
         }
-
+   
         .container {
             background-color: white;
             padding: 2rem;
@@ -22,6 +17,7 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
             width: 100%;
             max-width: 450px;
+            margin: auto;
         }
 
         h1 {

@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string("nombre", 100);
             $table->string("descripcion", 255);
             $table->integer("capacidad");
-            $table->date("fecha_inicio");
-            $table->date("fecha_fin");
+            $table->dateTime("fecha_inicio");
+            $table->dateTime("fecha_fin");
             $table->foreignId("entrenador_id")->constrained("entrenadors")->cascadeOnDelete();
             $table->timestamps();
         });

@@ -2,8 +2,9 @@
 @section("title", "Entrenamientos")
 
 @section("content")
+<a href="{{ route("entrenamientos.create")  }}">Añadir Entrenamiento</a>
 <h1>Entrenamientos disponibles</h1>
-<table style="width:50% " border="1"> >
+<table style="width:50% " border="1">
     <thead>
         <tr>
             <th>Nombre</th>

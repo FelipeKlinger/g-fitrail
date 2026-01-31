@@ -1,10 +1,9 @@
 @extends('layout')
 
 @section('title', 'LLista de entrenadors')
-s
 @section('content')
 
-<a href="{{ route('entrenadores.create') }}">Crear Entrenador</a>
+<a href="{{ route('entrenadors.create') }}">Crear Entrenador</a>
 <h1>Entrenadores</h1>
 
 <table style="width:60%" border="1">
@@ -18,6 +17,7 @@ s
             <th>Especialidad</th>
             <th>Password</th>
             <th>sede</th>
+            <th>Acciones</th>
         </tr>
     </thead>
 
@@ -33,6 +33,14 @@ s
             <td>{{ $entrenador->especialidad }}</td>
             <td>{{ $entrenador->password }}</td>
             <td> {{ $entrenador->sede->direccion }}, {{ $entrenador->sede->ciudad }} </td>
+            <td>
+                <a href="{{ route('entrenadors.edit', $entrenador) }}">Editar</a>
+                <form action="{{ route('entrenadors.destroy', $entrenador) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
 
         </tr>
         @endforeach

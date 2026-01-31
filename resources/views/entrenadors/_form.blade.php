@@ -10,7 +10,7 @@
 
 <body>
 
-    <form action="{{ route('entrenadores.store')  }}" method="POST">
+    <form action="{{ route('entrenadors.store')  }}" method="POST">
         @csrf
         <label>Nombre:</label>
         <input type="text" name="nombre" value="{{ old('nombre', $entrenador->nombre ?? "") }}">

@@ -53,10 +53,10 @@ class SedeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Sede $sede)
     {
-        $sede = Sede::findOrFail($id);
-        return view("sedes.update", compact("sede"));
+        return view('sedes.update', compact('sede'));
+        
     }
 
     /**
@@ -64,19 +64,7 @@ class SedeController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $sede = Sede::findOrFail($id);
-        
-        $validated = $request->validate([
-            'direccion' => 'required|string|max:255',
-            'telefono' => 'required|string|max:20',
-            'ciudad' => 'required|string|max:100',
-            'horario_apertura' => 'required|date_format:H:i',
-            'horario_cierre' => 'required|date_format:H:i|after:horario_apertura',
-        ]);
-
-        $sede->update($validated);
-
-        return redirect()->route('sedes.index');
+   
     }
 
     /**

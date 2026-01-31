@@ -16,6 +16,7 @@
             <th>Ciudad</th>
             <th>Horario de Apertura</th>
             <th>Horario de Cierre</th>
+            <th>Acciones</th>
         </tr>
     </thead>
     <tbody>

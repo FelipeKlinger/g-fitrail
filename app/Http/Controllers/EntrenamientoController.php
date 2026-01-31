@@ -36,8 +36,8 @@ class EntrenamientoController extends Controller
             "nombre" => "required|string|max:255",
             "descripcion" => "required|string|max:1000",
             "capacidad" => "required|integer|min:1|max:30",
-            "fecha_inicio" => "required|date|date_format:Y-m-d H:i",
-            "fecha_fin" => "required|date|date_format:Y-m-d H:i|after:fecha_inicio",
+            "fecha_inicio" => "required|date",
+            "fecha_fin" => "required|date|after:fecha_inicio",
             "entrenador_id" => "required|exists:entrenadors,id"
         ]);
 
