@@ -12,4 +12,4 @@ Route::resource('clients', ClientController::class); // Rutas RESTful para el re
 Route::resource('entrenadors', EntrenadorController::class); // Rutas RESTful para el recurso Entrenador
 Route::resource('sedes', SedeController::class); // Rutas RESTful para el recurso Sede
 Route::resource('entrenamientos', EntrenamientoController::class); // Rutas RESTful para el recurso Entrenamiento
-Route::resource('planes', PlanController::class); // Rutas RESTful para el recurso Plan
+Route::resource('plans', PlanController::class); // Rutas RESTful para el recurso Plan

@@ -48,7 +48,7 @@
       <a href="{{ route('clients.index') }}">Clientes</a>
       <a href="{{ route('entrenadors.index') }}">Entrenadores</a>
       <a href="{{ route('sedes.index') }}">Sedes</a>
-      <a href="{{ route('planes.index') }}">Planes</a>
+      <a href="{{ route('plans.index') }}">Planes</a>
       <a href="{{ route('entrenamientos.index') }}">Entrenamientos</a>
     </nav>
   </header>
