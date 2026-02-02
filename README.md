@@ -108,15 +108,15 @@ Si se confirma, se envía un formulario con el método DELETE que ejecuta `$clie
 ## Capturas de pantalla
 
 ### Listado de clientes
-<img src="public/images/crud/Listar.png" height="230px">
+<img src="public/images/Entidad - Clientes/Listar.png" height="230px">
 
 ### Crear cliente
-<img src="public/images/crud/Crear.png" height="230px">
+<img src="public/images/Entidad - Clientes/Crear.png" height="230px">
 
 ### Editar cliente
-<img src="public/images/crud/Editar.png" height="230px">
+<img src="public/images/Entidad - Clientes/Editar.png" height="230px">
 
 ### Modal de confirmación para eliminar
-<img src="public/images/crud/Eliminar.png" height="230px">
+<img src="public/images/Entidad - Clientes/Eliminar.png" height="230px">
 
 ####asjdijsaidjsaidosad
