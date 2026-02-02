@@ -6,6 +6,8 @@ use App\Http\Controllers\EntrenadorController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\EntrenamientoController;
 use App\Http\Controllers\PlanController;
+use App\Http\Controllers\ReservaController;
+
 
 Route::get('/', fn() => view('homepage.index')); // Redirige la raíz a la lista de clientes
 Route::resource('clients', ClientController::class); // Rutas RESTful para el recurso Client 
@@ -13,3 +15,4 @@ Route::resource('entrenadors', EntrenadorController::class); // Rutas RESTful pa
 Route::resource('sedes', SedeController::class); // Rutas RESTful para el recurso Sede
 Route::resource('entrenamientos', EntrenamientoController::class); // Rutas RESTful para el recurso Entrenamiento
 Route::resource('plans', PlanController::class); // Rutas RESTful para el recurso Plan
+Route::resource('reservas', ReservaController::class); 

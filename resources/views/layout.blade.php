@@ -50,6 +50,7 @@
       <a href="{{ route('sedes.index') }}">Sedes</a>
       <a href="{{ route('plans.index') }}">Planes</a>
       <a href="{{ route('entrenamientos.index') }}">Entrenamientos</a>
+      <a href="{{ route('reservas.index') }}">Reservas</a>
     </nav>
   </header>
 

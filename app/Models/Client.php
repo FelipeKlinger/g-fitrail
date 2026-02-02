@@ -11,6 +11,10 @@ class Client extends Model
     {
         return $this->belongsToMany(Plan::class);
     }
+    public function reserva()
+    {
+        $this->hasMany(reserva::class);
+    }
 
     protected $fillable = [ //campos que se pueden asignar 
         'nombre',
