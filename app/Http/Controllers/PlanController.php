@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class PlanController extends Controller
@@ -11,7 +12,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return view("plans.index");
+        $plans = Plan::all();
+        return view('plans.index', compact('plans'));
     }
 
     /**
@@ -19,7 +21,7 @@ class PlanController extends Controller
      */
     public function create()
     {
-        //
+        return view('plans.create');
     }
 
     /**
@@ -27,7 +29,15 @@ class PlanController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:100',
+            'descripcion' => 'required|string|max:500',
+            'precio' => 'required|numeric|min:0|max:9999.99',
+        ]);
+
+        Plan::create($validated);
+
+        return redirect()->route('plans.index') ->with('status', 'Plan creado exitosamente'); //PRG
     }
 
     /**
@@ -41,24 +51,34 @@ class PlanController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(Plan $plan)
     {
-        //
+        return view('plans.update', compact('plan'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Plan $plan)
     {
-        //
+        
+        $validated = $request->validate([
+            'nombre' => 'required|string|max:100',
+            'descripcion' => 'required|string|max:500',
+            'precio' => 'required|numeric|min:0|max:9999.99',
+        ]);
+
+        $plan->update($validated);
+
+        return redirect()->route('plans.index')->with('status', 'Plan actualizado exitosamente');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(Plan $plan)
     {
-        //
+        $plan->delete();
+        return redirect()->route('plans.index')->with('status', 'Plan eliminado exitosamente');
     }
 }
