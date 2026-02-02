@@ -118,3 +118,5 @@ Si se confirma, se envía un formulario con el método DELETE que ejecuta `$clie
 
 ### Modal de confirmación para eliminar
 <img src="public/images/crud/Eliminar.png" height="230px">
+
+####asjdijsaidjsaidosad
