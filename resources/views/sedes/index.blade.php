@@ -29,6 +29,14 @@
             <td>{{ $sede->ciudad }}</td>
             <td>{{ $sede->horario_apertura }}</td>
             <td>{{ $sede->horario_cierre }}</td>
+            <td>
+                <a href="{{ route("sedes.edit", $sede) }}">editar</a>
+                <form action="{{ route("sedes.destroy", $sede) }}" method="POST">
+                    @method("DELETE")
+                    @csrf
+                    <button type="submit">Eliminar</button>
+                </form>
+            </td>
         </tr>
         @endforeach
     </tbody>

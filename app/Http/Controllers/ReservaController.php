@@ -25,7 +25,13 @@ class ReservaController extends Controller
 
     public function store(Request $request)
     {
-        //
+        
+        $validated = $request->validate([
+            "client_id" => "required|exists:clients,id",
+            "entrenamiento_id" => "required|exists:entrenamientos,id",
+        ]);
+
+
     }
 
     public function edit(Request $request) {}
