@@ -1,10 +1,10 @@
 @extends("layout")
 @section("title", "Editar sede")
 @section("content")
-<form action="{{ route("sedes.update", $sede) }}" method="POST">
+<h1>Editar Sede</h1>
+<form action="{{ route('sedes.update', $sede) }}" method="POST">
     @method("PUT")
     @csrf
-    @include("sedes._form")
+    @include("sedes._form", compact("sede"))
 </form>
-
 @endsection

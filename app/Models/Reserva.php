@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class reserva extends Model
+class Reserva extends Model
 {
     protected $fillable = [
         "client_id",
@@ -14,10 +14,10 @@ class reserva extends Model
     ];
 
     public function cliente(){
-        $this->belongsTo(Client::class);
+        return $this->belongsTo(Client::class, "client_id");
     }
 
     public function entrenamiento(){
-        $this->belongsTo(Entrenamiento::class);
+        return $this->belongsTo(Entrenamiento::class, "entrenamiento_id");
     }
 }

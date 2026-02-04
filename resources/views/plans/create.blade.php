@@ -5,6 +5,8 @@
 @section("content")
 
 <h1>Crear Plan</h1>
-@include("plans._form")
-
+<form action="{{ route('plans.store') }}" method="POST">
+    @csrf
+    @include("plans._form")
+</form>
 @endsection

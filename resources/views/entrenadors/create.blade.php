@@ -2,5 +2,8 @@
 @section("title", "Crear Entrenador")
 @section("content")
 <h1>Crear Entrenador</h1>
-@include("entrenadors._form", compact("sedes")) // Incluir el formulario y pasar las sedes
+<form action="{{ route('entrenadors.store') }}" method="POST">
+    @csrf
+    @include("entrenadors._form", compact("sedes"))
+</form>
 @endsection

@@ -11,6 +11,7 @@
                 <th>Entrenamiento</th>
                 <th>Estado</th>
                 <th>Fecha de reserva</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
@@ -21,6 +22,15 @@
                     <td>{{ $reserva->entrenamiento->nombre }}</td>
                     <td>{{ $reserva->estado }}</td>
                     <td>{{ $reserva->fecha_reserva }}</td>
+                    <td>
+                        <a href="{{ route("reservas.edit", $reserva) }}">Editar</a>
+                        <form action="{{ route("reservas.destroy", $reserva) }}" method="POST" style="display: inline;">
+                            @method("DELETE")
+                            @csrf
+                            <button type="submit">Eliminar</button>
+
+                        </form>
+                    </td>
                 </tr>
             @endforeach
 
