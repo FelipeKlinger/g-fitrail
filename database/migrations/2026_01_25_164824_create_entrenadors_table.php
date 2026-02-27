@@ -24,8 +24,8 @@ return new class extends Migration
                 'Yoga',
                 'Rehabilitación'
             ]);
-            $table->string("password");
             $table->foreignId("sede_id")->constrained("sedes")->cascadeOnDelete();
+            $table->foreignId("user_id")->constrained("users")->cascadeOnDelete();
             $table->timestamps();
         });
     }

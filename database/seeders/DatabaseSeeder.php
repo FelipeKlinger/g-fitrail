@@ -19,19 +19,16 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // User::factory()->create([
+        //     'name' => 'Test User',
+        //     'email' => 'test@example.com',
+        // ]);
 
-        Client::create([
-            'nombre' => 'Juan Pérez',
-            'email' => 'juan.perez@example.com',
-            'edad' => 28,
-            'altura' => 1.75,
-            'peso' => 75.50,
-            'objetivo' => 'ganar masa muscular',
-            'password' => Hash::make('password123'),
+        User::create([
+            'name' => 'Admin',
+            'email' => 'admin@fitrail.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
         ]);
     }
 }

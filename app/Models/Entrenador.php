@@ -12,17 +12,25 @@ class Entrenador extends Model
         "telefono",
         "direccion",
         "especialidad",
-        "password",
-        "sede_id"
+        "sede_id",
+        "user_id"
     ];
 
-public function sede()
+    public function sede()
     {
         return $this->belongsTo(Sede::class);
-    }   
+    }
 
-    public function entrenamientos(){
-        return $this->hasMany(entrenamiento::class);
+    public function entrenamientos()
+    {
+        return $this->hasMany(Entrenamiento::class);
+    }
+
+    public function user()
+    {
+
+        return $this->belongsTo(User::class);
+
     }
 
 }

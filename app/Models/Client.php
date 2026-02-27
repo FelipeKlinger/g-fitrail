@@ -13,7 +13,11 @@ class Client extends Model
     }
     public function reserva()
     {
-        $this->hasMany(reserva::class);
+        return $this->hasMany(Reserva::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class); // 1:1
     }
 
     protected $fillable = [ //campos que se pueden asignar 
@@ -23,6 +27,7 @@ class Client extends Model
         'altura',
         'peso',
         'objetivo',
-        'password',
+        'user_id'
     ];
+
 }

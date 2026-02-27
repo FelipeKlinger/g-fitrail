@@ -27,7 +27,7 @@ return new class extends Migration
                 'mejorar flexibilidad',
                 'recomposición corporal'
             ]);
-            $table->string('password');
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); 
             $table->timestamps();
         });
         
