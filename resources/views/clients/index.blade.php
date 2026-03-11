@@ -119,7 +119,7 @@
     <div class="container">
         <h1>Clientes</h1>
 
-        <a href="{{ route('clients.create') }}" class="btn">Añadir Cliente</a>
+        {{-- <a href="{{ route('clients.create') }}" class="btn">Añadir Cliente</a> --}}
 
         <table>
             <thead>
