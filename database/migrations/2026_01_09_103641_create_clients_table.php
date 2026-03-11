@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      */
@@ -14,6 +13,7 @@ return new class extends Migration
         Schema::create('clients', function (Blueprint $table) {
             $table->id();
             $table->string('nombre', 100);
+            $table->string('apellido', 100);
             $table->string('email', 100)->unique();
             $table->integer('edad')->unsigned(); //unsigned para evitar edades negativas
             $table->decimal('altura', 5, 2); // 5 digitos en total, 2 despues del punto decimal
@@ -27,10 +27,10 @@ return new class extends Migration
                 'mejorar flexibilidad',
                 'recomposición corporal'
             ]);
-            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete(); 
+            $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });
-        
+
     }
 
     public function down(): void

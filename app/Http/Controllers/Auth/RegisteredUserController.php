@@ -32,6 +32,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
+            'apellido' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -45,6 +46,7 @@ class RegisteredUserController extends Controller
 
         $user->client()->create([
             'nombre' => $request->name,
+            'apellido' => $request->apellido,   
             'email' => $request->email,
             'edad' => 0,
             'altura' => 0,
@@ -56,6 +58,16 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        switch ($user->role) {
+
+            case "admin":
+                return redirect()->route('admin.dashboard');
+            case "client":
+                return redirect()->route('clients.dashboard')   ;
+            case "entrenador":
+                return redirect()->route('entrenadors.dashboard');
+        }
+        // Fallback por si no tiene rol definido
+        return redirect()->route('dashboard');
     }
 }

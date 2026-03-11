@@ -22,6 +22,7 @@ class Client extends Model
 
     protected $fillable = [ //campos que se pueden asignar 
         'nombre',
+        "apellido",
         'email',
         'edad',
         'altura',
