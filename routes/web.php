@@ -19,7 +19,8 @@ Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->grou
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
     Route::get('/dashboard', function () {
-        return view('admin.dashboard'); });
+        return view('admin.dashboard');
+    })->name('dashboard');
 });
 
 Route::prefix('entrenadors')->middleware(['auth', 'entrenador'])->name('entrenadors.')->group(function () {

@@ -54,6 +54,8 @@ class RegisteredUserController extends Controller
             'objetivo' => 'mantener forma',
         ]);
 
+        
+
         event(new Registered($user));
 
         Auth::login($user);
