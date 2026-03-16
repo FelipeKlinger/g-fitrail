@@ -1,7 +1,5 @@
 <x-app-layout>
-    <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-white">Administración de clientes</h2>
-    </x-slot>
+
 
     <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
         @if (session('status'))
