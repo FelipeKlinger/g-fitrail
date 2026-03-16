@@ -2,8 +2,7 @@
     <div class="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-8">
             <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('dashboard') }}" class="flex items-center gap-2">
-                <span class="inline-block h-2.5 w-2.5 rounded-full bg-violet-500"></span>
-                <span class="text-sm font-semibold tracking-wide text-white">Maquinistas Admin</span>
+                <span class="text-sm font-semibold tracking-wide text-white">Fitrail</span>
             </a>
 
             <div class="hidden items-center gap-2 md:flex">

@@ -1,9 +1,9 @@
 <x-app-layout>
-    <x-slot name="header">
+    {{-- <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-white">
             Panel de Administración · Gimnasio Maquinistas
         </h2>
-    </x-slot>
+    </x-slot> --}}
 
     <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
@@ -127,15 +127,9 @@
                     </article>
 
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-                        <h3 class="text-lg font-semibold text-white">KPIs del mes</h3>
+                        <h3 class="text-lg font-semibold text-white">Información general</h3>
 
                         <div class="mt-5 flex items-center gap-4">
-                            <div class="grid h-24 w-24 place-content-center rounded-full"
-                                style="background: conic-gradient(#a78bfa 0deg 220deg, #27272a 220deg 360deg);">
-                                <div class="grid h-16 w-16 place-content-center rounded-full bg-zinc-900 text-sm text-white">
-                                    {{ $totalReservas }}
-                                </div>
-                            </div>
                             <div>
                                 <p class="text-sm text-zinc-400">Reservas totales</p>
                                 <p class="text-2xl font-semibold text-white">{{ $totalReservas }}</p>
@@ -152,12 +146,8 @@
                                 <span>Planes creados</span>
                                 <span class="font-medium text-white">{{ $totalPlanes }}</span>
                             </div>
-                            <div class="flex items-center justify-between text-zinc-300">
-                                <span>Ingresos potenciales*</span>
-                                <span class="font-medium text-emerald-300">{{ number_format($ingresosPotenciales, 2, ',', '.') }} €</span>
-                            </div>
+                        
                         </div>
-                        <p class="mt-3 text-xs text-zinc-500">*Estimación con top planes por clientes asociados.</p>
                     </article>
                 </div>
 
