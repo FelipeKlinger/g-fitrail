@@ -1,171 +1,93 @@
-@section('content')
-    @extends('layout')
-    <style>
-        .container {
-            background-color: white;
-            padding: 2rem;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 800px;
-        }
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-white">Administración de clientes</h2>
+    </x-slot>
 
-        h1 {
-            text-align: center;
-            color: #333;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-        }
+    <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+        @if (session('status'))
+            <div class="mb-6 rounded-xl border border-violet-400/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-200">
+                {{ session('status') }}
+            </div>
+        @endif
 
+        <section class="space-y-6 rounded-2xl border border-white/10 bg-zinc-950 p-5">
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <p class="text-sm text-zinc-400">Panel admin · Gestión CRUD</p>
+                    <h1 class="mt-1 text-2xl font-semibold text-white">Listado de clientes</h1>
+                </div>
+                <a href="{{ route('clients.create') }}"
+                    class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                    + Nuevo cliente
+                </a>
+            </div>
 
-        .btn {
-            display: inline-block;
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: bold;
-            margin-bottom: 20px;
-            transition: background-color 0.3s;
-        }
-
-        .btn:hover {
-            background-color: #0056b3;
-        }
-
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 10px;
-        }
-
-        th {
-            background-color: #f8f9fa;
-            color: #555;
-            font-weight: 600;
-            text-align: left;
-            padding: 12px;
-            border-bottom: 2px solid #ddd;
-        }
-
-        td {
-            padding: 12px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-        }
-
-        tr:hover td {
-            background-color: #f1f7ff;
-        }
-
-        .modal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-        }
-
-        .modal-content {
-            background-color: white;
-            margin: 15% auto;
-            padding: 20px;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 400px;
-            text-align: center;
-        }
-
-        .modal-buttons {
-            margin-top: 20px;
-            display: flex;
-            gap: 10px;
-            justify-content: center;
-        }
-
-        .modal-btn {
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: all 0.3s;
-        }
-
-        .modal-btn-cancel {
-            background-color: #6c757d;
-            color: white;
-        }
-
-        .modal-btn-cancel:hover {
-            background-color: #5a6268;
-        }
-
-        .modal-btn-confirm {
-            background-color: #dc3545;
-            color: white;
-        }
-
-        .modal-btn-confirm:hover {
-            background-color: #c82333;
-        }
-    </style>
-
-    <div class="container">
-        <h1>Clientes</h1>
-
-        {{-- <a href="{{ route('clients.create') }}" class="btn">Añadir Cliente</a> --}}
-
-        <table>
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nombre</th>
-                    <th>Email</th>
-                    <th>Edad</th>
-                    <th>Altura</th>
-                    <th>Peso</th>
-                    <th>Objetivo</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($clients as $client)
-                    <tr>
-                        <td>{{ $client->id }}</td>
-                        <td>{{ $client->nombre }}</td>
-                        <td>{{ $client->email }}</td>
-                        <td>{{ $client->edad}}</td>
-                        <td>{{ $client->altura }}</td>
-                        <td>{{ $client->peso }}</td>
-                        <td>{{ $client->objetivo}}</td>
-                        <td>
-                            <a href="{{ route('clients.edit', $client->id) }}" class="btn-action btn-edit">Editar</a>
-                            <button onclick="openDeleteModal({{ $client->id }}, '{{ $client->nombre }}')"
-                                class="btn-action btn-delete">Eliminar</button>
-                        </td>
-                    </tr>
-                @endforeach
-            </tbody>
-        </table>
+            <div class="overflow-x-auto rounded-xl border border-white/10">
+                <table class="w-full min-w-[980px] text-left text-sm">
+                    <thead class="bg-white/5 text-zinc-400">
+                        <tr>
+                            <th class="px-4 py-3 font-medium">ID</th>
+                            <th class="px-4 py-3 font-medium">Nombre</th>
+                            <th class="px-4 py-3 font-medium">Email</th>
+                            <th class="px-4 py-3 font-medium">Edad</th>
+                            <th class="px-4 py-3 font-medium">Altura</th>
+                            <th class="px-4 py-3 font-medium">Peso</th>
+                            <th class="px-4 py-3 font-medium">Objetivo</th>
+                            <th class="px-4 py-3 font-medium">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-zinc-200">
+                        @forelse ($clients as $client)
+                            <tr class="border-t border-white/5 hover:bg-white/5">
+                                <td class="px-4 py-3">{{ $client->id }}</td>
+                                <td class="px-4 py-3 font-medium text-white">{{ $client->nombre }}</td>
+                                <td class="px-4 py-3">{{ $client->email }}</td>
+                                <td class="px-4 py-3">{{ $client->edad }}</td>
+                                <td class="px-4 py-3">{{ $client->altura }}</td>
+                                <td class="px-4 py-3">{{ $client->peso }}</td>
+                                <td class="px-4 py-3">{{ $client->objetivo }}</td>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <a href="{{ route('clients.edit', $client->id) }}"
+                                            class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
+                                            Editar
+                                        </a>
+                                        <button type="button"
+                                            onclick="openDeleteModal({{ $client->id }}, '{{ $client->nombre }}')"
+                                            class="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-medium text-rose-200 transition hover:bg-rose-500/20">
+                                            Eliminar
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="8" class="px-4 py-10 text-center text-zinc-500">No hay clientes registrados.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </section>
     </div>
 
-    <div id="deleteModal" class="modal">
-        <div class="modal-content">
-            <h3>¿Confirmar eliminación?</h3>
-            <p>¿Estás seguro de que deseas eliminar al cliente <strong id="clientName"></strong>?</p>
+    <div id="deleteModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black/70 px-4">
+        <div class="w-full max-w-md rounded-2xl border border-white/10 bg-zinc-900 p-6 shadow-xl">
+            <h3 class="text-lg font-semibold text-white">¿Confirmar eliminación?</h3>
+            <p class="mt-2 text-sm text-zinc-300">Se eliminará el cliente <strong id="clientName" class="text-white"></strong>.</p>
 
-            <div class="modal-buttons">
-                <button class="modal-btn modal-btn-cancel" onclick="closeDeleteModal()">Cancelar</button>
-                <form id="deleteForm" method="POST" style="display: inline;">
+            <div class="mt-6 flex items-center justify-end gap-2">
+                <button type="button" onclick="closeDeleteModal()"
+                    class="rounded-lg border border-white/15 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                    Cancelar
+                </button>
+                <form id="deleteForm" method="POST">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="modal-btn modal-btn-confirm">Eliminar</button>
+                    <button type="submit"
+                        class="rounded-lg border border-rose-500/30 bg-rose-500/20 px-3 py-2 text-sm font-medium text-rose-100 hover:bg-rose-500/30">
+                        Eliminar
+                    </button>
                 </form>
             </div>
         </div>
@@ -173,14 +95,20 @@
 
     <script>
         function openDeleteModal(clientId, clientName) {
-            document.getElementById('clientName').textContent = clientName;
-            document.getElementById('deleteForm').action = '/clients/' + clientId;
-            document.getElementById('deleteModal').style.display = 'block';
+            const modal = document.getElementById('deleteModal');
+            const deleteForm = document.getElementById('deleteForm');
+            const clientNameEl = document.getElementById('clientName');
+
+            clientNameEl.textContent = clientName;
+            deleteForm.action = "{{ route('clients.destroy', ':id') }}".replace(':id', clientId);
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
         }
 
         function closeDeleteModal() {
-            document.getElementById('deleteModal').style.display = 'none';
+            const modal = document.getElementById('deleteModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
         }
     </script>
-
-@endsection
+</x-app-layout>
