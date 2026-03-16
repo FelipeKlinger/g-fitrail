@@ -7,6 +7,7 @@ use App\Http\Controllers\EntrenamientoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SedeController;
+use App\Http\Controllers\UserController;
 use App\Models\Client;
 use App\Models\Entrenador;
 use App\Models\Entrenamiento;
@@ -81,6 +82,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
     Route::resource('entrenadors', EntrenadorController::class);
     Route::resource('entrenamientos', EntrenamientoController::class);
     Route::resource('reservas', ReservaController::class);
+    Route::resource('users', UserController::class);
 });
 
 Route::prefix('entrenadors')->middleware(['auth', 'entrenador'])->name('entrenadors.')->group(function () {
