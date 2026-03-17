@@ -29,25 +29,21 @@
                             <th class="px-4 py-3 font-medium">ID</th>
                             <th class="px-4 py-3 font-medium">Nombre</th>
                             <th class="px-4 py-3 font-medium">Email</th>
-                            <th class="px-4 py-3 font-medium">Edad</th>
-                            <th class="px-4 py-3 font-medium">Altura</th>
-                            <th class="px-4 py-3 font-medium">Peso</th>
-                            <th class="px-4 py-3 font-medium">Objetivo</th>
+                            <th class="px-4 py-3 font-medium">Role</th>
+                            <th class="px-4 py-3 font-medium">Email Verified At</th>
                             <th class="px-4 py-3 font-medium">Acciones</th>
                         </tr>
                     </thead>
                     <tbody class="text-zinc-200">
-                        @forelse ($clients as $client)
+                        @forelse ($users as $user)
                             <tr class="border-t border-white/5 hover:bg-white/5">
-                                <td class="px-4 py-3">{{ $client->id }}</td>
-                                <td class="px-4 py-3 font-medium text-white">{{ $client->nombre }}</td>
-                                <td class="px-4 py-3">{{ $client->email }}</td>
-                                <td class="px-4 py-3">{{ $client->edad }}</td>
-                                <td class="px-4 py-3">{{ $client->altura }}</td>
-                                <td class="px-4 py-3">{{ $client->peso }}</td>
-                                <td class="px-4 py-3">{{ $client->objetivo }}</td>
-                                <td class="px-4 py-3">
-                                    <div class="flex items-center gap-2">
+                                <td class="px-4 py-3">{{ $user->id }}</td>
+                                <td class="px-4 py-3 font-medium text-white">{{ $user->name }}</td>
+                                <td class="px-4 py-3">{{ $user->email }}</td>
+                                <td class="px-4 py-3">{{ $user->role }}</td>
+                                <td class="px-4 py-3">{{ $user->email_verified_at === null ? 'No verificado' : $user->email_verified_at }}</td>
+                                {{-- <td class="px-4 py-3">
+                                    {{-- <div class="flex items-center gap-2">
                                         <a href="{{ route('clients.edit', $client->id) }}"
                                             class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
                                             Editar
@@ -57,8 +53,8 @@
                                             class="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-medium text-rose-200 transition hover:bg-rose-500/20">
                                             Eliminar
                                         </button>
-                                    </div>
-                                </td>
+                                    </div> --}}
+                                {{-- </td> --}}
                             </tr>
                         @empty
                             <tr>
