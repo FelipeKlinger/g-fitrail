@@ -18,16 +18,15 @@
         <nav class="sticky top-0 z-40 border-b border-white/10 bg-black/95 backdrop-blur">
             <div class="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
                 <a href="{{ url('/') }}" class="flex items-center gap-2">
-                    <span class="inline-block h-2.5 w-2.5 rounded-full bg-violet-500"></span>
                     <span class="text-sm font-semibold tracking-wide text-white">Fitrail</span>
                 </a>
 
                 @if (request()->routeIs('login'))
-                    <a href="{{ route('register') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-zinc-200 hover:bg-white/10">
+                    <a href="{{ route('register') }}" class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
                         Register
                     </a>
                 @elseif (request()->routeIs('register'))
-                    <a href="{{ route('login') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-zinc-200 hover:bg-white/10">
+                    <a href="{{ route('login') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-zinc-200 transition hover:bg-white/10">
                         Login
                     </a>
                 @endif
