@@ -1,13 +1,25 @@
-@extends("layout")
+<x-app-layout>
+        <x-slot name="header">
+                <h2 class="text-xl font-semibold leading-tight text-white">Editar plan</h2>
+        </x-slot>
 
-@section("title", "Editar Plan")
+        <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+                <section class="mx-auto w-full max-w-3xl rounded-2xl border border-white/10 bg-zinc-950 p-6">
+                        <div class="mb-6 flex items-center justify-between">
+                                <div>
+                                        <p class="text-sm text-zinc-400">Administración de planes</p>
+                                        <h1 class="mt-1 text-2xl font-semibold text-white">Editar {{ $plan->nombre }}</h1>
+                                </div>
+                                <a href="{{ route('plans.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                                        Volver al listado
+                                </a>
+                        </div>
 
-@section("content")
-
-<h1>Editar Plan</h1>
-<form action="{{ route('plans.update', $plan) }}" method="POST">
-        @method("PUT")
-        @csrf
-        @include("plans._form", compact("plan"))
-</form>
-@endsection
+                        <form action="{{ route('plans.update', $plan) }}" method="POST" class="space-y-5">
+                                @method('PUT')
+                                @csrf
+                                @include('plans._form', compact('plan'))
+                        </form>
+                </section>
+        </div>
+</x-app-layout>

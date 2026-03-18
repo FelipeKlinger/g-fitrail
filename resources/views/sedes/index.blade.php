@@ -1,45 +1,74 @@
-@extends("layout")
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="text-xl font-semibold leading-tight text-white">Administración de sedes</h2>
+    </x-slot>
 
-@section("title","Llista de sedes")
+    <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+        @if (session('status'))
+            <div class="mb-6 rounded-xl border border-violet-400/30 bg-violet-500/10 px-4 py-3 text-sm text-violet-200">
+                {{ session('status') }}
+            </div>
+        @endif
 
-@section("content")
+        <section class="space-y-6 rounded-2xl border border-white/10 bg-zinc-950 p-5">
+            <div class="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                <div>
+                    <p class="text-sm text-zinc-400">Panel admin · Gestión CRUD</p>
+                    <h1 class="mt-1 text-2xl font-semibold text-white">Listado de sedes</h1>
+                </div>
+                <a href="{{ route('sedes.create') }}"
+                    class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                    + Nueva sede
+                </a>
+            </div>
 
-<a href="{{ route("sedes.create") }}">Crear una sede</a>
-<h1>Lista de sedes</h1>
-
-<table style="width:60%; border-collapse: collapse;" border="1">
-    <thead>
-        <tr>
-            <th>ID</th>
-            <th>Dirección</th>
-            <th>Teléfono</th>
-            <th>Ciudad</th>
-            <th>Horario de Apertura</th>
-            <th>Horario de Cierre</th>
-            <th>Acciones</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach ($sedes as $sede)
-
-        <tr>
-            <td>{{ $sede->id }}</td>
-            <td>{{ $sede->direccion }}</td>
-            <td>{{ $sede->telefono }}</td>
-            <td>{{ $sede->ciudad }}</td>
-            <td>{{ $sede->horario_apertura }}</td>
-            <td>{{ $sede->horario_cierre }}</td>
-            <td>
-                <a href="{{ route("sedes.edit", $sede) }}">editar</a>
-                <form action="{{ route("sedes.destroy", $sede) }}" method="POST">
-                    @method("DELETE")
-                    @csrf
-                    <button type="submit">Eliminar</button>
-                </form>
-            </td>
-        </tr>
-        @endforeach
-    </tbody>
-</table>
-
-@endsection
+            <div class="overflow-x-auto rounded-xl border border-white/10">
+                <table class="w-full min-w-[980px] text-left text-sm">
+                    <thead class="bg-white/5 text-zinc-400">
+                        <tr>
+                            <th class="px-4 py-3 font-medium">ID</th>
+                            <th class="px-4 py-3 font-medium">Dirección</th>
+                            <th class="px-4 py-3 font-medium">Teléfono</th>
+                            <th class="px-4 py-3 font-medium">Ciudad</th>
+                            <th class="px-4 py-3 font-medium">Apertura</th>
+                            <th class="px-4 py-3 font-medium">Cierre</th>
+                            <th class="px-4 py-3 font-medium">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-zinc-200">
+                        @forelse ($sedes as $sede)
+                            <tr class="border-t border-white/5 hover:bg-white/5">
+                                <td class="px-4 py-3">{{ $sede->id }}</td>
+                                <td class="px-4 py-3 font-medium text-white">{{ $sede->direccion }}</td>
+                                <td class="px-4 py-3">{{ $sede->telefono }}</td>
+                                <td class="px-4 py-3">{{ $sede->ciudad }}</td>
+                                <td class="px-4 py-3">{{ $sede->horario_apertura }}</td>
+                                <td class="px-4 py-3">{{ $sede->horario_cierre }}</td>
+                                <td class="px-4 py-3">
+                                    <div class="flex items-center gap-2">
+                                        <a href="{{ route('sedes.edit', $sede) }}"
+                                            class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
+                                            Editar
+                                        </a>
+                                        <form action="{{ route('sedes.destroy', $sede) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar esta sede?');">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit"
+                                                class="rounded-lg border border-rose-500/30 bg-rose-500/10 px-3 py-1.5 text-xs font-medium text-rose-200 transition hover:bg-rose-500/20">
+                                                Eliminar
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="7" class="px-4 py-10 text-center text-zinc-500">No hay sedes registradas.</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</x-app-layout>
