@@ -1,9 +1,17 @@
+@php
+    $user = auth()->user();
+    $client = $user->client;
+    $showProfileAlert = in_array(null, [
+        $client->edad,
+        $client->peso,
+        $client->altura,
+        $client->objetivo,
+    ], true);
+@endphp
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-white">
-            <?php 
-                $user = auth()->user(); 
-                ?>
                 {{ ('Bienvenido, ') }}{{ $user->client->nombre }} {{ $user->client->apellido }}
         </h2>
     </x-slot>
@@ -36,12 +44,28 @@
             <section class="space-y-6 lg:col-span-9 xl:col-span-10">
             
                   <div class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
+                    
                     <div>
-                        <p class="text-sm text-zinc-400">Panel personal</p>
-                        <h1 class="mt-1 text-2xl font-semibold text-white">Tus reservas y entrenamientos</h1>
+                        
+
+                        @if ($showProfileAlert)
+                            <div class="mt-3 rounded-xl border border-amber-400/30 bg-amber-500/10 px-3 py-2">
+                                <p class="text-sm font-medium text-white">¡Completa tu perfil!</p>
+                                <h1 class="mt-1 text-2xl font-semibold text-white">Te faltan datos personales por rellenar.</h1>
+                            </div>
+                        @endif
                     </div>
-                    <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
-                        Fecha actual: {{ now()->format('d/m/Y H:i') }}
+                    <div class="flex flex-col items-stretch gap-2 md:items-end">
+                        <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+                            Fecha actual: {{ now()->format('d/m/Y H:i') }}
+                        </div>
+
+                        @if ($showProfileAlert)
+                            <a href="{{ route('clients.edit', $client->id) }}"
+                                class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                                Ir a completar perfil
+                            </a>
+                        @endif
                     </div>
                 </div>
 

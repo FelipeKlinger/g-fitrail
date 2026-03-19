@@ -15,9 +15,9 @@ return new class extends Migration {
             $table->string('nombre', 100);
             $table->string('apellido', 100);
             $table->string('email', 100)->unique();
-            $table->integer('edad')->unsigned(); //unsigned para evitar edades negativas
-            $table->decimal('altura', 5, 2); // 5 digitos en total, 2 despues del punto decimal
-            $table->decimal('peso', 5, 2);
+            $table->integer('edad')->unsigned()->nullable(); //unsigned para evitar edades negativas
+            $table->decimal('altura', 5, 2)->nullable(); // 5 digitos en total, 2 despues del punto decimal
+            $table->decimal('peso', 5, 2)->nullable();
             $table->enum('objetivo', [
                 'perder peso',
                 'ganar masa muscular',
@@ -26,7 +26,7 @@ return new class extends Migration {
                 'aumentar resistencia',
                 'mejorar flexibilidad',
                 'recomposición corporal'
-            ]);
+            ])->nullable();
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->timestamps();
         });

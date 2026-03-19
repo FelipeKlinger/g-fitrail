@@ -48,10 +48,10 @@ class RegisteredUserController extends Controller
             'nombre' => $request->name,
             'apellido' => $request->apellido,   
             'email' => $request->email,
-            'edad' => 0,
-            'altura' => 0,
-            'peso' => 0,
-            'objetivo' => 'mantener forma',
+            'edad' => null,
+            'altura' => null,
+            'peso' => null,
+            'objetivo' => null,
         ]);
 
         
