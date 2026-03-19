@@ -16,8 +16,8 @@ return new class extends Migration {
             $table->string('apellido', 100);
             $table->string('email', 100)->unique();
             $table->integer('edad')->unsigned()->nullable(); //unsigned para evitar edades negativas
-            $table->decimal('altura', 5, 2)->nullable(); // 5 digitos en total, 2 despues del punto decimal
-            $table->decimal('peso', 5, 2)->nullable();
+            $table->integer('altura')->nullable(); // 3 digitos en total, 2 despues del punto decimal
+            $table->decimal('peso', 5, 1)->nullable();
             $table->enum('objetivo', [
                 'perder peso',
                 'ganar masa muscular',

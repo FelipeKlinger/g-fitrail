@@ -8,6 +8,7 @@ class Entrenador extends Model
 {
     protected $fillable = [ // Campos que se pueden asignar masivamente
         "nombre",
+        "apellido",
         "email",
         "telefono",
         "direccion",

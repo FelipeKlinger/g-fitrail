@@ -31,12 +31,13 @@ class ProfileController extends Controller
         $clientId = $request->user()->client->id;
         $client = Client::findOrFail($clientId);
 
+
         $validated = request()->validate([
             'name' => 'required|string|max:255',
             'apellido' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email,' . $request->user()->id,
             'edad' => 'required|integer|min:0',
-            'altura' => 'required|numeric|min:0',
+            'altura' => 'required|integer|min:130',
             'peso' => 'required|numeric|min:0',
             'objetivo' => 'required|in:perder peso,ganar masa muscular,tonificar,mantener forma,aumentar resistencia,mejorar flexibilidad,recomposición corporal'
         ]);

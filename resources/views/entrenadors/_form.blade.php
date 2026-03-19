@@ -6,6 +6,15 @@
         @error('nombre') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
+     <div>
+        <label class="mb-2 block text-sm font-medium text-zinc-200">Apellido</label>
+        <input type="text" name="apellido" value="{{ old('apellido', $entrenador->apellido ?? '') }}"
+            class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-violet-400/60">
+        @error('apellido') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
+    </div>
+
+    
+
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Email</label>
         <input type="email" name="email" value="{{ old('email', $entrenador->email ?? '') }}"

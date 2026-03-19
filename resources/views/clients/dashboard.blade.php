@@ -158,19 +158,23 @@ $client->objetivo,
                         <div class="mt-5 space-y-3 text-sm">
                             <div class="flex items-center justify-between text-zinc-300">
                                 <span>Nombre</span>
-                                <span class="font-medium text-white">Sergio</span>
+                                <span class="font-medium text-white">{{ $user->name }}</span>
                             </div>
                             <div class="flex items-center justify-between text-zinc-300">
                                 <span>Objetivo</span>
-                                <span class="font-medium text-white">Ganar masa muscular</span>
+                                <span class="font-medium text-white">{{ $user->client->objetivo }}</span>
                             </div>
                             <div class="flex items-center justify-between text-zinc-300">
                                 <span>Edad</span>
-                                <span class="font-medium text-white">27 años</span>
+                                <span class="font-medium text-white">{{ $user->client->edad }} años</span>
+                            </div>
+                            <div class="flex items-center justify-between text-zinc-300">
+                                <span>Altura</span>
+                                <span class="font-medium text-white">{{ $user->client->altura }} cm</span>
                             </div>
                             <div class="flex items-center justify-between text-zinc-300">
                                 <span>Peso</span>
-                                <span class="font-medium text-white">78 kg</span>
+                                <span class="font-medium text-white">{{ $user->client->peso }} kg</span>
                             </div>
                         </div>
                     </article>
