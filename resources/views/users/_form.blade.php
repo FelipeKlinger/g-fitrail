@@ -3,14 +3,14 @@
         <label class="mb-2 block text-sm font-medium text-zinc-200">Nombre</label>
         <input type="text" name="name" value="{{ old('name', $user->name ?? '') }}"
             class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-violet-400/60" required>
-        @error('name') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('name') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Email</label>
         <input type="email" name="email" value="{{ old('email', $user->email ?? '') }}"
             class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-violet-400/60" required>
-        @error('email') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('email') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
@@ -21,7 +21,7 @@
             <option value="client" {{ old('role', $user->role ?? '') === 'client' ? 'selected' : '' }}>client</option>
             <option value="entrenador" {{ old('role', $user->role ?? '') === 'entrenador' ? 'selected' : '' }}>entrenador</option>
         </select>
-        @error('role') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('role') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div class="flex items-end">
@@ -40,7 +40,7 @@
         <input type="password" name="password"
             class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-violet-400/60"
             {{ isset($user) ? '' : 'required' }}>
-        @error('password') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('password') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>

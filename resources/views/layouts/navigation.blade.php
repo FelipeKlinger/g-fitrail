@@ -11,7 +11,7 @@
                         class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.dashboard') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
                         Dashboard
                     </a>
-                    <a href="{{ route('clients.index') }}" class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Clientes</a>
+                    <a href="{{ route('users.index') }}" class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Usuarios</a>
                     <a href="{{ route('entrenamientos.index') }}" class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Entrenamientos</a>
                     <a href="{{ route('reservas.index') }}" class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Reservas</a>
                 @elseif (auth()->user()->role === 'client')
@@ -52,7 +52,7 @@
         <div class="space-y-1 px-4 py-3">
             @if (auth()->user()->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}" class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Dashboard</a>
-                <a href="{{ route('clients.index') }}" class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Clientes</a>
+                <a href="{{ route('users.index') }}" class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Usuarios</a>
                 <a href="{{ route('entrenamientos.index') }}" class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Entrenamientos</a>
                 <a href="{{ route('reservas.index') }}" class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Reservas</a>
             @elseif (auth()->user()->role === 'client')

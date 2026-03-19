@@ -30,7 +30,7 @@
                                 required autofocus autocomplete="name"
                                 class="block w-full rounded-lg bg-black" />
                         </div>
-                        <x-input-error :messages="$errors->get('name')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('name')" class="mt-2 text-xs text-white" />
 
                         <div
                             class="mt-4 group relative px-3 pb-1.5 pt-2.5">
@@ -40,7 +40,7 @@
                                 placeholder="Apellido" required autocomplete="apellido"
                                 class="block w-full rounded-lg bg-black" />
                         </div>
-                        <x-input-error :messages="$errors->get('apellido')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('apellido')" class="mt-2 text-xs text-white" />
 
                         <div
                             class="mt-4 group relative px-3 pb-1.5 pt-2.5">
@@ -50,7 +50,7 @@
                                 required autocomplete="username"
                                 class="block w-full border-0 bg-transparent p-0 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-0 sm:leading-7" />
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-xs text-white" />
 
                         <div
                             class="mt-4 group relative rounded-lg border border-white/30 px-3 pb-1.5 pt-2.5 transition duration-200 focus-within:border-sky-200 focus-within:ring focus-within:ring-sky-300/30">
@@ -59,7 +59,7 @@
                             <input id="password" type="password" name="password" required autocomplete="new-password"
                                 class="block w-full border-0 bg-transparent p-0 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-0 sm:leading-7" />
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-xs text-white" />
 
                         <div
                             class="mt-4 group relative rounded-lg border border-white/30 px-3 pb-1.5 pt-2.5 transition duration-200 focus-within:border-sky-200 focus-within:ring focus-within:ring-sky-300/30">
@@ -71,7 +71,7 @@
                                 class="block w-full border-0 bg-transparent p-0 text-sm text-white placeholder:text-zinc-500 focus:outline-none focus:ring-0 sm:leading-7" />
                         </div>
                         <x-input-error :messages="$errors->get('password_confirmation')"
-                            class="mt-2 text-xs text-rose-300" />
+                            class="mt-2 text-xs text-white" />
 
                         <div class="mt-4 flex items-center justify-end gap-x-2">
                             <a href="{{ route('login') }}"

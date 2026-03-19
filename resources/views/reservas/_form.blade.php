@@ -9,7 +9,7 @@
                 </option>
             @endforeach
         </select>
-        @error('client_id') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('client_id') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
@@ -22,7 +22,7 @@
                 </option>
             @endforeach
         </select>
-        @error('entrenamiento_id') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('entrenamiento_id') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
@@ -34,7 +34,7 @@
             <option value="asistio" {{ old('estado', $reserva->estado ?? '') == 'asistio' ? 'selected' : '' }}>Asistió</option>
             <option value="no_asistio" {{ old('estado', $reserva->estado ?? '') == 'no_asistio' ? 'selected' : '' }}>No asistió</option>
         </select>
-        @error('estado') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('estado') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
@@ -42,7 +42,7 @@
         <input type="datetime-local" name="fecha_reserva"
             value="{{ old('fecha_reserva', isset($reserva->fecha_reserva) ? date('Y-m-d\TH:i', strtotime($reserva->fecha_reserva)) : '') }}"
             class="w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-white outline-none transition focus:border-violet-400/60">
-        @error('fecha_reserva') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('fecha_reserva') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 </div>
 

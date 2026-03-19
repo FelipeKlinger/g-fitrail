@@ -29,7 +29,7 @@
                                 placeholder="ejemplo@gmail.com" required autofocus autocomplete="username"
                                 class="block w-full rounded-lg bg-black" />
                         </div>
-                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('email')" class="mt-2 text-xs text-white" />
 
                         <div class="mt-4 group relative px-6 rounded-lg">
                             <div class="flex items-center justify-between">
@@ -39,7 +39,7 @@
                             <input id="password" type="password" name="password" required
                                 autocomplete="current-password" class="block w-full bg-black rounded-lg" />
                         </div>
-                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-xs text-rose-300" />
+                        <x-input-error :messages="$errors->get('password')" class="mt-2 text-xs text-white" />
 
                         <div class="mt-4 flex items-center justify-between">
                             <label for="remember_me" class="flex items-center gap-2">

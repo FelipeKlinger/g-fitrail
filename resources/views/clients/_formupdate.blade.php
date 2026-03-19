@@ -15,21 +15,21 @@
         <label class="mb-2 block text-sm font-medium text-zinc-200">Nombre</label>
         <input type="text" name="nombre" value="{{ old('nombre', $client->nombre) }}"
             class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-        @error('nombre') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('nombre') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Email</label>
         <input type="email" name="email" value="{{ old('email', $client->email) }}"
             class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-        @error('email') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('email') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Edad</label>
         <input type="number" name="edad" value="{{ old('edad', $client->edad) }}"
             class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-        @error('edad') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('edad') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
@@ -46,21 +46,21 @@
             <option value="mejorar flexibilidad" {{ old('objetivo', $client->objetivo) == 'mejorar flexibilidad' ? 'selected' : '' }}>Mejorar flexibilidad</option>
             <option value="recomposición corporal" {{ old('objetivo', $client->objetivo) == 'recomposición corporal' ? 'selected' : '' }}>Recomposición corporal</option>
         </select>
-        @error('objetivo') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('objetivo') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Altura (m)</label>
         <input type="number" name="altura" step="0.01" value="{{ old('altura', $client->altura) }}"
             class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-        @error('altura') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('altura') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 
     <div>
         <label class="mb-2 block text-sm font-medium text-zinc-200">Peso (kg)</label>
         <input type="number" name="peso" step="0.01" value="{{ old('peso', $client->peso) }}"
             class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-        @error('peso') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+        @error('peso') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
     </div>
 </div>
 
@@ -69,7 +69,7 @@
     <p class="mb-2 text-xs text-zinc-500">Déjala vacía para mantener la contraseña actual.</p>
     <input type="password" name="password" placeholder="Nueva contraseña (opcional)"
         class="client-form-field w-full rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-zinc-100 placeholder-zinc-500 outline-none transition focus:border-violet-400/60">
-    @error('password') <p class="mt-1 text-xs text-rose-300">{{ $message }}</p> @enderror
+    @error('password') <p class="mt-1 text-xs text-white">{{ $message }}</p> @enderror
 </div>
 
 <div class="pt-2">
