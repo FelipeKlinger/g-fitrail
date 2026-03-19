@@ -1,7 +1,10 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-white">
-            Bienvenido, Sergio Martínez
+            <?php 
+                $user = auth()->user(); 
+                ?>
+                {{ ('Bienvenido, ') }}{{ $user->client->nombre }} {{ $user->client->apellido }}
         </h2>
     </x-slot>
 
@@ -31,6 +34,17 @@
             </aside>
 
             <section class="space-y-6 lg:col-span-9 xl:col-span-10">
+            
+                  <div class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
+                    <div>
+                        <p class="text-sm text-zinc-400">Panel personal</p>
+                        <h1 class="mt-1 text-2xl font-semibold text-white">Tus reservas y entrenamientos</h1>
+                    </div>
+                    <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+                        Fecha actual: {{ now()->format('d/m/Y H:i') }}
+                    </div>
+                </div>
+
                 <div class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
                     <div>
                         <p class="text-sm text-zinc-400">Panel personal</p>
