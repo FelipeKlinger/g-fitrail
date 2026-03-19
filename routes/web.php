@@ -28,6 +28,7 @@ Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->grou
     Route::get('/dashboard', function () {
         return view('clients.dashboard');
     })->name('dashboard');
+    Route::resource('clients', ClientController::class)->only(['edit']);
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {

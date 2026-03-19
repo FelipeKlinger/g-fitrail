@@ -1,18 +1,18 @@
-@php
-    $user = auth()->user();
-    $client = $user->client;
-    $showProfileAlert = in_array(null, [
-        $client->edad,
-        $client->peso,
-        $client->altura,
-        $client->objetivo,
-    ], true);
-@endphp
+<?php
+$user = auth()->user();
+$client = $user->client;
+$showProfileAlert = in_array(null, [
+$client->edad,
+$client->peso,
+$client->altura,
+$client->objetivo,
+], true);
+?>
 
 <x-app-layout>
     <x-slot name="header">
         <h2 class="text-xl font-semibold leading-tight text-white">
-                {{ ('Bienvenido, ') }}{{ $user->client->nombre }} {{ $user->client->apellido }}
+            {{ ('Bienvenido, ') }}{{ $user->client->nombre }} {{ $user->client->apellido }}
         </h2>
     </x-slot>
 
@@ -34,42 +34,42 @@
                     </a>
                 </div>
 
-                <div class="mt-8 rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-fuchsia-500/10 p-4">
+                <div
+                    class="mt-8 rounded-2xl border border-white/10 bg-gradient-to-br from-violet-500/20 via-purple-500/15 to-fuchsia-500/10 p-4">
                     <p class="text-xs uppercase tracking-wide text-violet-200/80">Estado</p>
                     <p class="mt-2 text-sm text-white">Cuenta activa y operativa</p>
-                    <p class="mt-1 text-xs text-zinc-300">sergio.martinez@email.com</p>
+                    <p class="mt-1 text-xs text-zinc-300">{{ $user->email }}</p>
                 </div>
             </aside>
 
             <section class="space-y-6 lg:col-span-9 xl:col-span-10">
-            
-                  <div class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
-                    
-                    <div>
-                        
+                @if ($showProfileAlert)
+                <div
+                    class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
 
-                        @if ($showProfileAlert)
-                            <div class="mt-3 rounded-xl border border-amber-400/30 bg-amber-500/10 px-3 py-2">
-                                <p class="text-sm font-medium text-white">¡Completa tu perfil!</p>
-                                <h1 class="mt-1 text-2xl font-semibold text-white">Te faltan datos personales por rellenar.</h1>
-                            </div>
-                        @endif
+                    <div>
+
+                        <p class="text-sm font-medium text-white">¡Completa tu perfil!</p>
+                        <h1 class="mt-1 text-2xl font-semibold text-white">Te faltan datos personales por rellenar.</h1>
                     </div>
                     <div class="flex flex-col items-stretch gap-2 md:items-end">
-                        <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+                        {{-- <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
                             Fecha actual: {{ now()->format('d/m/Y H:i') }}
-                        </div>
+                        </div> --}}
 
                         @if ($showProfileAlert)
-                            <a href="{{ route('clients.edit', $client->id) }}"
-                                class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
-                                Ir a completar perfil
-                            </a>
+                        <a href="{{ route('profile.edit') }}"
+                            class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                            Ir a completar perfil
+                        </a>
                         @endif
                     </div>
                 </div>
+                @endif
 
-                <div class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
+
+                <div
+                    class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
                     <div>
                         <p class="text-sm text-zinc-400">Panel personal</p>
                         <h1 class="mt-1 text-2xl font-semibold text-white">Tus reservas y entrenamientos</h1>
@@ -119,7 +119,8 @@
                                         <td class="py-3">HIIT Avanzado</td>
                                         <td class="py-3">Laura Gómez</td>
                                         <td class="py-3">
-                                            <span class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-200">
+                                            <span
+                                                class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-200">
                                                 Confirmada
                                             </span>
                                         </td>
@@ -129,7 +130,8 @@
                                         <td class="py-3">CrossFit Funcional</td>
                                         <td class="py-3">David Ruiz</td>
                                         <td class="py-3">
-                                            <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-200">
+                                            <span
+                                                class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-200">
                                                 Asistió
                                             </span>
                                         </td>
@@ -139,7 +141,8 @@
                                         <td class="py-3">Yoga Movilidad</td>
                                         <td class="py-3">Ana Beltrán</td>
                                         <td class="py-3">
-                                            <span class="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-200">
+                                            <span
+                                                class="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-200">
                                                 No asistió
                                             </span>
                                         </td>
@@ -182,7 +185,8 @@
                     <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
                             <p class="text-base font-semibold text-white">Fuerza Tren Superior</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Trabajo de fuerza con barra, mancuernas y técnica de empuje/tirón.</p>
+                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Trabajo de fuerza con barra, mancuernas y
+                                técnica de empuje/tirón.</p>
 
                             <div class="mt-3 space-y-1 text-xs text-zinc-400">
                                 <p>Entrenador: <span class="text-zinc-200">Álvaro Molina</span></p>
@@ -190,14 +194,16 @@
                                 <p>Plazas disponibles: <span class="text-emerald-300">6</span></p>
                             </div>
 
-                            <button type="button" class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
+                            <button type="button"
+                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
                                 Reservar entrenamiento
                             </button>
                         </div>
 
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
                             <p class="text-base font-semibold text-white">Cardio + Core</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Circuito por estaciones para mejorar resistencia cardiovascular y zona media.</p>
+                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Circuito por estaciones para mejorar
+                                resistencia cardiovascular y zona media.</p>
 
                             <div class="mt-3 space-y-1 text-xs text-zinc-400">
                                 <p>Entrenador: <span class="text-zinc-200">Marta Solé</span></p>
@@ -205,14 +211,16 @@
                                 <p>Plazas disponibles: <span class="text-emerald-300">4</span></p>
                             </div>
 
-                            <button type="button" class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
+                            <button type="button"
+                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
                                 Reservar entrenamiento
                             </button>
                         </div>
 
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
                             <p class="text-base font-semibold text-white">Movilidad y Stretch</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Sesión guiada para prevenir lesiones y mejorar rango articular.</p>
+                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Sesión guiada para prevenir lesiones y
+                                mejorar rango articular.</p>
 
                             <div class="mt-3 space-y-1 text-xs text-zinc-400">
                                 <p>Entrenador: <span class="text-zinc-200">Nora Pujol</span></p>
@@ -220,7 +228,8 @@
                                 <p>Plazas disponibles: <span class="text-emerald-300">9</span></p>
                             </div>
 
-                            <button type="button" class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
+                            <button type="button"
+                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
                                 Reservar entrenamiento
                             </button>
                         </div>
