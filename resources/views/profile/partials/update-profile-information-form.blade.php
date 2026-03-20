@@ -1,11 +1,11 @@
 <section>
     <header>
-        <h2 class="text-lg font-medium text-gray-900">
-            {{ __('Profile Information') }}
+        <h2 class="text-2xl font-semibold tracking-tight text-white">
+            Información del perfil
         </h2>
 
-        <p class="mt-1 text-sm text-gray-600">
-            {{ __("Update your account's profile information and email address.") }}
+        <p class="mt-1 text-sm text-white/50">
+            Actualiza la información de tu perfil y dirección de correo electrónico.
         </p>
     </header>
 
@@ -17,34 +17,66 @@
         @csrf
         @method('patch')
 
+          @if ($user->role === 'admin')
         <div>
-            <x-input-label for="name" :value="__('Name')" />
-            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
-                required autofocus autocomplete="name" />
+            <x-input-label for="name" :value="__('Nombre')" class="text-white" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-input-error class="mt-2" :messages="$errors->get('name')" />
         </div>
+        @endif
+
+          @if ($user->role === 'client')
         <div>
-            <x-input-label for="apellido" :value="__('Apellido')" />
+            <x-input-label for="name" :value="__('Nombre')" class="text-white" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                :value="old('name', $user->client->nombre)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+        @endif
+
+
+        @if ($user->role === 'entrenador')
+        <div>
+            <x-input-label for="name" :value="__('Nombre')" class="text-white" />
+            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full"
+                :value="old('name', $user->entrenador->nombre)" required autofocus autocomplete="name" />
+            <x-input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+        @endif
+
+        @if ($user->role === 'entrenador')
+        <div>
+            <x-input-label for="apellido" :value="__('Apellido')" class="text-white" />
+            <x-text-input id="apellido" name="apellido" type="text" class="mt-1 block w-full"
+                :value="old('apellido', $user->entrenador->apellido)" required autofocus autocomplete="apellido" />
+            <x-input-error class="mt-2" :messages="$errors->get('apellido')" />
+        </div>
+        @endif
+
+
+        @if ($user->role === 'client')
+        <div>
+            <x-input-label for="apellido" :value="__('Apellido')" class="text-white" />
             <x-text-input id="apellido" name="apellido" type="text" class="mt-1 block w-full"
                 :value="old('apellido', $user->client->apellido)" required autofocus autocomplete="apellido" />
             <x-input-error class="mt-2" :messages="$errors->get('apellido')" />
         </div>
-
-
+        @endif
 
         <div>
-            <x-input-label for="email" :value="__('Email')" />
+            <x-input-label for="email" :value="__('Email')" class="text-white" />
             <x-text-input id="email" name="email" type="email" class="mt-1 block w-full"
                 :value="old('email', $user->email)" required autocomplete="username" />
             <x-input-error class="mt-2" :messages="$errors->get('email')" />
 
             @if ($user instanceof \Illuminate\Contracts\Auth\MustVerifyEmail && ! $user->hasVerifiedEmail())
             <div>
-                <p class="text-sm mt-2 text-gray-800">
+                <p class="text-sm mt-2 text-white/50">
                     {{ __('Your email address is unverified.') }}
 
                     <button form="send-verification"
-                        class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        class="underline text-sm text-white/90 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                         {{ __('Click here to re-send the verification email.') }}
                     </button>
                 </p>
@@ -58,29 +90,30 @@
             @endif
         </div>
 
+        @if ($user->role === 'client')
         <div>
-            <x-input-label for="edad" :value="__('edad')" />
+            <x-input-label for="edad" :value="__('edad')" class="text-white" />
             <x-text-input id="edad" name="edad" type="number" class="mt-1 block w-full"
                 :value="old('edad', $user->client->edad)" required autofocus autocomplete="edad" />
             <x-input-error class="mt-2" :messages="$errors->get('edad')" />
         </div>
 
         <div>
-            <x-input-label for="altura" :value="__('altura')" />
+            <x-input-label for="altura" :value="__('altura')" class="text-white" />
             <x-text-input id="altura" name="altura" type="number" class="mt-1 block w-full"
                 :value="old('altura', $user->client->altura)" required autofocus autocomplete="altura" />
             <x-input-error class="mt-2" :messages="$errors->get('altura')" />
         </div>
 
         <div>
-            <x-input-label for="peso" :value="__('peso')" />
+            <x-input-label for="peso" :value="__('peso')" class="text-white" />
             <x-text-input id="peso" name="peso" type="number" class="mt-1 block w-full"
                 :value="old('peso', $user->client->peso)" required autofocus autocomplete="peso" />
             <x-input-error class="mt-2" :messages="$errors->get('peso')" />
         </div>
 
         <div>
-            <x-input-label for="objetivo" :value="__('objetivo')" />
+            <x-input-label for="objetivo" :value="__('objetivo')" class="text-white" />
             <select name="objetivo"
                 class="client-form-field w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none transition focus:border-violet-400/60"
                 style="color: #fff;">
@@ -108,13 +141,14 @@
             </select>
             <x-input-error class="mt-2" :messages="$errors->get('objetivo')" />
         </div>
+        @endif
 
-        <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+        <div class="flex items-center gap-4 text-white/60">
+            <x-primary-button>{{ __('Guardar') }}</x-primary-button>
 
             @if (session('status') === 'profile-updated')
             <p x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 2000)"
-                class="text-sm text-gray-600">{{ __('Saved.') }}</p>
+                class="text-sm text-white">{{ __('Guardado.') }}</p>
             @endif
         </div>
     </form>

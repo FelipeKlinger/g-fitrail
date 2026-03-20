@@ -47,7 +47,7 @@ class EntrenadorController extends Controller
         ]);
 
         $user = User::create([
-            "name" => $validated["nombre"] . " " . $validated["apellido"],
+            "name" => $validated["nombre"],
             "email" => $validated["email"],
             "password" => Hash::make($request->password),
             "role" => "entrenador"

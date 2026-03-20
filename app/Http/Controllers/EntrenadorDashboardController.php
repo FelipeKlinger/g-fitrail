@@ -11,7 +11,8 @@ class EntrenadorDashboardController extends Controller
      */
     public function index()
     {
-        //
+
+        return view('entrenadors.dashboard');
     }
 
     /**
