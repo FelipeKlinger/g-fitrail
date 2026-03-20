@@ -1,11 +1,11 @@
 <x-guest-layout>
     <div class="w-full max-w-2xl pt-6">
         <div class="mx-auto mb-8 flex items-center justify-center gap-2 text-4xl font-semibold tracking-tight">
-            <span class="text-3xl">Fitrail</span>
+            <span class="text-3xl">Inicia Sesión en Fitrail</span>
         </div>
 
         <div class="relative mx-auto w-full max-w-xl">
-            <div class="h-px w-full bg-gradient-to-r from-transparent via-sky-300 to-transparent"></div>
+            <div class="h-px w-full bg-gradient-to-r from-transparent via-violet-300 to-transparent"></div>
             <div
                 class="mx-2 mt-0 rounded-xl border border-white/10 bg-zinc-900  shadow-[0_0_30px_0_rgba(255,255,255,0.08)] sm:mx-0">
                 <div class="p-6">
@@ -56,11 +56,11 @@
                         <div class="mt-4 flex items-center justify-end gap-4">
                             <a href="{{ route('register') }}"
                                 class="inline-flex h-10 items-center justify-center rounded-xl px-3 text-sm font-medium border border-white/10 text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:text-white">
-                                Register
+                                Registrarse
                             </a>
                             <button type="submit"
                                 class="inline-flex h-10 items-center justify-center rounded-xl border  border-violet-500/30 bg-violet-500/15 px-4 py-2 text-sm font-semibold text-zin-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-500/10">
-                                Log in
+                                Iniciar sesión
                             </button>
                         </div>
                     </form>
