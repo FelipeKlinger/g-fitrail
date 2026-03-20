@@ -5,6 +5,37 @@
 La aplicación implementa un sistema completo de gestión para un gimnasio que permite **crear, listar, editar y eliminar** diversas entidades de forma sencilla mediante una interfaz web intuitiva. El sistema gestiona clientes, planes de suscripción, sedes, entrenadores, entrenamientos y reservas, con todas sus relaciones correspondientes.
 
 
+## Pasos para arrancar el proyecto - Code Review
+
+1. Clonar el Repositorio https://gitlab.com/maquinistas/fitrail-software.git.
+2. git switch Laravel-Breeze y confirmar con un git pull los cambios más recientes.
+2. Si en tu maquina ya existe un archivo laravel, debe cambiarlo de nombre.
+3. Usar make fix-perms.
+4. Make up para arrancar el proyecto, ademas de hacer un make npm cmd="run build" ya previamente hecho un make npm install.
+5. No deberia tener ningun problema con el archivo .env, ya que en nuestro caso por facilidad no lo ocultamos en .gitIgnore,
+igualmente adjuntamos la configuracion.
+
+DB_CONNECTION=mysql
+DB_HOST=mysql
+DB_PORT=3306
+DB_DATABASE=fitrail
+DB_USERNAME=root
+DB_PASSWORD=root
+
+6. Si ha entrado correctamente, debe dirigirse a http://localhost:8001/login, registrarse si no lo ha hecho.
+
+## Resumen del desarrollo del proyecto actual: 
+
+1. Puedes acceder a las funcionalidades del administrador, ejecutando un make art cmd="db:seed", para verificar los credenciales
+del Administrador debe revisar database/seeders/DatabaseSeeder.php.
+2. Iniciar sesión con el Admin, y lo redirigira a su dashboard, en el web.php se puede verificar las rutas y el uso de los MiddleWares
+creados para la seguridad app/Http/Middleware.
+3. El Administrador tienen todo el CRUD funcionando, se recomienda importar la base de datos en phpmyadmin con el nombre fitrail que proporcionaremos,
+para que se pueda ver las listas con contenido.
+4. Para el Cliente debe registrarse, tambien esta la posibilidad de verificar el mail desde storage/logs/laravel.log.
+5. Una vez redirigido vera datos unicos para el Cliente, es importante saber que todavia esta en desarrollo el apartado de reservas y planes.
+
+
 **Comandos Artisan utilizados**
 
 Hemos usado comandos básicos para crear modelos y hacer migraciones sobre bbdd.
