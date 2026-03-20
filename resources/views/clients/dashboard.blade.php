@@ -186,16 +186,18 @@ $client->objetivo,
                         <span class="text-sm text-zinc-400">Reserva en 1 clic</span>
                     </div>
 
+
                     <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        @foreach ($entrenamientos as $entrenamiento)
+
                         <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                            <p class="text-base font-semibold text-white">Fuerza Tren Superior</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Trabajo de fuerza con barra, mancuernas y
-                                técnica de empuje/tirón.</p>
+                            <p class="text-base font-semibold text-white">{{ $entrenamiento->nombre }}</p>
+                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">{{ $entrenamiento->descripcion }}</p>
 
                             <div class="mt-3 space-y-1 text-xs text-zinc-400">
-                                <p>Entrenador: <span class="text-zinc-200">Álvaro Molina</span></p>
-                                <p>Inicio: <span class="text-zinc-200">19/03/2026 18:00</span></p>
-                                <p>Plazas disponibles: <span class="text-emerald-300">6</span></p>
+                                <p>Entrenador: <span class="text-zinc-200">{{ $entrenamiento->entrenador->nombre }}</span></p>
+                                <p>Inicio: <span class="text-zinc-200">{{ $entrenamiento->fecha_inicio }}</span></p>
+                                <p>Plazas disponibles: <span class="text-emerald-300">{{ $entrenamiento->capacidad }}</span></p>
                             </div>
 
                             <button type="button"
@@ -203,40 +205,7 @@ $client->objetivo,
                                 Reservar entrenamiento
                             </button>
                         </div>
-
-                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                            <p class="text-base font-semibold text-white">Cardio + Core</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Circuito por estaciones para mejorar
-                                resistencia cardiovascular y zona media.</p>
-
-                            <div class="mt-3 space-y-1 text-xs text-zinc-400">
-                                <p>Entrenador: <span class="text-zinc-200">Marta Solé</span></p>
-                                <p>Inicio: <span class="text-zinc-200">20/03/2026 17:30</span></p>
-                                <p>Plazas disponibles: <span class="text-emerald-300">4</span></p>
-                            </div>
-
-                            <button type="button"
-                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
-                                Reservar entrenamiento
-                            </button>
-                        </div>
-
-                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
-                            <p class="text-base font-semibold text-white">Movilidad y Stretch</p>
-                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">Sesión guiada para prevenir lesiones y
-                                mejorar rango articular.</p>
-
-                            <div class="mt-3 space-y-1 text-xs text-zinc-400">
-                                <p>Entrenador: <span class="text-zinc-200">Nora Pujol</span></p>
-                                <p>Inicio: <span class="text-zinc-200">21/03/2026 10:00</span></p>
-                                <p>Plazas disponibles: <span class="text-emerald-300">9</span></p>
-                            </div>
-
-                            <button type="button"
-                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
-                                Reservar entrenamiento
-                            </button>
-                        </div>
+                        @endforeach
                     </div>
                 </article>
             </section>

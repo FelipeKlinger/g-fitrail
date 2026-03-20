@@ -8,12 +8,8 @@ use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReservaController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\UserController;
-use App\Models\Client;
-use App\Models\Entrenador;
-use App\Models\Entrenamiento;
-use App\Models\Plan;
-use App\Models\Reserva;
-use App\Models\Sede;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\ClientDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -25,55 +21,11 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->group(function () {
-    Route::get('/dashboard', function () {
-        return view('clients.dashboard');
-    })->name('dashboard');
-    Route::resource('clients', ClientController::class)->only(['edit']);
+    Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
-    Route::get('/dashboard', function () {
-        $totalClients = Client::count();
-        $totalEntrenadores = Entrenador::count();
-        $totalSedes = Sede::count();
-        $totalPlanes = Plan::count();
-        $totalEntrenamientos = Entrenamiento::count();
-        $totalReservas = Reserva::count();
-        $reservasHoy = Reserva::whereDate('fecha_reserva', now()->toDateString())->count();
-
-        $ultimasReservas = Reserva::with(['cliente', 'entrenamiento'])
-            ->latest()
-            ->take(6)
-            ->get();
-
-        $proximosEntrenamientos = Entrenamiento::with('entrenador')
-            ->where('fecha_inicio', '>=', now())
-            ->orderBy('fecha_inicio')
-            ->take(5)
-            ->get();
-
-        $planesPopulares = Plan::withCount('clients')
-            ->orderByDesc('clients_count')
-            ->take(4)
-            ->get();
-
-        $ingresosPotenciales = $planesPopulares
-            ->sum(fn($plan) => $plan->precio * $plan->clients_count);
-
-        return view('admin.dashboard', compact(
-            'totalClients',
-            'totalEntrenadores',
-            'totalSedes',
-            'totalPlanes',
-            'totalEntrenamientos',
-            'totalReservas',
-            'reservasHoy',
-            'ultimasReservas',
-            'proximosEntrenamientos',
-            'planesPopulares',
-            'ingresosPotenciales'
-        ));
-    })->name('dashboard');
+    Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
