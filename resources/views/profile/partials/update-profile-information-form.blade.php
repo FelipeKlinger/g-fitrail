@@ -92,28 +92,28 @@
 
         @if ($user->role === 'client')
         <div>
-            <x-input-label for="edad" :value="__('edad')" class="text-white" />
+            <x-input-label for="edad" :value="__('Edad')" class="text-white" />
             <x-text-input id="edad" name="edad" type="number" class="mt-1 block w-full"
                 :value="old('edad', $user->client->edad)" required autofocus autocomplete="edad" />
             <x-input-error class="mt-2" :messages="$errors->get('edad')" />
         </div>
 
         <div>
-            <x-input-label for="altura" :value="__('altura')" class="text-white" />
+            <x-input-label for="altura" :value="__('Altura')" class="text-white" />
             <x-text-input id="altura" name="altura" type="number" class="mt-1 block w-full"
                 :value="old('altura', $user->client->altura)" required autofocus autocomplete="altura" />
             <x-input-error class="mt-2" :messages="$errors->get('altura')" />
         </div>
 
         <div>
-            <x-input-label for="peso" :value="__('peso')" class="text-white" />
+            <x-input-label for="peso" :value="__('Peso (kg)')" class="text-white" />
             <x-text-input id="peso" name="peso" type="number" class="mt-1 block w-full"
                 :value="old('peso', $user->client->peso)" required autofocus autocomplete="peso" />
             <x-input-error class="mt-2" :messages="$errors->get('peso')" />
         </div>
 
         <div>
-            <x-input-label for="objetivo" :value="__('objetivo')" class="text-white" />
+            <x-input-label for="objetivo" :value="__('Objetivo')" class="text-white" />
             <select name="objetivo"
                 class="client-form-field w-full rounded-lg border border-white/10 bg-zinc-900 px-3 py-2 text-zinc-100 outline-none transition focus:border-violet-400/60"
                 style="color: #fff;">
