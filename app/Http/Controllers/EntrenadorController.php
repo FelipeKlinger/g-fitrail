@@ -102,7 +102,7 @@ class EntrenadorController extends Controller
             "sede_id" => "required|exists:sedes,id" // Verifica que la sede_id exista en la tabla sedes
         ]);
         $entrenador->update($validated);
-        return redirect()->route("entrenadors.index")->with("status", "Entrenador actualizado exitosamente");
+        return redirect()->route("admin.entrenadors.index")->with("status", "Entrenador actualizado exitosamente");
 
     }
 
@@ -112,7 +112,7 @@ class EntrenadorController extends Controller
     public function destroy(Entrenador $entrenador)
     {
         $entrenador->delete();
-        return redirect()->route("entrenadors.index")->with("status", "Entrenador eliminado exitosamente");
+        return redirect()->route("admin.entrenadors.index")->with("status", "Entrenador eliminado exitosamente");
 
     }
 }

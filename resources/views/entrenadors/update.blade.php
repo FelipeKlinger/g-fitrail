@@ -10,12 +10,12 @@
                     <p class="text-sm text-zinc-400">Administración de entrenadores</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Editar {{ $entrenador->nombre }}</h1>
                 </div>
-                <a href="{{ route('entrenadors.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                <a href="{{ route('admin.entrenadors.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
                     Volver al listado
                 </a>
             </div>
 
-            <form action="{{ route('entrenadors.update', $entrenador) }}" method="POST" class="space-y-5">
+            <form action="{{ route('admin.entrenadors.update', $entrenador) }}" method="POST" class="space-y-5">
                 @method('PUT')
                 @csrf
                 @include('entrenadors._form', compact('entrenador', 'sedes'))

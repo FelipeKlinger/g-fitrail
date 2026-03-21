@@ -34,7 +34,7 @@ class ReservaController extends Controller
         ]);
 
         Reserva::create($validated);
-        return redirect()->route("reservas.index")->with("status", "Reserva creada exitosamente");
+        return redirect()->route("admin.reservas.index")->with("status", "Reserva creada exitosamente");
 
     }
 
@@ -56,13 +56,13 @@ class ReservaController extends Controller
         ]);
 
         $reserva->update($validated);
-        return redirect()->route("reservas.index")->with("status", "editado correctamente");
+        return redirect()->route("admin.reservas.index")->with("status", "editado correctamente");
 
     }
 
     public function destroy(Reserva $reserva)
     {
         $reserva->delete();
-        return redirect()->route("reservas.index")->with("status", "Eliminado correctamente");
+        return redirect()->route("admin.reservas.index")->with("status", "Eliminado correctamente");
     }
 }

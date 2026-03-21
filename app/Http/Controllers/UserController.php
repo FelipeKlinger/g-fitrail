@@ -47,7 +47,7 @@ class UserController extends Controller
             'email_verified_at' => $request->boolean('email_verified') ? now() : null,
         ]);
 
-        return redirect()->route('users.index')->with('status', 'Usuario creado correctamente.');
+        return redirect()->route('admin.users.index')->with('status', 'Usuario creado correctamente.');
     }
 
     /**
@@ -108,6 +108,6 @@ class UserController extends Controller
 
         $user->delete();
 
-        return redirect()->route('users.index')->with('status', 'Usuario eliminado correctamente.');
+        return redirect()->route('admin.users.index')->with('status', 'Usuario eliminado correctamente.');
     }
 }

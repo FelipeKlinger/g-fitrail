@@ -39,7 +39,7 @@ class SedeController extends Controller
 
         Sede::create($validated);
 
-        return redirect()->route('sedes.index')->with('status', 'Sede creada exitosamente'); //PRG
+        return redirect()->route('admin.sedes.index')->with('status', 'Sede creada exitosamente'); //PRG
     }
 
     /**
@@ -73,7 +73,7 @@ class SedeController extends Controller
         ]);
 
         $sede->update($validated);
-        return redirect()->route("sedes.index")->with("status", "Editado correctamente");
+        return redirect()->route("admin.sedes.index")->with("status", "Editado correctamente");
     }
 
     /**
@@ -82,6 +82,6 @@ class SedeController extends Controller
     public function destroy(Sede $sede)
     {
         $sede->delete();
-        return redirect()->route('sedes.index')->with('status', 'Sede eliminada exitosamente');
+        return redirect()->route('admin.sedes.index')->with('status', 'Sede eliminada exitosamente');
     }
 }

@@ -1,30 +1,39 @@
 <nav x-data="{ open: false }" class="sticky top-0 z-40 border-b border-white/10 bg-black/95 backdrop-blur">
     <div class="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
         <div class="flex items-center gap-8">
-            <a href="{{ auth()->user()->role === 'admin' ? route('admin.dashboard') : route('dashboard') }}"
-                class="flex items-center gap-2">
-                <span class="text-2xl font-semibold tracking-wide text-white">Fitrail</span>
-            </a>
+
+            <span class="text-2xl font-semibold tracking-wide text-white">G-Fitrail</span>
 
             <div class="hidden items-center gap-2 md:flex">
                 @if (auth()->user()->role === 'admin')
                 <a href="{{ route('admin.dashboard') }}"
                     class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.dashboard') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
-                    Dashboard
+                    Panel Administrador
                 </a>
                 <a href="{{ route('admin.users.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Usuarios</a>
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.users.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Usuarios
+                </a>
                 <a href="{{ route('admin.entrenadors.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Entrenadores</a>
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.entrenadors.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Entrenadores
+                </a>
                 <a href="{{ route('admin.entrenamientos.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Entrenamientos</a>
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.entrenamientos.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Entrenamientos
+                </a>
                 <a href="{{ route('admin.reservas.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Reservas</a>
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.reservas.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Reservas
+                </a>
                 <a href="{{ route('admin.plans.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Planes</a>
-
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.plans.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Planes
+                </a>
                 <a href="{{ route('admin.sedes.index') }}"
-                    class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Sedes</a>
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.sedes.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Sedes
+                </a>
 
                 @elseif (auth()->user()->role === 'client')
                 <a href="{{ route('clients.dashboard') }}"
@@ -35,6 +44,11 @@
                 <a href="{{ route('entrenadors.dashboard') }}"
                     class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('entrenadors.dashboard') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
                     Panel entrenador
+                </a>
+                {{-- Usamo Routeis para verificar que ruta y ? para seguir el comportamiento si es o no --}}
+                <a href="{{ route('entrenador.entrenamientos.index') }}"
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('entrenador.entrenamientos.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Entrenamientoss
                 </a>
                 @endif
             </div>

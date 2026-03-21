@@ -37,7 +37,7 @@ class PlanController extends Controller
 
         Plan::create($validated);
 
-        return redirect()->route('plans.index') ->with('status', 'Plan creado exitosamente'); //PRG
+        return redirect()->route('admin.plans.index') ->with('status', 'Plan creado exitosamente'); //PRG
     }
 
     /**
@@ -70,7 +70,7 @@ class PlanController extends Controller
 
         $plan->update($validated);
 
-        return redirect()->route('plans.index')->with('status', 'Plan actualizado exitosamente');
+        return redirect()->route('admin.plans.index')->with('status', 'Plan actualizado exitosamente');
     }
 
     /**
@@ -79,6 +79,6 @@ class PlanController extends Controller
     public function destroy(Plan $plan)
     {
         $plan->delete();
-        return redirect()->route('plans.index')->with('status', 'Plan eliminado exitosamente');
+        return redirect()->route('admin.plans.index')->with('status', 'Plan eliminado exitosamente');
     }
 }

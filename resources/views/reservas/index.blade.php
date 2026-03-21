@@ -48,11 +48,11 @@
                                 <td class="px-4 py-3">{{ $reserva->fecha_reserva }}</td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('reservas.edit', $reserva) }}"
+                                        <a href="{{ route('admin.reservas.edit', $reserva) }}"
                                             class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
                                             Editar
                                         </a>
-                                        <form action="{{ route('reservas.destroy', $reserva) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar esta reserva?');">
+                                        <form action="{{ route('admin.reservas.destroy', $reserva) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar esta reserva?');">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"

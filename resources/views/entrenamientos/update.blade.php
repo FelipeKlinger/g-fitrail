@@ -10,16 +10,34 @@
                     <p class="text-sm text-zinc-400">Administración de entrenamientos</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Editar {{ $entrenamiento->nombre }}</h1>
                 </div>
-                <a href="{{ route('entrenamientos.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                @if(auth()->user()->role === 'admin')
+                <a href="{{ route('admin.entrenamientos.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
                     Volver al listado
                 </a>
+                @endif
+
+                 @if(auth()->user()->role === 'entrenador')
+                <a href="{{ route('entrenador.entrenamientos.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                    Volver al listado
+                </a>
+                @endif
             </div>
 
-            <form action="{{ route('entrenamientos.update', $entrenamiento) }}" method="POST" class="space-y-5">
+            @if (auth()->user()->role === 'admin')
+            <form action="{{ route('admin.entrenamientos.update', $entrenamiento) }}" method="POST" class="space-y-5">
                 @method('PUT')
                 @csrf
                 @include('entrenamientos._form', compact('entrenamiento', 'entrenadors'))
             </form>
+            @endif
+
+              @if (auth()->user()->role === 'entrenador')
+            <form action="{{ route('entrenador.entrenamientos.update', $entrenamiento) }}" method="POST" class="space-y-5">
+                @method('PUT')
+                @csrf
+                @include('entrenamientos._form', compact('entrenamiento', 'entrenadors'))
+            </form>
+            @endif
         </section>
     </div>
 </x-app-layout>

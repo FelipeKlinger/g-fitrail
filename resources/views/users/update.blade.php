@@ -10,12 +10,12 @@
                     <p class="text-sm text-zinc-400">Administración de usuarios</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Editar {{ $user->name }}</h1>
                 </div>
-                <a href="{{ route('users.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                <a href="{{ route('admin.users.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
                     Volver al listado
                 </a>
             </div>
 
-            <form method="POST" action="{{ route('users.update', $user->id) }}" class="space-y-5">
+            <form method="POST" action="{{ route('admin.users.update', $user->id) }}" class="space-y-5">
                 @csrf
                 @method('PUT')
                 @include('users._form', ['submitText' => 'Actualizar usuario'])

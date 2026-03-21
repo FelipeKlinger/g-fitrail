@@ -93,7 +93,11 @@ class EntrenamientoController extends Controller
         ]);
 
         $entrenamiento->update($validated);
-        return redirect()->route("entrenamientos.index")->with("status", "Actualizado correctamente");
+         if (auth()->user()->role === 'admin') {
+            return redirect()->route("admin.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        } else {
+            return redirect()->route("entrenador.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        }
     }
 
 
@@ -104,6 +108,10 @@ class EntrenamientoController extends Controller
     {
 
         $entrenamiento->delete();
-        return redirect()->route("entrenamientos.index")->with("status", "Eliminado Correctamente");
+         if (auth()->user()->role === 'admin') {
+            return redirect()->route("admin.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        } else {
+            return redirect()->route("entrenador.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        }
     }
 }
