@@ -16,7 +16,7 @@
                     <p class="text-sm text-zinc-400">Panel admin · Gestión CRUD</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Listado de entrenadores</h1>
                 </div>
-                <a href="{{ route('entrenadors.create') }}"
+                <a href="{{ route('admin.entrenadors.create') }}"
                     class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
                     + Nuevo entrenador
                 </a>
@@ -48,11 +48,11 @@
                                 <td class="px-4 py-3">{{ $entrenador->sede->ciudad ?? '-' }} · {{ $entrenador->sede->direccion ?? '-' }}</td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('entrenadors.edit', $entrenador) }}"
+                                        <a href="{{ route('admin.entrenadors.edit', $entrenador) }}"
                                             class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
                                             Editar
                                         </a>
-                                        <form action="{{ route('entrenadors.destroy', $entrenador) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este entrenador?');">
+                                        <form action="{{ route('admin.entrenadors.destroy', $entrenador) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este entrenador?');">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"

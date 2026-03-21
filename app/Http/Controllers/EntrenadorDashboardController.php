@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Entrenamiento;
 use Illuminate\Http\Request;
 
 class EntrenadorDashboardController extends Controller
@@ -12,7 +13,8 @@ class EntrenadorDashboardController extends Controller
     public function index()
     {
 
-        return view('entrenadors.dashboard');
+        $entrenamientos = Entrenamiento::all();
+        return view('entrenadors.dashboard', compact('entrenamientos'));
     }
 
     /**

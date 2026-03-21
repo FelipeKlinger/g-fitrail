@@ -16,10 +16,19 @@
                     <p class="text-sm text-zinc-400">Panel admin · Gestión CRUD</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Listado de entrenamientos</h1>
                 </div>
-                <a href="{{ route('entrenamientos.create') }}"
+                @if(auth()->user()->role === 'admin')
+                <a href="{{ route('admin.entrenamientos.create') }}"
                     class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
                     + Nuevo entrenamiento
                 </a>
+                @endif
+
+                 @if(auth()->user()->role === 'entrenador')
+                <a href="{{ route('entrenador.entrenamientos.create') }}"
+                    class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                    + Nuevo entrenamiento
+                </a>
+                @endif
             </div>
 
             <div class="overflow-x-auto rounded-xl border border-white/10">
@@ -46,11 +55,20 @@
                                 <td class="px-4 py-3">{{ $entrenamiento->entrenador->nombre ?? '-' }}</td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('entrenamientos.edit', $entrenamiento) }}"
+                                        @if(auth()->user()->role === 'admin')
+                                        <a href="{{ route('admin.entrenamientos.edit', $entrenamiento) }}"
                                             class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
                                             Editar
                                         </a>
-                                        <form action="{{ route('entrenamientos.destroy', $entrenamiento) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este entrenamiento?');">
+                                        @endif
+                                        @if(auth()->user()->role === 'entrenador')
+                                        <a href="{{ route('entrenador.entrenamientos.edit', $entrenamiento) }}"
+                                            class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
+                                            Editar
+                                        </a>
+                                        @endif
+                                        @if(auth()->user()->role === 'admin')
+                                        <form action="{{ route('admin.entrenamientos.destroy', $entrenamiento) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este entrenamiento?');">
                                             @method('DELETE')
                                             @csrf
                                             <button type="submit"
@@ -58,6 +76,7 @@
                                                 Eliminar
                                             </button>
                                         </form>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>

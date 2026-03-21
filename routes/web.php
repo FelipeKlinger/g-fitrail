@@ -41,7 +41,7 @@ Route::prefix('entrenadors')->middleware(['auth', 'entrenador'])->name('entrenad
 
 
 // Api Rest para el admin usando su middleware, control total.
-Route::middleware(['auth', 'admin'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
     Route::resource('clients', ClientController::class);
     Route::resource('sedes', SedeController::class);
     Route::resource('plans', PlanController::class);
@@ -52,7 +52,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
 });
 
 //Api rest para el entrenador, unicamente CRUD de entrenamientos
-Route::middleware(['auth', 'entrenador'])->group(function () {
+Route::prefix('entrenador')->name('entrenador.')->middleware(['auth', 'entrenador'])->group(function () {
     Route::resource('entrenamientos', EntrenamientoController::class);
 });
 

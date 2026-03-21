@@ -10,12 +10,12 @@
                     <p class="text-sm text-zinc-400">Administración de planes</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Nuevo plan</h1>
                 </div>
-                <a href="{{ route('plans.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                <a href="{{ route('admin.plans.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
                     Volver al listado
                 </a>
             </div>
 
-            <form action="{{ route('plans.store') }}" method="POST" class="space-y-5">
+            <form action="{{ route('admin.plans.store') }}" method="POST" class="space-y-5">
                 @csrf
                 @include('plans._form')
             </form>

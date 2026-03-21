@@ -64,7 +64,7 @@ class EntrenadorController extends Controller
             "user_id" => $user->id
         ]);
 
-        return redirect()->route("entrenadors.index")->with("status", "Entrenador creado exitosamente");
+        return redirect()->route("admin.entrenadors.index")->with("status", "Entrenador creado exitosamente");
     }
 
     /**

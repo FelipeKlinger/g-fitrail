@@ -16,7 +16,7 @@
                     <p class="text-sm text-zinc-400">Panel admin · Gestión CRUD</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Listado de planes</h1>
                 </div>
-                <a href="{{ route('plans.create') }}"
+                <a href="{{ route('admin.plans.create') }}"
                     class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
                     + Nuevo plan
                 </a>
@@ -42,11 +42,11 @@
                                 <td class="px-4 py-3">{{ number_format($plan->precio, 2, ',', '.') }} €</td>
                                 <td class="px-4 py-3">
                                     <div class="flex items-center gap-2">
-                                        <a href="{{ route('plans.edit', $plan->id) }}"
+                                        <a href="{{ route('admin.plans.edit', $plan->id) }}"
                                             class="rounded-lg border border-cyan-500/30 bg-cyan-500/10 px-3 py-1.5 text-xs font-medium text-cyan-200 transition hover:bg-cyan-500/20">
                                             Editar
                                         </a>
-                                        <form action="{{ route('plans.destroy', $plan->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este plan?');">
+                                        <form action="{{ route('admin.plans.destroy', $plan->id) }}" method="POST" onsubmit="return confirm('¿Seguro que quieres eliminar este plan?');">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit"

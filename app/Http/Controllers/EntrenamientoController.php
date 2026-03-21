@@ -49,7 +49,12 @@ class EntrenamientoController extends Controller
 
 
         Entrenamiento::create($validated);
-        return redirect()->route("entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+
+        if (auth()->user()->role === 'admin') {
+            return redirect()->route("admin.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        } else {
+            return redirect()->route("entrenador.entrenamientos.index")->with("status", "Entrenamiento creado exitosamente");
+        }
     }
 
 

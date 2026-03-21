@@ -17,27 +17,27 @@
                         class="block rounded-xl border border-violet-500/30 bg-violet-500/15 px-4 py-2.5 text-sm font-medium text-violet-200 transition hover:bg-violet-500/25">
                         Dashboard
                     </a>
-                    <a href="{{ route('users.index') }}"
+                    <a href="{{ route('admin.users.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Usuarios
                     </a>
-                    <a href="{{ route('entrenadors.index') }}"
+                    <a href="{{ route('admin.entrenadors.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Entrenadores
                     </a>
-                    <a href="{{ route('entrenamientos.index') }}"
+                    <a href="{{ route('admin.entrenamientos.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Entrenamientos
                     </a>
-                    <a href="{{ route('reservas.index') }}"
+                    <a href="{{ route('admin.reservas.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Reservas
                     </a>
-                    <a href="{{ route('plans.index') }}"
+                    <a href="{{ route('admin.plans.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Planes
                     </a>
-                    <a href="{{ route('sedes.index') }}"
+                    <a href="{{ route('admin.sedes.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Sedes
                     </a>
@@ -91,7 +91,7 @@
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5 xl:col-span-2">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-semibold text-white">Últimas reservas</h3>
-                            <a href="{{ route('reservas.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Ver todo</a>
+                            <a href="{{ route('admin.reservas.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Ver todo</a>
                         </div>
 
                         <div class="mt-4 overflow-x-auto">
@@ -155,7 +155,7 @@
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-semibold text-white">Próximos entrenamientos</h3>
-                            <a href="{{ route('entrenamientos.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Gestionar</a>
+                            <a href="{{ route('admin.entrenamientos.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Gestionar</a>
                         </div>
 
                         <div class="mt-4 space-y-3">
@@ -176,7 +176,7 @@
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
                         <div class="flex items-center justify-between">
                             <h3 class="text-lg font-semibold text-white">Planes más populares</h3>
-                            <a href="{{ route('plans.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Ver planes</a>
+                            <a href="{{ route('admin.plans.index') }}" class="text-sm text-violet-300 hover:text-violet-200">Ver planes</a>
                         </div>
 
                         <div class="mt-4 space-y-3">

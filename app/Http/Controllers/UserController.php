@@ -92,7 +92,7 @@ class UserController extends Controller
 
         $user->save();
 
-        return redirect()->route('users.index')->with('status', 'Usuario actualizado correctamente.');
+        return redirect()->route('admin.users.index')->with('status', 'Usuario actualizado correctamente.');
     }
 
     /**

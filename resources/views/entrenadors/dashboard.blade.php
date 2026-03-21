@@ -11,11 +11,12 @@
                         Dashboard
                     </a>
                     <a href="{{ route('profile.edit') }}"
-                        class="block rounded-xl border border-violet-500/30 bg-violet-500/15 px-4 py-2.5 text-sm font-medium text-violet-200 transition hover:bg-violet-500/25">
+                        class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-500/10">
+
                         Mi perfil
                     </a>
-                    <a href="{{ route('entrenamientos.index') }}"
-                        class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
+                    <a href="{{ route('entrenador.entrenamientos.index') }}"
+                        class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-500/10">
                         Entrenamientos
                     </a>
                 </div>
@@ -27,5 +28,54 @@
                     <p class="mt-1 text-xs text-zinc-300">Última actualización: {{ now()->format('d/m/Y H:i') }}</p>
                 </div>
             </aside>
+            <section class="space-y-6 lg:col-span-9 xl:col-span-10">
+                <div
+                    class="flex flex-col justify-between gap-4 rounded-2xl border border-white/10 bg-zinc-950 p-5 md:flex-row md:items-center">
+                    <div>
+                        <p class="text-sm text-zinc-400">Vista general</p>
+                        <h1 class="mt-1 text-2xl font-semibold text-white">Dashboard de gestión</h1>
+                    </div>
+                    <div class="rounded-xl border border-white/10 bg-white/5 px-4 py-2 text-sm text-zinc-300">
+                        Rango: {{ now()->startOfMonth()->format('d M Y') }} - {{ now()->endOfMonth()->format('d M Y') }}
+                    </div>
+                </div>
+                <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-white">Entrenamientos disponibles</h3>
+                        <a href="{{ route('entrenador.entrenamientos.create') }}"
+                            class="block rounded-xl border border-violet-500/30 bg-violet-500/15 px-4 py-2.5 text-sm font-medium text-violet-200 transition hover:bg-violet-500/25">
+                            Crear entrenamiento
+                        </a>
+                    </div>
+
+
+                    <div class="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+                        @foreach ($entrenamientos as $entrenamiento)
+
+                        <div class="rounded-2xl border border-white/10 bg-white/5 p-4">
+                            <p class="text-base font-semibold text-white">{{ $entrenamiento->nombre }}</p>
+                            <p class="mt-1 line-clamp-2 text-sm text-zinc-400">{{ $entrenamiento->descripcion }}</p>
+
+                            <div class="mt-3 space-y-1 text-xs text-zinc-400">
+                                <p>Entrenador: <span class="text-zinc-200">{{ $entrenamiento->entrenador->nombre
+                                        }}</span></p>
+                                <p>Inicio: <span class="text-zinc-200">{{ $entrenamiento->fecha_inicio }}</span></p>
+                                <p>Plazas disponibles: <span class="text-emerald-300">{{ $entrenamiento->capacidad
+                                        }}</span></p>
+                            </div>
+
+                            {{-- <button type="button"
+                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
+                                Reservar entrenamiento
+                            </button> --}}
+                        </div>
+                        @endforeach
+                    </div>
+                </article>
+
+            </section>
+
         </div>
+
+    </div>
 </x-app-layout>

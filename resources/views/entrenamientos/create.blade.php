@@ -10,15 +10,23 @@
                     <p class="text-sm text-zinc-400">Administración de entrenamientos</p>
                     <h1 class="mt-1 text-2xl font-semibold text-white">Nuevo entrenamiento</h1>
                 </div>
-                <a href="{{ route('entrenamientos.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
+                <a href="{{ route('admin.entrenamientos.index') }}" class="rounded-lg border border-white/10 bg-white/5 px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">
                     Volver al listado
                 </a>
             </div>
-
-            <form action="{{ route('entrenamientos.store') }}" method="POST" class="space-y-5">
+            @if(auth()->user()->role === 'admin')
+            <form action="{{ route('admin.entrenamientos.store') }}" method="POST" class="space-y-5">
                 @csrf
                 @include('entrenamientos._form', compact('entrenadors'))
             </form>
+            @endif
+
+             @if(auth()->user()->role === 'entrenador')
+            <form action="{{ route('entrenador.entrenamientos.store') }}" method="POST" class="space-y-5">
+                @csrf
+                @include('entrenamientos._form', compact('entrenadors'))
+            </form>
+            @endif
         </section>
     </div>
 </x-app-layout>

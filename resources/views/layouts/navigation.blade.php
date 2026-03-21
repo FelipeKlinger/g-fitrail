@@ -12,18 +12,18 @@
                     class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.dashboard') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
                     Dashboard
                 </a>
-                <a href="{{ route('users.index') }}"
+                <a href="{{ route('admin.users.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Usuarios</a>
-                <a href="{{ route('entrenadors.index') }}"
+                <a href="{{ route('admin.entrenadors.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Entrenadores</a>
-                <a href="{{ route('entrenamientos.index') }}"
+                <a href="{{ route('admin.entrenamientos.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Entrenamientos</a>
-                <a href="{{ route('reservas.index') }}"
+                <a href="{{ route('admin.reservas.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Reservas</a>
-                <a href="{{ route('plans.index') }}"
+                <a href="{{ route('admin.plans.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Planes</a>
 
-                <a href="{{ route('sedes.index') }}"
+                <a href="{{ route('admin.sedes.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm text-zinc-300 hover:bg-white/10 hover:text-white">Sedes</a>
 
                 @elseif (auth()->user()->role === 'client')
@@ -69,11 +69,11 @@
             @if (auth()->user()->role === 'admin')
             <a href="{{ route('admin.dashboard') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Dashboard</a>
-            <a href="{{ route('users.index') }}"
+            <a href="{{ route('admin.users.index') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Usuarios</a>
-            <a href="{{ route('entrenamientos.index') }}"
+            <a href="{{ route('admin.entrenamientos.index') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Entrenamientos</a>
-            <a href="{{ route('reservas.index') }}"
+            <a href="{{ route('admin.reservas.index') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Reservas</a>
             @elseif (auth()->user()->role === 'client')
             <a href="{{ route('clients.dashboard') }}"
