@@ -151,27 +151,36 @@ Los controladores están ubicados en `app/Http/Controllers/` y gestionan toda la
 **ReservaController:** Valida la existencia del cliente y entrenamiento seleccionados. Los métodos `edit()`, `update()` y `destroy()` están pendientes de implementación completa.
 
 
-### **Rutas (web.php)**
-En el archivo `routes/web.php` se han definido las rutas de recursos que generan automáticamente todas las rutas necesarias para el CRUD de cada entidad:
+### **Rutas, middlewares y protección de acceso (fase actual)**
 
-```php
-Route::get('/', fn() => view('homepage.index'));
+En esta fase hemos reforzado la seguridad de navegación y acceso con autenticación, verificación de email y autorización por rol.
 
-Route::resource('clients', ClientController::class);
-Route::resource('sedes', SedeController::class);
-Route::resource('plans', PlanController::class);
-Route::resource('entrenadors', EntrenadorController::class);
-Route::resource('entrenamientos', EntrenamientoController::class);
-Route::resource('reservas', ReservaController::class);
-```
+#### Middleware de rol personalizados
 
-Cada `Route::resource` crea las siguientes rutas automáticamente:
-- `GET /{recurso}` → index (listar)
-- `GET /{recurso}/create` → create (formulario crear)
-- `POST /{recurso}` → store (guardar)
-- `GET /{recurso}/{id}/edit` → edit (formulario editar)
-- `PUT /{recurso}/{id}` → update (actualizar)
-- `DELETE /{recurso}/{id}` → destroy (eliminar)
+Se han creado y registrado los siguientes middlewares en `app/Http/Middleware/` y `bootstrap/app.php`:
+
+- `admin` (`IsAdmin`)  
+- `client` (`IsClient`)  
+- `entrenador` (`IsEntrenador`)
+
+Cada uno comprueba `auth()->check()` y el valor de `auth()->user()->role`. Si no cumple, se devuelve `403`.
+
+#### Protección de rutas por tipo de usuario
+
+- `/` solo para usuarios no autenticados (`guest`).
+- `/dashboard` protegido con `auth` + `verified`.
+- Dashboard específico por rol:
+  - `admin/dashboard` → middleware `auth, admin`
+  - `clients/dashboard` → middleware `auth, client`
+  - `entrenadors/dashboard` → middleware `auth, entrenador`
+
+#### CRUD protegidos por permisos
+
+- **Administrador** (`/admin/*`): acceso total mediante `Route::resource` a clientes, sedes, planes, entrenadores, entrenamientos, reservas y usuarios.
+- **Entrenador** (`/entrenador/*`): CRUD de entrenamientos bajo middleware `auth, entrenador`.
+- **Perfil de usuario** (`/profile`): edición, actualización y eliminación protegidas con `auth`.
+
+Con esta estructura, cada rol ve solo sus rutas y funcionalidades autorizadas.
 
 
 ## **Vistas**
@@ -244,7 +253,7 @@ Un entrenamiento puede tener múltiples reservas (limitadas por su capacidad).
 
 ## Capturas de pantalla
 
-  ### Entidad Clientes
+  ### Entidad Usuarios
 
 <img src="public/images/Entidad - Clientes/Listar.png" height="230px">
 
@@ -262,6 +271,8 @@ Un entrenamiento puede tener múltiples reservas (limitadas por su capacidad).
 
 <img src="public/images/Entidad - Entrenadores/Editar.png" height="150px">
 
+<img src="public/images/Entidad - Entrenadores/Eliminar.png" height="150px">
+
 ### Entidad Sedes
 
 <img src="public/images/Entidad - Sedes/Listar.png" height="150px">
@@ -269,6 +280,8 @@ Un entrenamiento puede tener múltiples reservas (limitadas por su capacidad).
 <img src="public/images/Entidad - Sedes/Crear.png" height="150px">
 
 <img src="public/images/Entidad - Sedes/Editar.png" height="150px">
+
+<img src="public/images/Entidad - Sedes/Eliminar.png" height="150px">
 
 ### Entidad Planes
 
@@ -278,6 +291,8 @@ Un entrenamiento puede tener múltiples reservas (limitadas por su capacidad).
 
 <img src="public/images/Entidad - Planes/Editar.png" height="150px">
 
+<img src="public/images/Entidad - Planes/Eliminar.png" height="150px">
+
 ### Entidad Entrenamientos
 
 <img src="public/images/Entidad - Entrenamientos/Listar.png" height="150px">
@@ -286,8 +301,14 @@ Un entrenamiento puede tener múltiples reservas (limitadas por su capacidad).
 
 <img src="public/images/Entidad - Entrenamientos/Editar.png" height="150px">
 
+<img src="public/images/Entidad - Entrenamientos/Eliminar.png" height="150px">
+
 ### Entidad Reserva
 
 <img src="public/images/Entidad - Reserva/Listar.png" height="150px">
 
 <img src="public/images/Entidad - Reserva/Crear.png" height="150px">
+
+<img src="public/images/Entidad - Reserva/Editar.png" height="150px">
+
+<img src="public/images/Entidad - Reserva/Eliminar.png" height="150px">
