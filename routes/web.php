@@ -56,6 +56,10 @@ Route::prefix('entrenador')->name('entrenador.')->middleware(['auth', 'entrenado
     Route::resource('entrenamientos', EntrenamientoController::class);
 });
 
+//Retornar planes propios de cada cliente
+Route::prefix('client')->name('client.')->middleware(['auth', 'client'])->group(function () {
+    Route::get('plans', [PlanController::class, 'index'])->name('index');
+});
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

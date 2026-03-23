@@ -12,8 +12,16 @@ class PlanController extends Controller
      */
     public function index()
     {
-        $plans = Plan::all();
-        return view('plans.index', compact('plans'));
+        if (auth()->check() && auth()->user()->role === 'admin') {
+            $plans = Plan::all();
+            return view('plans.index', compact('plans'));
+        }
+
+        if (auth()->check() && auth()->user()->role === 'client') {
+            return view('plans.planClient');
+        }
+
+        return redirect()->route('login');
     }
 
     /**
@@ -37,7 +45,7 @@ class PlanController extends Controller
 
         Plan::create($validated);
 
-        return redirect()->route('admin.plans.index') ->with('status', 'Plan creado exitosamente'); //PRG
+        return redirect()->route('admin.plans.index')->with('status', 'Plan creado exitosamente'); //PRG
     }
 
     /**
@@ -61,7 +69,7 @@ class PlanController extends Controller
      */
     public function update(Request $request, Plan $plan)
     {
-        
+
         $validated = $request->validate([
             'nombre' => 'required|string|max:100',
             'descripcion' => 'required|string|max:500',
