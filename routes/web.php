@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\EntrenadorDashboardController;
+use App\Http\Controllers\PaymentController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -60,6 +61,18 @@ Route::prefix('entrenador')->name('entrenador.')->middleware(['auth', 'entrenado
 Route::prefix('client')->name('client.')->middleware(['auth', 'client'])->group(function () {
     Route::get('plans', [PlanController::class, 'index'])->name('index');
 });
+
+Route::post('/checkout/{plan}', [PaymentController::class, 'checkout'])
+    ->middleware(['auth', 'client'])
+    ->name('checkout');
+
+// Stripe redirección OK
+Route::get('/success/{plan}', [PaymentController::class, 'success'])
+    ->name('payment.success');
+
+// Stripe cancelado
+Route::get('/cancel', [PaymentController::class, 'cancel'])
+    ->name('payment.cancel');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

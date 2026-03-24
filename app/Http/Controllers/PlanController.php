@@ -18,7 +18,8 @@ class PlanController extends Controller
         }
 
         if (auth()->check() && auth()->user()->role === 'client') {
-            return view('plans.planClient');
+            $planes= Plan::all();
+            return view('plans.planClient', compact('planes'));
         }
 
         return redirect()->route('login');
