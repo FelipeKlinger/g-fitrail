@@ -17,16 +17,18 @@ class PaymentController extends Controller
 
         $session = Session::create([
             'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'eur',
-                    'product_data' => [
-                        'name' => $plan->nombre,
+            'line_items' => [
+                [
+                    'price_data' => [
+                        'currency' => 'eur',
+                        'product_data' => [
+                            'name' => $plan->nombre,
+                        ],
+                        'unit_amount' => $plan->precio * 100,
                     ],
-                    'unit_amount' => $plan->precio * 100,
-                ],
-                'quantity' => 1,
-            ]],
+                    'quantity' => 1,
+                ]
+            ],
             'mode' => 'payment',
             'success_url' => route('payment.success', $plan->id),
             'cancel_url' => route('payment.cancel'),
@@ -41,9 +43,11 @@ class PaymentController extends Controller
 
         // Guardar compra (pivot)
         $client->plans()->attach($planId, [
-            'start_date' => now(),
-            'end_date' => now()->addMonth(),
-            'status' => 'active'
+            'client_id' => $client->id,
+            'plan_id' => $planId,
+            'fecha_inicio' => now(),
+            'fecha_fin' => now()->addMonth(),
+            'estado' => 'Activo'
         ]);
 
         return redirect()->route('clients.dashboard')
