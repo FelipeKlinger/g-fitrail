@@ -14,17 +14,17 @@ class ContentfulController extends Controller
         $this->client = $client;
     }
 
-    public function tips() // tips es el content type en Contentful
+    public function headers() // header es el content type en Contentful
     {
         // Obtener entradas del content type "tip"
         $query = new \Contentful\Delivery\Query();
-        $query->setContentType('tip');
+        $query->setContentType('header');
 
 
         $entries = $this->client->getEntries($query);
 
-        return view('tips.index', [
-            'tips' => $entries
+        return view('homepage.index', [
+            'headers' => $entries
         ]);
     }
 }

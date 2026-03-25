@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,25 +18,38 @@
     <div class="flex min-h-screen flex-col bg-black text-white">
         <nav class="sticky top-0 z-40 border-b border-white/10 bg-black/95 backdrop-blur">
             <div class="mx-auto flex h-16 w-full max-w-[1600px] items-center justify-between px-4 sm:px-6 lg:px-8">
-                <a href="{{ url('/') }}" class="flex items-center gap-2">
-                    <span class="text-2xl font-semibold tracking-wide text-white">G-Fitrail</span>
-                </a>
+            <a href="{{ url('/') }}" class="flex items-center gap-2">
+                <span class="text-2xl font-semibold tracking-wide text-white">G-Fitrail</span>
+            </a>
 
-                @if (request()->routeIs('login'))
-                    <a href="{{ route('register') }}" class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
-                        Registrarse
-                    </a>
-                @elseif (request()->routeIs('register'))
-                    <a href="{{ route('login') }}" class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
-                        Login
-                    </a>
-                @endif
+            @if (request()->routeIs('login'))
+            <a href="{{ route('register') }}"
+                class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                Registrarse
+            </a>
+            @elseif (request()->routeIs('register'))
+            <a href="{{ route('login') }}"
+                class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                Iniciar sesión
+            </a>
+            @elseif (request()->routeIs('inicio'))
+            <div class="flex gap-3">
+                <a href="{{ route('login') }}"
+                class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                Iniciar sesión
+                </a>
+                <a href="{{ route('register') }}"
+                class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                Registrarse
+                </a>
+            </div>
+            @endif
             </div>
         </nav>
 
-        <main class="mx-auto flex w-full max-w-[1600px] flex-1 items-start justify-center px-4 py-10 sm:px-6 lg:px-8">
-            {{ $slot }}
-        </main>
+    <main class="mx-auto flex w-full max-w-[1600px] flex-1 items-start justify-center px-4 py-10 sm:px-6 lg:px-8">
+        {{ $slot }}
+    </main>
     </div>
 </body>
 

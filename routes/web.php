@@ -16,14 +16,10 @@ use App\Http\Controllers\ContentfulController;
 
 use Illuminate\Support\Facades\Route;
 
-// Ruta con Middleware Guest
-Route::get('/', function () {
-    return view('welcome');
-})->middleware(['guest']);
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('/', [ContentfulController::class, 'headers'])->name('inicio');
+
 
 //Rutas con Middleware Admin
 Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(function () {
@@ -81,6 +77,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::get('/tips', [ContentfulController::class, 'tips'])->name('tips.index');
+// Route::get('/tips', [ContentfulController::class, 'tips'])->name('tips.index');
 
 require __DIR__ . '/auth.php';

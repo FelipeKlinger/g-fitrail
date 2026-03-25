@@ -1,7 +1,13 @@
-@extends('layout')
+<x-guest-layout>
 
-@section('title', 'Inicio')
+    <?php 
+    
+    $header = $headers[0];
+    
+    ?>
 
-@section('content')
-<h1>Menu provisional</h1>
-@endsection
+
+    {{ $header->get('bienvenida') }}
+    <h1>sss</h1>
+    <h1>sss</h1>
+</x-guest-layout>
