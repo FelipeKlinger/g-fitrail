@@ -28,6 +28,42 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'contentful/contentful' => array(
+            'pretty_version' => 'v7.1.0',
+            'version' => '7.1.0.0',
+            'reference' => 'f464258a24b0f322cc34bda92b1a9b844d17dea4',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../contentful/contentful',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'contentful/core' => array(
+            'pretty_version' => '4.0.2',
+            'version' => '4.0.2.0',
+            'reference' => 'e1faba617d7f9520cb68349b17535d408037adcf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../contentful/core',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'contentful/laravel' => array(
+            'pretty_version' => '9.0.3',
+            'version' => '9.0.3.0',
+            'reference' => '24632dca8afb32d68731242b56c2e1649191a620',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../contentful/laravel',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'contentful/rich-text' => array(
+            'pretty_version' => '4.0.3',
+            'version' => '4.0.3.0',
+            'reference' => '9c340c884e0f45e0bd557f76f0b504a8c9768aae',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../contentful/rich-text',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'cordoval/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -382,6 +418,15 @@
                 0 => 'v12.46.0',
             ),
         ),
+        'jean85/pretty-package-versions' => array(
+            'pretty_version' => '2.1.1',
+            'version' => '2.1.1.0',
+            'reference' => '4d7aa5dab42e2a76d99559706022885de0e18e1a',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../jean85/pretty-package-versions',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'kodova/hamcrest-php' => array(
             'dev_requirement' => true,
             'replaced' => array(
@@ -699,6 +744,21 @@
             'install_path' => __DIR__ . '/../phpunit/phpunit',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'psr/cache' => array(
+            'pretty_version' => '3.0.0',
+            'version' => '3.0.0.0',
+            'reference' => 'aa5030cfa5405eccfdcb1083ce040c2cb8d253bf',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../psr/cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'psr/cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '2.0|3.0',
+            ),
         ),
         'psr/clock' => array(
             'pretty_version' => '1.0.0',
@@ -1022,6 +1082,30 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'symfony/cache' => array(
+            'pretty_version' => 'v7.4.7',
+            'version' => '7.4.7.0',
+            'reference' => '665522ec357540e66c294c08583b40ee576574f0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-contracts' => array(
+            'pretty_version' => 'v3.6.0',
+            'version' => '3.6.0.0',
+            'reference' => '5d68a57d66910405e5c0b63d6f0af941e66fc868',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/cache-contracts',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/cache-implementation' => array(
+            'dev_requirement' => false,
+            'provided' => array(
+                0 => '1.1|2.0|3.0',
+            ),
+        ),
         'symfony/clock' => array(
             'pretty_version' => 'v8.0.0',
             'version' => '8.0.0.0',
@@ -1090,6 +1174,15 @@
             'provided' => array(
                 0 => '2.0|3.0',
             ),
+        ),
+        'symfony/filesystem' => array(
+            'pretty_version' => 'v7.4.6',
+            'version' => '7.4.6.0',
+            'reference' => '3ebc794fa5315e59fd122561623c2e2e4280538e',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/filesystem',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'symfony/finder' => array(
             'pretty_version' => 'v7.4.3',
@@ -1301,6 +1394,15 @@
             'reference' => '7e99bebcb3f90d8721890f2963463280848cba92',
             'type' => 'library',
             'install_path' => __DIR__ . '/../symfony/var-dumper',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
+        'symfony/var-exporter' => array(
+            'pretty_version' => 'v8.0.0',
+            'version' => '8.0.0.0',
+            'reference' => '7345f46c251f2eb27c7b3ebdb5bb076b3ffcae04',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../symfony/var-exporter',
             'aliases' => array(),
             'dev_requirement' => false,
         ),

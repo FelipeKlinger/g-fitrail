@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\EntrenadorDashboardController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\ContentfulController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -80,5 +81,6 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+Route::get('/tips', [ContentfulController::class, 'tips'])->name('tips.index');
 
 require __DIR__ . '/auth.php';
