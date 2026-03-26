@@ -16,15 +16,9 @@ class ContentfulController extends Controller
 
     public function headers() // header es el content type en Contentful
     {
-        // Obtener entradas del content type "tip"
-        $query = new \Contentful\Delivery\Query();
-        $query->setContentType('header');
+    
+        $entry = $this->client->getEntry('40iIE44KVD7zRfy6fkbkxm');
 
-
-        $entries = $this->client->getEntries($query);
-
-        return view('homepage.index', [
-            'headers' => $entries
-        ]);
+        return view('homepage.index', compact('entry'));
     }
 }
