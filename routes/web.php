@@ -77,6 +77,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
+
+
+
 // Route::get('/tips', [ContentfulController::class, 'tips'])->name('tips.index');
 
 require __DIR__ . '/auth.php';
