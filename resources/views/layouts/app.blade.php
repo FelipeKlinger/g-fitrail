@@ -21,7 +21,7 @@
         @include('layouts.navigation')
 
         <!-- Page Heading -->
-        @isset($header) 
+        @isset($header)
         <header class="bg-black shadow">
             <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                 {{ $header }}
@@ -33,6 +33,9 @@
         <main>
             {{ $slot }}
         </main>
+        <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+        <df-messenger chat-title="FitrailBot" agent-id="73854d41-2ac8-4a60-8ab6-3592706a3646" language-code="es">
+        </df-messenger>
     </div>
 </body>
 

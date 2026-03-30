@@ -2,6 +2,27 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  df-messenger {
+    /* Match the app dark (zinc) + violet accents */
+    --df-messenger-button-titlebar-color: black;
+    --df-messenger-button-titlebar-font-color: white;
+    --df-messenger-button-titlebar-font-size: 14px;
+
+    --df-messenger-chat-background-color:  #1a1a1a;
+
+    --df-messenger-bot-message: 
+    --df-messenger-bot-message-font-color:
+
+    --df-messenger-user-message: 
+    --df-messenger-user-message-font-color: 
+
+    --df-messenger-chip-color: 
+    --df-messenger-chip-border-color:
+    --df-messenger-chip-font-color: 
+  }
+}
+
 @layer components {
   .home-shell {
     @apply w-full space-y-12 pb-12;
