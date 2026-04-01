@@ -25,6 +25,12 @@ class PlanController extends Controller
         return redirect()->route('login');
     }
 
+    public function plan()
+    {
+        $planes= Plan::all();
+        return view('auth.register-plan', compact('planes'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */

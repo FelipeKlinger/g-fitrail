@@ -65,7 +65,7 @@ class RegisteredUserController extends Controller
             case "admin":
                 return redirect()->route('admin.dashboard');
             case "client":
-                return redirect()->route('clients.dashboard')   ;
+                return redirect()->route('clients.paso-2');
             case "entrenador":
                 return redirect()->route('entrenadors.dashboard');
         }

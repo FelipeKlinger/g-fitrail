@@ -30,6 +30,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 //Rutas con Middleware Client
 Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->group(function () {
     Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
+    Route::get('/paso-2', [PlanController::class, 'plan'])->name('paso-2');
 });
 
 // Rutas especificas con Middleware entrenador 
@@ -76,6 +77,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
 
 
 
