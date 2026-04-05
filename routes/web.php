@@ -31,6 +31,7 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->group(function () {
     Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
     Route::get('/paso-2', [PlanController::class, 'plan'])->name('paso-2');
+    Route::post('/reservar/{clientId}/{entrenamientoId}', [ClientController::class, 'reservar'])->name('reservar');
 });
 
 // Rutas especificas con Middleware entrenador 

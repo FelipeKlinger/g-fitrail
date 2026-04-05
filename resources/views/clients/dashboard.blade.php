@@ -85,18 +85,18 @@ $client->objetivo,
 
                 <div class="grid grid-cols-1 gap-4 md:grid-cols-3">
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-                        <p class="text-xs uppercase tracking-wide text-zinc-400">Reservas totales</p>
-                        <p class="mt-3 text-3xl font-semibold text-white">12</p>
+                        <p class="text-xs uppercase tracking-wide text-zinc-400">Entrenamientos completados</p>
+                        <p class="mt-3 text-3xl font-semibold text-white">{{ $reservas->where('estado', 'asistio')->count() }}</p>
                         <p class="mt-2 text-sm text-violet-300">Histórico completo</p>
                     </article>
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
                         <p class="text-xs uppercase tracking-wide text-zinc-400">Próximas reservas</p>
-                        <p class="mt-3 text-3xl font-semibold text-white">3</p>
+                        <p class="mt-3 text-3xl font-semibold text-white">{{ $reservas->where('estado', 'confirmada')->count() }}</p>
                         <p class="mt-2 text-sm text-cyan-300">Pendientes de asistir</p>
                     </article>
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
                         <p class="text-xs uppercase tracking-wide text-zinc-400">Entrenos disponibles</p>
-                        <p class="mt-3 text-3xl font-semibold text-white">8</p>
+                        <p class="mt-3 text-3xl font-semibold text-white">{{ $entrenamientos->count() }}</p>
                         <p class="mt-2 text-sm text-emerald-300">Con plazas abiertas</p>
                     </article>
                 </div>
@@ -118,41 +118,23 @@ $client->objetivo,
                                         <th class="pb-3 font-medium">Fecha</th>
                                     </tr>
                                 </thead>
+                                @foreach ($reservas as $reserva)
+                                
+                                
                                 <tbody class="text-zinc-200">
                                     <tr class="border-b border-white/5">
-                                        <td class="py-3">HIIT Avanzado</td>
-                                        <td class="py-3">Laura Gómez</td>
+                                        <td class="py-3">{{ $reserva->entrenamiento->nombre }}</td>
+                                        <td class="py-3">{{ $reserva->entrenamiento->entrenador->nombre }}</td>
                                         <td class="py-3">
                                             <span
                                                 class="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-2.5 py-1 text-xs text-emerald-200">
-                                                Confirmada
+                                                {{ $reserva->estado }}
                                             </span>
                                         </td>
-                                        <td class="py-3">18/03/2026 19:00</td>
-                                    </tr>
-                                    <tr class="border-b border-white/5">
-                                        <td class="py-3">CrossFit Funcional</td>
-                                        <td class="py-3">David Ruiz</td>
-                                        <td class="py-3">
-                                            <span
-                                                class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-200">
-                                                Asistió
-                                            </span>
-                                        </td>
-                                        <td class="py-3">12/03/2026 18:30</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="py-3">Yoga Movilidad</td>
-                                        <td class="py-3">Ana Beltrán</td>
-                                        <td class="py-3">
-                                            <span
-                                                class="rounded-full border border-amber-500/30 bg-amber-500/10 px-2.5 py-1 text-xs text-amber-200">
-                                                No asistió
-                                            </span>
-                                        </td>
-                                        <td class="py-3">05/03/2026 20:00</td>
+                                        <td class="py-3">{{ $reserva->fecha_reserva }}</td>
                                     </tr>
                                 </tbody>
+                                @endforeach
                             </table>
                         </div>
                     </article>
@@ -204,10 +186,12 @@ $client->objetivo,
                                 <p>Plazas disponibles: <span class="text-emerald-300">{{ $entrenamiento->capacidad }}</span></p>
                             </div>
 
-                            <button type="button"
-                                class="mt-4 w-full rounded-lg bg-violet-600 px-3 py-2 text-sm font-medium text-white hover:bg-violet-500">
-                                Reservar entrenamiento
-                            </button>
+                           <form action="{{ route('clients.reservar', ['clientId' => $client->id, 'entrenamientoId' => $entrenamiento->id]) }}" method="POST">
+                                @csrf
+                                <button type="submit" class="mt-4 w-full rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                                    Reservar
+                                </button>
+                            </form>
                         </div>
                         @endforeach
                     </div>

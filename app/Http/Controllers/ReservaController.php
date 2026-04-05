@@ -23,6 +23,7 @@ class ReservaController extends Controller
         return view("reservas.create", compact("clientes", "entrenamientos"));
     }
 
+
     public function store(Request $request)
     {
 

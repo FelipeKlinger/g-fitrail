@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrenamiento;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ClientDashboardController extends Controller
 {
@@ -12,9 +14,20 @@ class ClientDashboardController extends Controller
      */
     public function index()
     {
-        $entrenamientos = Entrenamiento::all();
+        $user = Auth::user();
+        $client = $user->client;
+        $reservas = Reserva::where('client_id', $client->id)->get(); // Obtener las reservas del cliente autenticado
+
+        // Excluir entrenamientos que el cliente ya reservó
+        $entrenamientosReservadosIds = $reservas->pluck('entrenamiento_id'); // pluck para obtener solo los IDs de los entrenamientos reservados
+
+        $entrenamientos = Entrenamiento::where('capacidad', '>', 0)
+            ->where('fecha_inicio', '>=', now())
+            ->whereNotIn('id', $entrenamientosReservadosIds) // Excluir entrenamientos ya reservados
+            ->get();
         
-        return view('clients.dashboard', compact('entrenamientos'));
+            
+        return view('clients.dashboard', compact('entrenamientos', 'reservas'));
     }
 
     /**
