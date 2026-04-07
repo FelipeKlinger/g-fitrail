@@ -20,7 +20,7 @@
 			</p>
 			<div class="mt-6 flex justify-center">
 				<button
-					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+					class="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
 					Comenzar ahora
 					<span>
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -122,7 +122,8 @@
 
 						</ul>
 						<button
-							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">Seleccionar</button>
+							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">
+							<a href="{{ route('register') }}">Seleccionar</a></button>
 					</article>
 
 					<article
@@ -130,35 +131,35 @@
 						<p
 							class="w-fit rounded-full border border-violet-300/40 bg-violet-500/20 px-2.5 py-1 text-xs text-violet-100">
 							Más popular</p>
-						<h3 class="mt-3 text-lg font-semibold text-white">Plan Pro</h3>
-						<p class="mt-1 text-sm text-zinc-300">Equilibrio entre rendimiento y precio</p>
-						<p class="mt-4 text-3xl font-semibold text-white">$39<span
+						<h3 class="mt-3 text-lg font-semibold text-white">{{ $planes[1]->getNombre() }}</h3>
+						<p class="mt-1 text-sm text-zinc-300">{{ $planes[1]->getDescripcion() }}</p>
+						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[1]->getPrecio() }} €<span
 								class="text-sm text-zinc-300">/mes</span>
 						</p>
 						<ul class="mt-5 space-y-2 text-sm text-zinc-200">
-							<li>• Acceso total al gimnasio</li>
-							<li>• Clases ilimitadas</li>
-							<li>• Rutina personalizada mensual</li>
+							<li> {{ $planes[1]->getVentaja1() }}</li>
+							<li> {{ $planes[1]->getVentaja2() }}</li>
+							<li> {{ $planes[1]->getVentaja3() }}</li>
 						</ul>
 						<button
-							class="mt-6 w-full rounded-xl border border-violet-400/40 bg-violet-500/20 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500/30">Elegir
-							Pro</button>
+							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">
+							<a href="{{ route('register') }}">Elegir Pro</a></button>
 					</article>
 
 					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<h3 class="text-lg font-semibold text-white">Plan Elite</h3>
-						<p class="mt-1 text-sm text-zinc-400">Experiencia premium</p>
-						<p class="mt-4 text-3xl font-semibold text-white">$59<span
+						<h3 class="text-lg font-semibold text-white">{{ $planes[2]->getNombre() }}</h3>
+						<p class="mt-1 text-sm text-zinc-400">{{ $planes[2]->getDescripcion() }}</p>
+						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[2]->getPrecio() }} €<span
 								class="text-sm text-zinc-400">/mes</span>
 						</p>
 						<ul class="mt-5 space-y-2 text-sm text-zinc-300">
-							<li>• Entrenador personal 1:1</li>
-							<li>• Nutrición y seguimiento semanal</li>
-							<li>• Zona recovery incluida</li>
+							<li> {{ $planes[2]->getVentaja1() }}</li>
+							<li> {{ $planes[2]->getVentaja2() }}</li>
+							<li> {{ $planes[2]->getVentaja3() }}</li>
 						</ul>
 						<button
-							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">Solicitar
-							demo</button>
+							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">
+							<a href="{{ route('register') }}">Solicitar demo</a></button>
 					</article>
 				</div>
 			</section>
