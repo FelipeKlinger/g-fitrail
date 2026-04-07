@@ -9,14 +9,16 @@ class Client extends Model
 
     public function plans()
     {
-        return $this->belongsToMany(Plan::class);
+        return $this->belongsToMany(Plan::class)
+        ->withPivot('fecha_inicio', 'fecha_fin', 'estado'); // Relación muchos a muchos con la tabla intermedia 'client_plan' y campos adicionales
     }
     public function reserva()
     {
         return $this->hasMany(Reserva::class);
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class); // 1:1
     }
 

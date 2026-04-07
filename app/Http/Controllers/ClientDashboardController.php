@@ -26,6 +26,8 @@ class ClientDashboardController extends Controller
             ->whereNotIn('id', $entrenamientosReservadosIds) // Excluir entrenamientos ya reservados
             ->get();
         
+
+        
             
         return view('clients.dashboard', compact('entrenamientos', 'reservas'));
     }

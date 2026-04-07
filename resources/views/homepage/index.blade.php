@@ -110,15 +110,15 @@
 
 				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
 					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<h3 class="text-lg font-semibold text-white">{{ $planes[0]->getNombre() }}</h3>
-						<p class="mt-1 text-sm text-zinc-400">{{ $planes[0]->getDescripcion() }}</p>
-						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[0]->getPrecio() }} €<span
+						<h3 class="text-lg font-semibold text-white">{{ $planes[2]->getNombre() }}</h3>
+						<p class="mt-1 text-sm text-zinc-400">{{ $planes[2]->getDescripcion() }}</p>
+						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[2]->getPrecio() }} €<span
 								class="text-sm text-zinc-400">/mes</span>
 						</p>
 						<ul class="mt-5 space-y-2 text-sm text-zinc-300">
-							<li>{{ $planes[0]->getVentaja1() }}</li>
-							<li>{{ $planes[0]->getVentaja2() }}</li>
-							<li>{{ $planes[0]->getVentaja3() }}</li>
+							<li>{{ $planes[2]->getVentaja1() }}</li>
+							<li>{{ $planes[2]->getVentaja2() }}</li>
+							<li>{{ $planes[2]->getVentaja3() }}</li>
 
 						</ul>
 						<button
@@ -147,15 +147,15 @@
 					</article>
 
 					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<h3 class="text-lg font-semibold text-white">{{ $planes[2]->getNombre() }}</h3>
-						<p class="mt-1 text-sm text-zinc-400">{{ $planes[2]->getDescripcion() }}</p>
-						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[2]->getPrecio() }} €<span
+						<h3 class="text-lg font-semibold text-white">{{ $planes[0]->getNombre() }}</h3>
+						<p class="mt-1 text-sm text-zinc-400">{{ $planes[0]->getDescripcion() }}</p>
+						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[0]->getPrecio() }} €<span
 								class="text-sm text-zinc-400">/mes</span>
 						</p>
 						<ul class="mt-5 space-y-2 text-sm text-zinc-300">
-							<li> {{ $planes[2]->getVentaja1() }}</li>
-							<li> {{ $planes[2]->getVentaja2() }}</li>
-							<li> {{ $planes[2]->getVentaja3() }}</li>
+							<li> {{ $planes[0]->getVentaja1() }}</li>
+							<li> {{ $planes[0]->getVentaja2() }}</li>
+							<li> {{ $planes[0]->getVentaja3() }}</li>
 						</ul>
 						<button
 							class="mt-6 w-full rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-white transition hover:border-violet-400/40 hover:bg-violet-500/10">
