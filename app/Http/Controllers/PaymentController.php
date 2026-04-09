@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Stripe\Checkout\Session;
 use App\Models\Plan;
-
+use Illuminate\Support\Facades\DB;
 class PaymentController extends Controller
 {
     public function checkout($planId)
@@ -41,14 +41,18 @@ class PaymentController extends Controller
     {
         $client = auth()->user()->client;
 
-        // Guardar compra (pivot)
-        $client->plans()->attach($planId, [
-            'client_id' => $client->id,
-            'plan_id' => $planId,
-            'fecha_inicio' => now(),
-            'fecha_fin' => now()->addMonth(),
-            'estado' => 'Activo'
-        ]);
+        DB::transaction(function () use ($client, $planId) {
+
+            $client->plans() // Desactivar el plan activo actual
+                ->wherePivot('estado', 'Activo') // Desactivar el plan activo actual
+                ->updateExistingPivot($client->plans->pluck('id'), ['estado' => 'Desactivado']); 
+
+            $client->plans()->attach($planId, [
+                'fecha_inicio' => now(),
+                'fecha_fin' => now()->addMonth(),
+                'estado' => 'Activo',
+            ]);
+        });
 
         return redirect()->route('clients.dashboard')
             ->with('success', 'Pago realizado correctamente');

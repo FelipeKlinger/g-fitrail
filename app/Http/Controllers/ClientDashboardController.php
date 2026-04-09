@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrenamiento;
 use App\Models\Reserva;
+use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,11 +26,19 @@ class ClientDashboardController extends Controller
             ->where('fecha_inicio', '>=', now())
             ->whereNotIn('id', $entrenamientosReservadosIds) // Excluir entrenamientos ya reservados
             ->get();
-        
 
-        
-            
-        return view('clients.dashboard', compact('entrenamientos', 'reservas'));
+        $planActivo = $client->plans()
+            ->wherePivot('estado', 'Activo')
+            ->latest('client_plan.fecha_inicio') // Obtener el plan activo más reciente
+            ->first(); 
+
+        if (!$planActivo) {
+            $planes = Plan::all();
+            return view('plans.planClient', compact('planes'))->with('error', 'Tu plan no está activo. Por favor, contacta con el gimnasio para más información.');
+        }
+
+        return view('clients.dashboard', compact('entrenamientos', 'reservas'))->with('error', 'Tu plan no está activo. Por favor, contacta con el gimnasio para más información.');
+
     }
 
     /**
