@@ -30,6 +30,7 @@
                 </div>
             </div>
 
+
             <section class="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
                 <div class="pointer-events-none absolute inset-0">
                     <div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-violet-500/25 blur-3xl"></div>
@@ -65,10 +66,10 @@
                                 class="rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
                                 Ver planes
                             </a>
-                            <a href="#clases"
+                            {{-- <a href="#clases"
                                 class="rounded-xl border border-white/10 bg-white/5 px-5 py-2.5 text-sm font-medium text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                                 Explorar clases
-                            </a>
+                            </a> --}}
                         </div>
 
                         {{-- <div class="mt-8 grid grid-cols-3 gap-3 text-center">
@@ -192,7 +193,7 @@
                             </span> --}}
 
                             <h1 class="mt-5 text-4xl font-semibold leading-tight text-white sm:text-5xl">
-                                Tu Suscripción esta inactiva
+                                Tu plan esta inactivo
                             </h1>
 
                             <div class="flex items-center  gap-5 ">

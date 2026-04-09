@@ -18,7 +18,7 @@ class PlanController extends Controller
         }
 
         if (auth()->check() && auth()->user()->role === 'client') {
-            $planes= Plan::all();
+            $planes = Plan::all();
             return view('plans.planClient', compact('planes'));
         }
 
@@ -27,7 +27,13 @@ class PlanController extends Controller
 
     public function plan()
     {
-        $planes= Plan::all();
+        $usurio = auth()->user();
+        $cliente = $usurio->client;
+        if ($cliente->plans()->count() > 0) {
+            return redirect()->route('clients.dashboard');
+        }
+
+        $planes = Plan::all();
         return view('auth.register-plan', compact('planes'));
     }
 
