@@ -21,7 +21,8 @@ class Entrenamiento extends Model
         return $this->belongsTo(Entrenador::class);
     }
 
-    public function reserva(){
-        $this->hasMany(reserva::class);
+    public function reserva()
+    {
+        return $this->hasMany(reserva::class);
     }
 }
