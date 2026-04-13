@@ -94,10 +94,6 @@
                             class="mt-2 text-xs text-white" />
 
                         <div class="mt-4 flex items-center justify-end gap-4">
-                            <a href="{{ route('login') }}"
-                                class="inline-flex h-10 items-center justify-center rounded-xl px-3 text-sm font-medium border border-white/10 text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:text-white">
-                                Iniciar Sesión
-                            </a>
                             <button type="submit"
                                 class="inline-flex h-10 items-center justify-center rounded-xl border  border-violet-500/30 bg-violet-500/15 px-4 py-2 text-sm font-semibold text-zin-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-500/10">
                                 Registrarse
