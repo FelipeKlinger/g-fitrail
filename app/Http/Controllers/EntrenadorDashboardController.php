@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Entrenamiento;
+use App\Models\Reserva;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EntrenadorDashboardController extends Controller
 {
@@ -12,9 +14,30 @@ class EntrenadorDashboardController extends Controller
      */
     public function index()
     {
+        $user = Auth::user();
+        $entrenador = $user->entrenador;
 
-        $entrenamientos = Entrenamiento::all();
-        return view('entrenadors.dashboard', compact('entrenamientos'));
+        if (!$entrenador) {
+            return view('entrenadors.dashboard', [
+                'entrenamientos' => collect(),
+                'misClases' => collect(),
+            ]);
+        }
+
+        $entrenamientos = Entrenamiento::with('entrenador')
+            ->where('entrenador_id', $entrenador->id)
+            ->orderBy('fecha_inicio')
+            ->get();
+
+        $misClases = Reserva::with(['cliente', 'entrenamiento'])
+            ->where('estado', 'confirmada')
+            ->whereHas('entrenamiento', function ($query) use ($entrenador) {
+                $query->where('entrenador_id', $entrenador->id);
+            })
+            ->latest('fecha_reserva')
+            ->get();
+
+        return view('entrenadors.dashboard', compact('entrenamientos', 'misClases'));
     }
 
     /**

@@ -73,6 +73,46 @@
                     </div>
                 </article>
 
+                <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
+                    <div class="flex items-center justify-between">
+                        <h3 class="text-lg font-semibold text-white">Mis clases</h3>
+                        <span class="text-sm text-zinc-400">Reservas confirmadas de tus entrenamientos</span>
+                    </div>
+
+                    <div class="mt-4 overflow-x-auto rounded-xl border border-white/10">
+                        <table class="w-full min-w-[760px] text-left text-sm">
+                            <thead class="bg-white/5 text-zinc-400">
+                                <tr>
+                                    <th class="px-4 py-3 font-medium">Entrenamiento</th>
+                                    <th class="px-4 py-3 font-medium">Cliente</th>
+                                    <th class="px-4 py-3 font-medium">Fecha de inicio</th>
+                                    <th class="px-4 py-3 font-medium">Estado</th>
+                                </tr>
+                            </thead>
+                            <tbody class="text-zinc-200">
+                                @forelse ($misClases as $clase)
+                                    <tr class="border-t border-white/5 hover:bg-white/5">
+                                        <td class="px-4 py-3 font-medium text-white">{{ $clase->entrenamiento->nombre ?? 'Sin entrenamiento' }}</td>
+                                        <td class="px-4 py-3">{{ ($clase->cliente->nombre ?? '') . ' ' . ($clase->cliente->apellido ?? '') }}</td>
+                                        <td class="px-4 py-3">{{ $clase->entrenamiento->fecha_inicio ?? '-' }}</td>
+                                        <td class="px-4 py-3">
+                                            <span class="rounded-full border border-cyan-500/30 bg-cyan-500/10 px-2.5 py-1 text-xs text-cyan-200">
+                                                {{ ucfirst($clase->estado) }}
+                                            </span>
+                                        </td>
+                                    </tr>
+                                @empty
+                                    <tr>
+                                        <td colspan="4" class="px-4 py-10 text-center text-zinc-500">
+                                            Aún no tienes reservas confirmadas en tus clases.
+                                        </td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+                </article>
+
             </section>
 
         </div>

@@ -17,10 +17,15 @@ class ClientDashboardController extends Controller
     {
         $user = Auth::user();
         $client = $user->client;
-        $reservas = Reserva::where('client_id', $client->id)->get(); // Obtener las reservas del cliente autenticado
+        $reservas = Reserva::with(['entrenamiento.entrenador'])
+            ->where('client_id', $client->id)
+            ->where('estado', '!=', 'cancelada')
+            ->get(); // Reservas activas/visibles en dashboard (sin canceladas)
 
         // Excluir entrenamientos que el cliente ya reservó
-        $entrenamientosReservadosIds = $reservas->pluck('entrenamiento_id'); // pluck para obtener solo los IDs de los entrenamientos reservados
+        $entrenamientosReservadosIds = $reservas
+            ->where('estado', 'confirmada')
+            ->pluck('entrenamiento_id'); // Excluir solo entrenamientos con reserva confirmada
 
         $entrenamientos = Entrenamiento::where('capacidad', '>', 0)
             ->where('fecha_inicio', '>=', now())
@@ -41,9 +46,46 @@ class ClientDashboardController extends Controller
 
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function reservas()
+    {
+        $user = Auth::user();
+        $client = $user->client;
+
+        $estado = request('estado', 'todas');
+
+        $query = Reserva::with(['entrenamiento.entrenador'])
+            ->where('client_id', $client->id);
+
+        if (in_array($estado, ['confirmada', 'cancelada'], true)) {
+            $query->where('estado', $estado);
+        }
+
+        $reservas = $query->latest('fecha_reserva')->get();
+
+        return view('clients.reservas', compact('reservas', 'estado'));
+    }
+
+    public function cancelarReserva(Reserva $reserva)
+    {
+        $user = Auth::user();
+        $client = $user->client;
+
+        if ($reserva->client_id !== $client->id) {
+            abort(403, 'No tienes permisos para cancelar esta reserva.');
+        }
+
+        if ($reserva->estado !== 'confirmada') {
+            return redirect()->route('clients.reservas')->with('error', 'Solo se pueden cancelar reservas confirmadas.');
+        }
+
+        $reserva->update(['estado' => 'cancelada']);
+
+        if ($reserva->entrenamiento) {
+            $reserva->entrenamiento->increment('capacidad');
+        }
+
+        return redirect()->route('clients.reservas')->with('success', 'Reserva cancelada correctamente.');
+    }
     public function create()
     {
         //

@@ -32,6 +32,8 @@ Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->grou
     Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
     Route::get('/paso-2', [PlanController::class, 'plan'])->name('paso-2');
     Route::post('/reservar/{clientId}/{entrenamientoId}', [ClientController::class, 'reservar'])->name('reservar');
+    Route::get('/reservas', [ClientDashboardController::class, 'reservas'])->name('reservas');
+    Route::patch('/reservas/{reserva}/cancelar', [ClientDashboardController::class, 'cancelarReserva'])->name('reservas.cancelar');
 });
 
 // Rutas especificas con Middleware entrenador 
