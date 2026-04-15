@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [ContentfulController::class, 'headers'])->name('inicio');
+Route::get('/', [ContentfulController::class, 'headers'])->middleware('guest')->name('inicio');
 
 
 //Rutas con Middleware Admin

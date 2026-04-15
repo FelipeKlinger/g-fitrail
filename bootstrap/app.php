@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
@@ -16,6 +17,17 @@ return Application::configure(basePath: dirname(__DIR__))
             'client' => \App\Http\Middleware\IsClient::class,
             'entrenador' => \App\Http\Middleware\IsEntrenador::class,
         ]);
+
+        $middleware->redirectUsersTo(function (Request $request) {
+            $role = $request->user()?->role;
+
+            return match ($role) {
+                'admin' => route('admin.dashboard'),
+                'client' => route('clients.dashboard'),
+                'entrenador' => route('entrenadors.dashboard'),
+                default => route('profile.edit'),
+            };
+        });
     })
     ->withExceptions(function (Exceptions $exceptions): void {
         //

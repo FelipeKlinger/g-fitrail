@@ -19,6 +19,6 @@ class IsClient
             return $next($request);
         }
 
-        abort(403, 'Acceso denegado');
+        abort(403, 'Acceso no permitido');
     }
 }
