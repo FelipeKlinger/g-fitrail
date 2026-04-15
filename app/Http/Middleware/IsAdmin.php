@@ -20,6 +20,6 @@ class IsAdmin
             return $next($request);
         }
 
-        abort(403, 'Accés no permès');
+        abort(403, 'Acceso no permitido');
     }
 }

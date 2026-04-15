@@ -19,16 +19,13 @@
 				{{ $headerBienvenida->getDescription() }}
 			</p>
 			<div class="mt-6 flex justify-center">
-				<button
-					class="inline-flex items-center gap-2 cursor-pointer rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+				<a href="{{ route('register') }}"
+					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
 					Comenzar ahora
-					<span>
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-							<path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round"
-								stroke-width="2" d="M5 12h14m-7 7V5" />
-						</svg>
-					</span>
-				</button>
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+					</svg>
+				</a>
 			</div>
 		</section>
 
