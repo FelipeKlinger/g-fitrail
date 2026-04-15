@@ -6,6 +6,7 @@ use App\Http\Controllers\EntrenadorController;
 use App\Http\Controllers\EntrenamientoController;
 use App\Http\Controllers\PlanController;
 use App\Http\Controllers\ReservaController;
+use App\Http\Controllers\SeguimientoController;
 use App\Http\Controllers\SedeController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminDashboardController;
@@ -50,6 +51,7 @@ Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(fun
     Route::resource('entrenadors', EntrenadorController::class);
     Route::resource('entrenamientos', EntrenamientoController::class);
     Route::resource('reservas', ReservaController::class);
+    Route::resource('seguimientos', SeguimientoController::class);
     Route::resource('users', UserController::class);
 });
 

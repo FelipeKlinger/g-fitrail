@@ -22,6 +22,11 @@ class Client extends Model
         return $this->belongsTo(User::class); // 1:1
     }
 
+    public function seguimientos()
+    {
+        return $this->hasMany(Seguimiento::class);
+    }
+
     protected $fillable = [ //campos que se pueden asignar 
         'nombre',
         "apellido",

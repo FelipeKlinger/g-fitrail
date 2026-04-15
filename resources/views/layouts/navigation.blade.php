@@ -26,6 +26,10 @@
                     class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.reservas.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
                     Reservas
                 </a>
+                <a href="{{ route('admin.seguimientos.index') }}"
+                    class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.seguimientos.*') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                    Seguimientos
+                </a>
                 <a href="{{ route('admin.plans.index') }}"
                     class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('admin.plans.index') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
                     Planes
@@ -89,6 +93,8 @@
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Entrenamientos</a>
             <a href="{{ route('admin.reservas.index') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Reservas</a>
+            <a href="{{ route('admin.seguimientos.index') }}"
+                class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Seguimientos</a>
             @elseif (auth()->user()->role === 'client')
             <a href="{{ route('clients.dashboard') }}"
                 class="block rounded-lg px-3 py-2 text-sm text-zinc-200 hover:bg-white/10">Mi panel</a>

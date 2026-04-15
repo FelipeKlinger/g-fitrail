@@ -34,4 +34,9 @@ class Entrenador extends Model
 
     }
 
+    public function seguimientos()
+    {
+        return $this->hasMany(Seguimiento::class);
+    }
+
 }
