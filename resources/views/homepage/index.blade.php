@@ -42,7 +42,7 @@
 				</div>
 			</div>
 
-			<section class="relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
+			<section class="home-preview relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
 				<div class="pointer-events-none absolute inset-0">
 					<div class="absolute -left-24 -top-24 h-72 w-72 rounded-full bg-violet-500/25 blur-3xl"></div>
 					<div class="absolute -bottom-24 -right-12 h-72 w-72 rounded-full bg-fuchsia-500/20 blur-3xl"></div>
@@ -77,7 +77,7 @@
 						</div>
 
 						<div class="mt-8 grid grid-cols-3 gap-3 text-center">
-							<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
+							<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3 ">
 								<p class="text-2xl font-semibold text-white">+4k</p>
 								<p class="text-xs text-zinc-400">Miembros</p>
 							</div>
@@ -112,7 +112,7 @@
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+					<article class="plan-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
 						<h3 class="text-lg font-semibold text-white">{{ $planes[2]->getNombre() }}</h3>
 						<p class="mt-1 text-sm text-zinc-400">{{ $planes[2]->getDescripcion() }}</p>
 						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[2]->getPrecio() }} €<span
@@ -130,7 +130,7 @@
 					</article>
 
 					<article
-						class="rounded-2xl border border-violet-400/40 bg-gradient-to-b from-violet-500/20 to-zinc-900 p-6 shadow-[0_0_40px_rgba(139,92,246,0.25)]">
+						class="plan-card plan-card--featured rounded-2xl border border-violet-400/40 bg-gradient-to-b from-violet-500/20 to-zinc-900 p-6 shadow-[0_0_40px_rgba(139,92,246,0.25)]">
 						<p
 							class="w-fit rounded-full border border-violet-300/40 bg-violet-500/20 px-2.5 py-1 text-xs text-violet-100">
 							Más popular</p>
@@ -149,7 +149,7 @@
 							<a href="{{ route('register') }}">Elegir Pro</a></button>
 					</article>
 
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+					<article class="plan-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
 						<h3 class="text-lg font-semibold text-white">{{ $planes[0]->getNombre() }}</h3>
 						<p class="mt-1 text-sm text-zinc-400">{{ $planes[0]->getDescripcion() }}</p>
 						<p class="mt-4 text-3xl font-semibold text-white">{{ $planes[0]->getPrecio() }} €<span
@@ -167,33 +167,82 @@
 				</div>
 			</section>
 
+
 			<section id="clases" class="space-y-20">
 				<div>
 					<p class="text-sm text-violet-300">Entrenamientos</p>
 					<h2 class="text-4xl font-semibold text-white">Clases destacadas de la semana</h2>
 				</div>
 
-				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4">
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-						<p class="text-xs uppercase tracking-wider text-zinc-400">HIIT Burn</p>
-						<p class="mt-2 text-xl font-semibold text-white">45 min de alta intensidad</p>
-						<p class="mt-2 text-sm text-zinc-400">Lunes · 07:00 AM · Cupos: 18</p>
-					</article>
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-						<p class="text-xs uppercase tracking-wider text-zinc-400">Strength Lab</p>
-						<p class="mt-2 text-xl font-semibold text-white">Fuerza y técnica</p>
-						<p class="mt-2 text-sm text-zinc-400">Martes · 06:30 PM · Cupos: 12</p>
-					</article>
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-						<p class="text-xs uppercase tracking-wider text-zinc-400">Mobility Flow</p>
-						<p class="mt-2 text-xl font-semibold text-white">Movilidad y control corporal</p>
-						<p class="mt-2 text-sm text-zinc-400">Jueves · 08:00 AM · Cupos: 16</p>
-					</article>
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
-						<p class="text-xs uppercase tracking-wider text-zinc-400">Core & Cardio</p>
-						<p class="mt-2 text-xl font-semibold text-white">Resistencia funcional</p>
-						<p class="mt-2 text-sm text-zinc-400">Sábado · 10:00 AM · Cupos: 20</p>
-					</article>
+				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
+					<div class="class-card">
+						<img src="https:{{ $entrenamientos[2]->getE1()->getFile()->getUrl() }}" alt="Imagen"
+							class="rounded-3xl border border-white/20">
+
+						<div class="px-2 mt-4">
+							<p><span class="font-semibold">Poder en cada intervalo.</span> <span
+									class=" text-zinc-400">Supera tus límites con ráfagas de energía explosiva. Controla
+									tus zonas de frecuencia cardíaca. </span></p>
+						</div>
+					</div>
+
+					<div class="class-card">
+						<img src="https:{{ $entrenamientos[1]->getE1()->getFile()->getUrl() }}" alt="Imagen"
+							class="rounded-3xl border border-white/20">
+						<div class="px-2 mt-4">
+							<p><span class="font-semibold">Espacios perfectos para tu rutina.</span> <span
+									class=" text-zinc-400">Te sentira más motivado y con más energía para tus
+									entrenamientos.</span></p>
+						</div>
+					</div>
+
+					<div class="class-card">
+						<img src="https:{{ $entrenamientos[0]->getE1()->getFile()->getUrl() }}" alt="Imagen"
+							class="rounded-3xl border border-white/20">
+
+						<div class="px-2 mt-4">
+							<p><span class="font-semibold">Entrenadores expertos.</span> <span
+									class=" text-zinc-400">Comprometidos con tu progeso y resultados. </span></p>
+						</div>
+					</div>
+
+				</div>
+			</section>
+
+			<section class="space-y-10">
+
+				<div
+					class="logros max-w-7xl mx-auto p-5 pb-12 bg-zinc-900 rounded-2xl border border-white/10 border-b-0 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
+
+					<div class="px-4">
+						<h2 class="text-3xl mt-3 font-semibold text-white">Nuestros logros</h2>
+					</div>
+					<div class="mt-8 grid grid-cols-3 gap-3 text-center">
+						<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
+							<p class="text-2xl font-semibold text-white">+4k</p>
+							<p class="text-xs text-zinc-400">Miembros</p>
+						</div>
+						<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
+							<p class="text-2xl font-semibold text-white">85%</p>
+							<p class="text-xs text-zinc-400">Retención</p>
+						</div>
+						<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
+							<p class="text-2xl font-semibold text-white">24/7</p>
+							<p class="text-xs text-zinc-400">Acceso</p>
+						</div>
+					</div>
+				</div>
+
+				<div class="btn-exper mt-6 flex justify-center">
+					<a href="{{ route('register') }}"
+						class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+					Unete a esta experiencia
+						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+							aria-hidden="true">
+							<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+								stroke-width="2" d="M5 12h14m-7 7V5" />
+						</svg>
+					</a>
 				</div>
 			</section>
 
@@ -204,7 +253,7 @@
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
 						<p class="text-xs uppercase tracking-wide text-zinc-400">Nutrición</p>
 						<h3 class="mt-2 text-xl font-semibold text-white">Cómo armar un plato post-entreno</h3>
 						<p class="mt-3 text-sm text-zinc-400">Guía visual con distribución de proteína, carbohidratos y
@@ -214,7 +263,7 @@
 							tip</a>
 					</article>
 
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
 						<p class="text-xs uppercase tracking-wide text-zinc-400">Entrenamiento</p>
 						<h3 class="mt-2 text-xl font-semibold text-white">Progresión simple para ganar fuerza</h3>
 						<p class="mt-3 text-sm text-zinc-400">Estrategia semanal para subir cargas sin perder técnica ni
@@ -224,7 +273,7 @@
 							tip</a>
 					</article>
 
-					<article class="rounded-2xl border border-white/10 bg-zinc-900 p-6">
+					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
 						<p class="text-xs uppercase tracking-wide text-zinc-400">Hábitos</p>
 						<h3 class="mt-2 text-xl font-semibold text-white">Dormir mejor para rendir más</h3>
 						<p class="mt-3 text-sm text-zinc-400">Checklist nocturno para mejorar recuperación, consistencia
@@ -244,15 +293,18 @@
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-					<blockquote class="rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<blockquote
+						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
 						<p>“El cambio en mi energía fue brutal desde el primer mes. El ambiente motiva muchísimo.”</p>
 						<footer class="mt-4 text-sm text-zinc-400">— Sofía M. · Miembro Pro</footer>
 					</blockquote>
-					<blockquote class="rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<blockquote
+						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
 						<p>“Las clases están súper bien organizadas y los coaches corrigen cada detalle técnico.”</p>
 						<footer class="mt-4 text-sm text-zinc-400">— Diego R. · Miembro Elite</footer>
 					</blockquote>
-					<blockquote class="rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<blockquote
+						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
 						<p>“Por primera vez logré mantener constancia. Todo está pensado para progresar de verdad.”</p>
 						<footer class="mt-4 text-sm text-zinc-400">— Carla T. · Miembro Starter</footer>
 					</blockquote>
@@ -260,7 +312,7 @@
 			</section>
 
 			<section
-				class="rounded-3xl border border-violet-400/30 bg-gradient-to-r from-violet-500/20 via-purple-500/10 to-fuchsia-500/20 p-8 text-center sm:p-10">
+				class="cta-section rounded-3xl border border-violet-400/30 bg-gradient-to-r from-violet-500/20 via-purple-500/10 to-fuchsia-500/20 p-8 text-center sm:p-10">
 				<p class="text-sm uppercase tracking-[0.2em] text-violet-200">¿Listo para empezar?</p>
 				<h2 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">Da el primer paso hoy</h2>
 				<p class="mx-auto mt-3 max-w-2xl text-sm text-zinc-200 sm:text-base">

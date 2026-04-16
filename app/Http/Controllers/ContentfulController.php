@@ -24,9 +24,9 @@ class ContentfulController extends Controller
 
         $query = new Query();
         $query->setContentType('planes');
-
         $planes = $this->client->getEntries($query);
+        $entrenamientos = $this->client->getEntries(new Query(['content_type' => 'entrenamientos']));
 
-        return view('homepage.index', compact('entry', 'headerBienvenida', 'planes'));
+        return view('homepage.index', compact('entry', 'headerBienvenida', 'planes', 'entrenamientos'));
     }
 }
