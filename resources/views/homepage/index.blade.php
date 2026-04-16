@@ -1,33 +1,39 @@
 <x-guest-layout>
 	<div class="w-full space-y-12 pb-12">
 
-		<section class="w-full text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
-			<h2 class="text-base sm:text-xl lg:text-2xl font-bold text-violet-500">
+		<section class="hero w-full text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+
+			<h2 class="hero-tagline text-base sm:text-xl lg:text-2xl font-bold text-violet-500">
 				{{ $headerBienvenida->getTagline() }}
 			</h2>
 
-			<h1 class="mt-3 text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
+			<h1 class="hero-title-1 mt-3 text-4xl sm:text-5xl lg:text-7xl font-bold text-white leading-tight">
 				{{ $headerBienvenida->getTitulo() }}
 			</h1>
 
-			<h1 class="text-4xl sm:text-5xl lg:text-7xl font-bold text-white/70 leading-tight">
+			<h1 class="hero-title-2 text-4xl sm:text-5xl lg:text-7xl font-bold text-white/70 leading-tight">
 				{{ $headerBienvenida->getTitulo2() }}
 			</h1>
 
 			<p
-				class="mt-4 sm:mt-5  lg:text-lg text-white/40 max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto leading-relaxed">
+				class="hero-desc mt-4 sm:mt-5 lg:text-lg text-white/40 max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto leading-relaxed">
 				{{ $headerBienvenida->getDescription() }}
 			</p>
-			<div class="mt-6 flex justify-center">
+
+			<div class="hero-btn mt-6 flex justify-center">
 				<a href="{{ route('register') }}"
 					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
 					Comenzar ahora
-					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" aria-hidden="true">
-						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 12h14m-7 7V5" />
+					<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+						aria-hidden="true">
+						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+							stroke-width="2" d="M5 12h14m-7 7V5" />
 					</svg>
 				</a>
 			</div>
+
 		</section>
+
 
 		<section id="" class="space-y-20">
 			<div class="flex flex-col justify-between gap-3 md:flex-row md:items-end">
