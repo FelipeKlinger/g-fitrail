@@ -2,7 +2,7 @@ import "./bootstrap";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-import Alpine, { trigger } from "alpinejs";
+import Alpine from "alpinejs";
 
 window.Alpine = Alpine;
 
@@ -67,7 +67,6 @@ document.addEventListener("DOMContentLoaded", () => {
             {
                 scale: 0.9,
                 opacity: 0,
-                duration: 0.5,
                 rotationX: 360,
                 duration: 1.2,
             },
@@ -150,12 +149,9 @@ document.addEventListener("DOMContentLoaded", () => {
         },
         y: 26,
         opacity: 0,
-        duration: 0.7,
         stagger: 0.12,
         ease: "power2.out",
         scale: 0.9,
-        opacity: 0,
-        duration: 0.5,
         rotationX: 360,
         duration: 1.2,
     });
@@ -198,6 +194,8 @@ document.addEventListener("DOMContentLoaded", () => {
         stagger: 0.12,
         ease: "power2.out",
     });
+
+
 
     gsap.from(".cta-section", {
         scrollTrigger: {

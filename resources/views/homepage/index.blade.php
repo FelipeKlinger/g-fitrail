@@ -1,9 +1,9 @@
 <x-guest-layout>
 	<div class="w-full space-y-12 pb-12">
 
-		<section class="hero w-full text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
+		<section class="hero w-full text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10" id="hero">
 
-			<h2 class="hero-tagline text-base sm:text-xl lg:text-2xl font-bold text-violet-500">
+			<h2 class="hero-tagline text-base sm:text-xl lg:text-2xl font-bold text-violet-500 shadow-lg">
 				{{ $headerBienvenida->getTagline() }}
 			</h2>
 
@@ -233,9 +233,9 @@
 					</div>
 				</div>
 
-				<div class="btn-exper flex justify-center">
+				<div class="btn-exper flex justify-center mt-2 pb-8 mb-8">
 					<a href="{{ route('register') }}"
-						class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+						class="inline-flex items-center mt-2 gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
 						Unete a esta experiencia
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 							aria-hidden="true">
@@ -248,17 +248,18 @@
 </x-guest-layout>
 
 
-<section class="relative z-10 -mt-16 w-full rounded-t-[3rem] bg-white px-6 pt-16 pb-20 shadow-xl">
+<section class="relative z-10 -mt-16 w-full rounded-t-[3rem] bg-white px-6 pt-16 pb-20 ">
 
 	<div class="max-w-7xl mx-auto space-y-8">
 
 		<section class="space-y-6">
 			<div>
-				<h2 class="text-3xl text-black">Caso de éxito de nuestros clientes</h2>
+				<h2 class="text-3xl text-black font-semibold">Caso de éxito de nuestros clientes</h2>
 			</div>
 
-			<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-				<blockquote class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+			<div class="grid grid-cols-1 gap-4 lg:grid-cols-3" id="casos-exito">
+				<blockquote
+					class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200 shadow-lg">
 					<div
 						class="inline-flex w-fit items-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-2 py-1 text-xs text-zinc-200">
 						<p class="font-semibold">Caso de éxito</p>
@@ -267,7 +268,8 @@
 						motiva muchísimo.”</p>
 					<footer class="mt-4 text-sm text-zinc-400">— Sofía Marquez</footer>
 				</blockquote>
-				<blockquote class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+				<blockquote
+					class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200 shadow-lg">
 					<div
 						class="inline-flex w-fit items-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-2 py-1 text-xs text-zinc-200">
 						<p class="font-semibold">Caso de éxito</p>
@@ -290,10 +292,10 @@
 		</section>
 
 		<div class="mt-8">
-			<h2 class="text-3xl text-black">Nuestras campañas de apoyo</h2>
+			<h2 class="text-3xl text-black font-semibold">Nuestras campañas de apoyo</h2>
 		</div>
 
-		<div class="grid grid-cols-2 gap-5 lg:grid-cols-2">
+		<div class="testimonial-card  grid grid-cols-2 gap-5 pb-6 mb-10 lg:grid-cols-2" id="campañas">
 
 			<div class="space-y-4">
 				<h2 class=" mt-2 text-3xl font-semibold">Conoce.</h2>
@@ -304,9 +306,9 @@
 					somos conscientes de la salud de todos.</h2>
 			</div>
 
-			<div class="mt-8 grid grid-cols-3 gap-3 text-center">
+			<div class="mt-8 grid grid-cols-1 gap-3 lg:grid-cols-3 text-center">
 				<div
-					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					class="rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2 shadow-md text-sm font-semibold text-violet-700 transition duration-200 hover:border-violet-500/50 hover:bg-violet-500/20">
 					<p class="text-xl font-semibold text-black">Impulso Joven</p>
 					<div class="mt-3 flex justify-center">
 						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
@@ -317,7 +319,7 @@
 					</div>
 				</div>
 				<div
-					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					class="rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2 shadow-md text-sm font-semibold text-violet-700 transition duration-200 hover:border-violet-500/50 hover:bg-violet-500/20">
 					<p class="text-xl font-semibold text-black">Familia en Forma</p>
 
 					<div class="mt-4 flex justify-center">
@@ -334,7 +336,7 @@
 
 				</div>
 				<div
-					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					class="rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2 shadow-md text-sm font-semibold text-violet-700 transition duration-200 hover:border-violet-500/50 hover:bg-violet-500/20">
 					<p class="text-xl font-semibold text-black">Reto 30 Días</p>
 
 					<div class="mt-3 flex justify-center">
@@ -359,28 +361,83 @@
 
 			</div>
 
+
 		</div>
+	</div>
+
 
 </section>
 
+<section class="relative z-10 mt-12 w-full rounded-t-[3rem] bg-black px-6 pt-16 pb-20 shadow-none">
+	<div class="max-w-7xl mx-auto space-y-8">
+		<section class="hero w-full text-center px-4 sm:px-6 lg:px-8 py-8 sm:py-10">
 
-{{-- <section
-	class="cta-section rounded-3xl border border-violet-400/30 bg-gradient-to-r from-violet-500/20 via-purple-500/10 to-fuchsia-500/20 p-8 text-center sm:p-10">
-	<p class="text-sm uppercase tracking-[0.2em] text-violet-200">¿Listo para empezar?</p>
-	<h2 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">Da el primer paso hoy</h2>
-	<p class="mx-auto mt-3 max-w-2xl text-sm text-zinc-200 sm:text-base">
-		Crea tu cuenta, reserva tu primera clase y vive una experiencia de entrenamiento diseñada para
-		resultados sostenibles.
-	</p>
-	<div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-		<a href="{{ route('register') }}"
-			class="rounded-xl border border-violet-300/40 bg-violet-500/25 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500/35">
-			Crear cuenta
-		</a>
-		<a href="{{ route('login') }}"
-			class="rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/15">
-			Ya tengo cuenta
-		</a>
+
+
+			<h1 class="hero-title-2 text-2xl sm:text-5xl lg:text-3xl font-bold text-white/90 leading-tight">
+				¿Quieres crecer con Fitrail?
+			</h1>
+
+			<p
+				class="hero-desc mt-4 sm:mt-5 lg:text-lg text-white/50 max-w-xs sm:max-w-2xl lg:max-w-4xl mx-auto leading-relaxed">
+				Únete a nuestra comunidad y comienza tu viaje hacia una mejor versión de ti mismo.
+			</p>
+
+			<div class="hero-btn mt-6 flex justify-center gap-4">
+				<a href="{{ route('register') }}"
+					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+					Registrate
+				</a>
+				<a href="#planes"
+					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
+					Planes
+				</a>
+			</div>
+
+
+		</section>
+
 	</div>
-</section> --}}
-</div>
+
+</section>
+<footer class="border-t border-black/10 bg-white">
+	<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-10">
+
+		<div class="grid gap-10 md:grid-cols-3">
+			<section class="space-y-3">
+				<h2 class="text-2xl font-bold text-black">G-Fitrail</h2>
+				<p class="text-sm text-zinc-600">
+					Entrenamiento, comunidad y resultados reales para transformar tu estilo de vida.
+				</p>
+			</section>
+
+			<nav aria-label="Enlaces del sitio" class="space-y-3">
+				<h3 class="text-lg font-semibold text-black">Enlaces útiles</h3>
+				<ul class="space-y-2 text-sm">
+					<li><a href="#hero" class="text-zinc-700 transition hover:text-violet-600">Inicio</a></li>
+					<li><a href="#planes" class="text-zinc-700 transition hover:text-violet-600">Planes</a></li>
+					<li><a href="#clases" class="text-zinc-700 transition hover:text-violet-600">Entrenamientos</a></li>
+					<li><a href="#casos-exito" class="text-zinc-700 transition hover:text-violet-600">Casos de éxito</a>
+					</li>
+					<li><a href="#campañas" class="text-zinc-700 transition hover:text-violet-600">Campañas</a></li>
+				</ul>
+			</nav>
+
+			<section class="space-y-3">
+				<h3 class="text-lg font-semibold text-black">Comienza hoy</h3>
+				<p class="text-sm text-zinc-600">Únete y accede a todos nuestros planes y clases.</p>
+				<a href="{{ route('register') }}"
+					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-4 py-2 text-sm font-semibold text-violet-700 transition hover:border-violet-500/50 hover:bg-violet-500/20">
+					Crear cuenta
+				</a>
+			</section>
+		</div>
+
+		<div
+			class="flex flex-col gap-3 border-t border-black/10 pt-6 text-sm text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+			<p>© {{ date('Y') }} G-Fitrail. Todos los derechos reservados.</p>
+			<a href="#hero" class="font-medium text-zinc-700 transition hover:text-violet-600">Volver arriba ↑</a>
+		</div>
+
+	</div>
+</footer>
