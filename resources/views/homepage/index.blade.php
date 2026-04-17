@@ -233,10 +233,10 @@
 					</div>
 				</div>
 
-				<div class="btn-exper mt-6 flex justify-center">
+				<div class="btn-exper flex justify-center">
 					<a href="{{ route('register') }}"
 						class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/15 px-5 py-2.5 text-sm font-semibold text-violet-100 transition hover:border-violet-400/40 hover:bg-violet-500/25">
-					Unete a esta experiencia
+						Unete a esta experiencia
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
 							aria-hidden="true">
 							<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -245,90 +245,142 @@
 					</a>
 				</div>
 			</section>
-
-			<section class="space-y-6">
-				<div>
-					<p class="text-sm text-violet-300">Contenido fitness</p>
-					<h2 class="text-3xl font-semibold text-white">Tips para mantener el progreso</h2>
-				</div>
-
-				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<p class="text-xs uppercase tracking-wide text-zinc-400">Nutrición</p>
-						<h3 class="mt-2 text-xl font-semibold text-white">Cómo armar un plato post-entreno</h3>
-						<p class="mt-3 text-sm text-zinc-400">Guía visual con distribución de proteína, carbohidratos y
-							grasas saludables para recuperación.</p>
-						<a href="#"
-							class="mt-4 inline-block text-sm font-medium text-violet-300 hover:text-violet-200">Leer
-							tip</a>
-					</article>
-
-					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<p class="text-xs uppercase tracking-wide text-zinc-400">Entrenamiento</p>
-						<h3 class="mt-2 text-xl font-semibold text-white">Progresión simple para ganar fuerza</h3>
-						<p class="mt-3 text-sm text-zinc-400">Estrategia semanal para subir cargas sin perder técnica ni
-							comprometer la movilidad.</p>
-						<a href="#"
-							class="mt-4 inline-block text-sm font-medium text-violet-300 hover:text-violet-200">Leer
-							tip</a>
-					</article>
-
-					<article class="tip-card rounded-2xl border border-white/10 bg-zinc-900 p-6">
-						<p class="text-xs uppercase tracking-wide text-zinc-400">Hábitos</p>
-						<h3 class="mt-2 text-xl font-semibold text-white">Dormir mejor para rendir más</h3>
-						<p class="mt-3 text-sm text-zinc-400">Checklist nocturno para mejorar recuperación, consistencia
-							y
-							energía durante el día.</p>
-						<a href="#"
-							class="mt-4 inline-block text-sm font-medium text-violet-300 hover:text-violet-200">Leer
-							tip</a>
-					</article>
-				</div>
-			</section>
-
-			<section class="space-y-6">
-				<div>
-					<p class="text-sm text-violet-300">Testimonios</p>
-					<h2 class="text-3xl font-semibold text-white">Lo que dicen nuestros miembros</h2>
-				</div>
-
-				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
-					<blockquote
-						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
-						<p>“El cambio en mi energía fue brutal desde el primer mes. El ambiente motiva muchísimo.”</p>
-						<footer class="mt-4 text-sm text-zinc-400">— Sofía M. · Miembro Pro</footer>
-					</blockquote>
-					<blockquote
-						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
-						<p>“Las clases están súper bien organizadas y los coaches corrigen cada detalle técnico.”</p>
-						<footer class="mt-4 text-sm text-zinc-400">— Diego R. · Miembro Elite</footer>
-					</blockquote>
-					<blockquote
-						class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
-						<p>“Por primera vez logré mantener constancia. Todo está pensado para progresar de verdad.”</p>
-						<footer class="mt-4 text-sm text-zinc-400">— Carla T. · Miembro Starter</footer>
-					</blockquote>
-				</div>
-			</section>
-
-			<section
-				class="cta-section rounded-3xl border border-violet-400/30 bg-gradient-to-r from-violet-500/20 via-purple-500/10 to-fuchsia-500/20 p-8 text-center sm:p-10">
-				<p class="text-sm uppercase tracking-[0.2em] text-violet-200">¿Listo para empezar?</p>
-				<h2 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">Da el primer paso hoy</h2>
-				<p class="mx-auto mt-3 max-w-2xl text-sm text-zinc-200 sm:text-base">
-					Crea tu cuenta, reserva tu primera clase y vive una experiencia de entrenamiento diseñada para
-					resultados sostenibles.
-				</p>
-				<div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-					<a href="{{ route('register') }}"
-						class="rounded-xl border border-violet-300/40 bg-violet-500/25 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500/35">
-						Crear cuenta
-					</a>
-					<a href="{{ route('login') }}"
-						class="rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/15">
-						Ya tengo cuenta
-					</a>
-				</div>
-			</section>
-	</div>
 </x-guest-layout>
+
+
+<section class="relative z-10 -mt-16 w-full rounded-t-[3rem] bg-white px-6 pt-16 pb-20 shadow-xl">
+
+	<div class="max-w-7xl mx-auto space-y-8">
+
+		<section class="space-y-6">
+			<div>
+				<h2 class="text-3xl text-black">Caso de éxito de nuestros clientes</h2>
+			</div>
+
+			<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
+				<blockquote class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<div
+						class="inline-flex w-fit items-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-2 py-1 text-xs text-zinc-200">
+						<p class="font-semibold">Caso de éxito</p>
+					</div>
+					<p class="mt-2 font-semibold">“El cambio en mi energía fue brutal desde el primer mes. El ambiente
+						motiva muchísimo.”</p>
+					<footer class="mt-4 text-sm text-zinc-400">— Sofía Marquez</footer>
+				</blockquote>
+				<blockquote class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<div
+						class="inline-flex w-fit items-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-2 py-1 text-xs text-zinc-200">
+						<p class="font-semibold">Caso de éxito</p>
+					</div>
+					<p class="mt-2 font-semibold">“Las clases están súper bien organizadas y los coaches corrigen cada
+						detalle técnico.”</p>
+					<footer class="mt-4 text-sm text-zinc-400">— Diego R</footer>
+				</blockquote>
+				<blockquote class="testimonial-card rounded-2xl border border-white/10 bg-zinc-900 p-6 text-zinc-200">
+					<div
+						class="inline-flex w-fit items-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-2 py-1 text-xs text-zinc-200">
+						<p class="font-semibold">Caso de éxito</p>
+					</div>
+					<p class="mt-2 font-semibold">“Por primera vez logré mantener constancia. Todo está pensado para
+						progresar de verdad.”</p>
+					<footer class="mt-4 text-sm text-zinc-400">— Carla T</footer>
+				</blockquote>
+
+			</div>
+		</section>
+
+		<div class="mt-8">
+			<h2 class="text-3xl text-black">Nuestras campañas de apoyo</h2>
+		</div>
+
+		<div class="grid grid-cols-2 gap-5 lg:grid-cols-2">
+
+			<div class="space-y-4">
+				<h2 class=" mt-2 text-3xl font-semibold">Conoce.</h2>
+				<h2 class=" mt-2 text-3xl font-semibold">Arriesgate a entrenar.</h2>
+
+				<h2 class="mt-4 flex text-base justify-start">Somos un gimnasio incluyente que aporta valor a tu vida
+					saludable, por lo que
+					somos conscientes de la salud de todos.</h2>
+			</div>
+
+			<div class="mt-8 grid grid-cols-3 gap-3 text-center">
+				<div
+					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					<p class="text-xl font-semibold text-black">Impulso Joven</p>
+					<div class="mt-3 flex justify-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+							<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+								stroke-width="4"
+								d="M6 33v6a3 3 0 0 0 3 3h6m18 0h6a3 3 0 0 0 3-3v-6m0-18V9a3 3 0 0 0-3-3h-6M6 15V9a3 3 0 0 1 3-3h6m19 18L24 34L14 24c-1-1-1.5-3 0-5s4.5-2 6-1s2 2 4 2s2.5-1 4-2s4.5-1 6 1s1 4 0 5" />
+						</svg>
+					</div>
+				</div>
+				<div
+					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					<p class="text-xl font-semibold text-black">Familia en Forma</p>
+
+					<div class="mt-4 flex justify-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+							<g fill="none" stroke="#000" stroke-linecap="round" stroke-width="4">
+								<path
+									d="M10 19s-5.143 2-6 9m34-9s5.143 2 6 9m-26-9s4.8 1.167 6 7m6-7s-4.8 1.167-6 7m-4 8s-4.2.75-6 6m14-6s4.2.75 6 6" />
+								<circle cx="24" cy="31" r="5" stroke-linejoin="round" />
+								<circle cx="34" cy="14" r="6" stroke-linejoin="round" />
+								<circle cx="14" cy="14" r="6" stroke-linejoin="round" />
+							</g>
+						</svg>
+					</div>
+
+				</div>
+				<div
+					class="rounded-xl border border-black/30 bg-white/5 px-3 py-3 shadow-md transition duration-200 hover:border-violet-500">
+					<p class="text-xl font-semibold text-black">Reto 30 Días</p>
+
+					<div class="mt-3 flex justify-center">
+						<svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48">
+							<circle cx="24" cy="24" r="21.5" fill="none" stroke="#000" stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="1" />
+							<circle cx="12.014" cy="14.078" r="1.5" fill="none" stroke="#000" stroke-linecap="round"
+								stroke-linejoin="round" stroke-width="1" />
+							<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+								d="M13.068 13.011a15.476 15.476 0 1 1-1.906 2.3" stroke-width="1" />
+							<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+								d="M25.525 26.159a4.238 4.238 0 0 0 8.475 0V21.84a4.238 4.238 0 0 0-8.475 0Zm-6.247-2.157a3.2 3.2 0 0 0 3.197-3.198h0a3.2 3.2 0 0 0-3.197-3.197m0 12.789a3.2 3.2 0 0 0 3.197-3.197v0a3.2 3.2 0 0 0-3.197-3.197m-5.277 5.315c.884.74 1.837 1.08 3.978 1.08h1.299"
+								stroke-width="1" />
+							<path fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"
+								d="M14 18.672c.885-.738 1.84-1.074 3.98-1.068l1.3.003m-3.26 6.395h3.258"
+								stroke-width="1" />
+						</svg>
+					</div>
+
+				</div>
+
+
+			</div>
+
+		</div>
+
+</section>
+
+
+{{-- <section
+	class="cta-section rounded-3xl border border-violet-400/30 bg-gradient-to-r from-violet-500/20 via-purple-500/10 to-fuchsia-500/20 p-8 text-center sm:p-10">
+	<p class="text-sm uppercase tracking-[0.2em] text-violet-200">¿Listo para empezar?</p>
+	<h2 class="mt-3 text-3xl font-semibold text-white sm:text-4xl">Da el primer paso hoy</h2>
+	<p class="mx-auto mt-3 max-w-2xl text-sm text-zinc-200 sm:text-base">
+		Crea tu cuenta, reserva tu primera clase y vive una experiencia de entrenamiento diseñada para
+		resultados sostenibles.
+	</p>
+	<div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+		<a href="{{ route('register') }}"
+			class="rounded-xl border border-violet-300/40 bg-violet-500/25 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-violet-500/35">
+			Crear cuenta
+		</a>
+		<a href="{{ route('login') }}"
+			class="rounded-xl border border-white/20 bg-white/10 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-white/15">
+			Ya tengo cuenta
+		</a>
+	</div>
+</section> --}}
+</div>
