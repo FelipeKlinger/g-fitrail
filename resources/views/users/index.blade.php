@@ -17,7 +17,7 @@
                     <h1 class="mt-1 text-2xl font-semibold text-white">Listado de usuarios</h1>
                 </div>
                 <a href="{{ route('admin.users.create') }}"
-                    class="inline-flex items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                    class="inline-flex items-center justify-center rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
                     + Nuevo usuario
                 </a>
             </div>

@@ -100,12 +100,9 @@
                 <div class="flex flex-col justify-between gap-3 md:flex-row md:items-end">
                     <div>
                         <p class="text-sm text-violet-300">Membresías</p>
-                        <h2 class="text-3xl font-semibold text-white">Planes para cada objetivo</h2>
+                        <h2 class="text-3xl font-semibold text-white">Actualiza tu plan en cualquier momento</h2>
                     </div>
-                    <p class="max-w-xl text-sm text-zinc-400">Precios y beneficios de ejemplo para mostrar la
-                        estructura
-                        de
-                        una sección comercial.</p>
+                    <p class="max-w-xl text-sm text-zinc-400">Hazte con un plan que se adapte a tus necesidades y objetivos.</p>
                 </div>
 
                 <div class="grid grid-cols-1 gap-4 lg:grid-cols-3">

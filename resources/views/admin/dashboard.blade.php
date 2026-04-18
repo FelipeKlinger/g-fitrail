@@ -33,6 +33,10 @@
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Reservas
                     </a>
+                     <a href="{{ route('admin.seguimientos.index') }}"
+                        class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
+                        Seguimientos
+                    </a>
                     <a href="{{ route('admin.plans.index') }}"
                         class="block rounded-xl border border-white/10 bg-white/5 px-4 py-2.5 text-sm text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10">
                         Planes

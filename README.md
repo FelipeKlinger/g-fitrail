@@ -5,14 +5,15 @@
 La aplicación implementa un sistema completo de gestión para un gimnasio que permite **crear, listar, editar y eliminar** diversas entidades de forma sencilla mediante una interfaz web intuitiva. El sistema gestiona clientes, planes de suscripción, sedes, entrenadores, entrenamientos y reservas, con todas sus relaciones correspondientes.
 
 
-## Pasos para arrancar el proyecto - Code Review
+## Pasos para arrancar el proyecto - Code Review 2
 
 1. Clonar el Repositorio https://gitlab.com/maquinistas/fitrail-software.git.
-2. git switch Laravel-Breeze y confirmar con un git pull los cambios más recientes.
+2. git switch calender_api_fitrail y confirmar con un git pull los cambios más recientes.
 2. Si en tu maquina ya existe un archivo laravel, debe cambiarlo de nombre.
 3. Usar make fix-perms.
-4. Make up para arrancar el proyecto, ademas de hacer un make npm cmd="run build" ya previamente hecho un make npm install.
-5. No deberia tener ningun problema con el archivo .env, ya que en nuestro caso por facilidad no lo ocultamos en .gitIgnore,
+4.Ejecutar make npm cmd="install" y make composer cmd="install"
+5. Importar la base de datos SQL proporcionada.
+6. No deberia tener ningun problema con el archivo .env, ya que en nuestro caso por facilidad no lo ocultamos en .gitIgnore,
 igualmente adjuntamos la configuracion.
 
 DB_CONNECTION=mysql
@@ -22,18 +23,28 @@ DB_DATABASE=fitrail
 DB_USERNAME=root
 DB_PASSWORD=root
 
-6. Si ha entrado correctamente, debe dirigirse a http://localhost:8001/login, registrarse si no lo ha hecho.
+6. Si ha entrado correctamente, debe dirigirse a http://localhost:8001/, registrarse si no lo ha hecho.
 
 ## Resumen del desarrollo del proyecto actual: 
 
-1. Puedes acceder a las funcionalidades del administrador, ejecutando un make art cmd="db:seed", para verificar los credenciales
-del Administrador debe revisar database/seeders/DatabaseSeeder.php.
-2. Iniciar sesión con el Admin, y lo redirigira a su dashboard, en el web.php se puede verificar las rutas y el uso de los MiddleWares
-creados para la seguridad app/Http/Middleware.
-3. El Administrador tienen todo el CRUD funcionando, se recomienda importar la base de datos en phpmyadmin con el nombre fitrail que proporcionaremos,
-para que se pueda ver las listas con contenido.
-4. Para el Cliente debe registrarse, tambien esta la posibilidad de verificar el mail desde storage/logs/laravel.log.
-5. Una vez redirigido vera datos unicos para el Cliente, es importante saber que todavia esta en desarrollo el apartado de reservas y planes.
+1. Ya está implementado un sistema de autenticación con verificación de email y control de acceso por rol (`admin`, `client`, `entrenador`) mediante middlewares personalizados.
+2. El alta inicial de administrador se mantiene vía seeder (`database/seeders/DatabaseSeeder.php`) con credenciales base:
+  - Email: `admin@fitrail.com`
+  - Password: `password`
+3. El administrador dispone de dashboard con métricas (totales, últimas reservas, próximos entrenamientos, planes más contratados e ingresos potenciales) y CRUD completo para:
+  - clientes, sedes, planes, entrenadores, entrenamientos, reservas, seguimientos y usuarios.
+4. El flujo de cliente está activo de extremo a extremo:
+  - registro + creación automática del perfil cliente,
+  - paso de selección/compra de plan,
+  - dashboard con entrenamientos disponibles,
+  - reservas confirmadas,
+  - cancelación de reservas con devolución de capacidad.
+5. La compra de planes está integrada con Stripe Checkout y, tras pago correcto, se actualiza el pivot `client_plan` (desactivando plan anterior y activando el nuevo con vigencia mensual).
+6. El dashboard de entrenador ya muestra sus entrenamientos y las clases con reservas confirmadas asociadas a su cuenta.
+7. Se añadió la entidad **Seguimientos** (tabla, modelo, controlador y vistas) para registrar evolución del cliente (peso, altura, IMC, energía, adherencia, progreso, observaciones y próximos pasos).
+8. La home pública consume contenido desde Contentful (cabeceras + listados de planes y entrenamientos), manteniendo contenido editable desde CMS.
+9. Existe endpoint API para chatbot (`/api/dialogflow`) con respuestas por intención (saludo, planes, clases, etc.).
+10. Estado general: el núcleo funcional del sistema (roles, CRUD principal, reservas, planes/pagos y seguimiento) está operativo y consolidado para demostración funcional.
 
 
 **Comandos Artisan utilizados**
@@ -148,7 +159,7 @@ Los controladores están ubicados en `app/Http/Controllers/` y gestionan toda la
 
 **EntrenamientoController:** Valida que la capacidad esté entre 1 y 30 personas, que la fecha de fin sea posterior a la fecha de inicio, y la existencia del entrenador asignado.
 
-**ReservaController:** Valida la existencia del cliente y entrenamiento seleccionados. Los métodos `edit()`, `update()` y `destroy()` están pendientes de implementación completa.
+**ReservaController:** Valida la existencia del cliente y entrenamiento seleccionados, y actualmente incluye flujo completo de `create`, `store`, `edit`, `update` y `destroy`.
 
 
 ### **Rutas, middlewares y protección de acceso (fase actual)**
