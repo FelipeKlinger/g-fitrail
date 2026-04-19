@@ -16,14 +16,18 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\IsAdmin::class,
             'client' => \App\Http\Middleware\IsClient::class,
             'entrenador' => \App\Http\Middleware\IsEntrenador::class,
+            'client.has.plan' => \App\Http\Middleware\EnsureClientHasPlan::class,
         ]);
 
         $middleware->redirectUsersTo(function (Request $request) {
-            $role = $request->user()?->role;
+            $user = $request->user();
+            $role = $user?->role;
 
             return match ($role) {
                 'admin' => route('admin.dashboard'),
-                'client' => route('clients.dashboard'),
+                'client' => $user?->client?->plans()->exists()
+                    ? route('clients.dashboard')
+                    : route('clients.paso-2'),
                 'entrenador' => route('entrenadors.dashboard'),
                 default => route('profile.edit'),
             };

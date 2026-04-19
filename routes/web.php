@@ -30,11 +30,14 @@ Route::prefix('admin')->middleware(['auth', 'admin'])->name('admin.')->group(fun
 
 //Rutas con Middleware Client
 Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->group(function () {
-    Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
     Route::get('/paso-2', [PlanController::class, 'plan'])->name('paso-2');
-    Route::post('/reservar/{clientId}/{entrenamientoId}', [ClientController::class, 'reservar'])->name('reservar');
-    Route::get('/reservas', [ClientDashboardController::class, 'reservas'])->name('reservas');
-    Route::patch('/reservas/{reserva}/cancelar', [ClientDashboardController::class, 'cancelarReserva'])->name('reservas.cancelar');
+
+    Route::middleware('client.has.plan')->group(function () {
+        Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
+        Route::post('/reservar/{clientId}/{entrenamientoId}', [ClientController::class, 'reservar'])->name('reservar');
+        Route::get('/reservas', [ClientDashboardController::class, 'reservas'])->name('reservas');
+        Route::patch('/reservas/{reserva}/cancelar', [ClientDashboardController::class, 'cancelarReserva'])->name('reservas.cancelar');
+    });
 });
 
 // Rutas especificas con Middleware entrenador 
@@ -62,7 +65,7 @@ Route::prefix('entrenador')->name('entrenador.')->middleware(['auth', 'entrenado
 
 //Retornar planes propios de cada cliente
 Route::prefix('client')->name('client.')->middleware(['auth', 'client'])->group(function () {
-    Route::get('plans', [PlanController::class, 'index'])->name('index');
+    Route::get('plans', [PlanController::class, 'index'])->middleware('client.has.plan')->name('index');
 });
 
 Route::post('/checkout/{plan}', [PaymentController::class, 'checkout'])
@@ -71,10 +74,12 @@ Route::post('/checkout/{plan}', [PaymentController::class, 'checkout'])
 
 // Stripe redirección OK
 Route::get('/success/{plan}', [PaymentController::class, 'success'])
+    ->middleware(['auth', 'client'])
     ->name('payment.success');
 
 // Stripe cancelado
 Route::get('/cancel', [PaymentController::class, 'cancel'])
+    ->middleware(['auth', 'client'])
     ->name('payment.cancel');
 
 Route::middleware('auth')->group(function () {

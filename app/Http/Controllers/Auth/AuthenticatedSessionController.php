@@ -28,14 +28,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
         // Obtener el usuario autenticado
-        $user = auth()->user();
+        $user = Auth::user();
 
         switch ($user->role) {
 
             case "admin":
                 return redirect()->route('admin.dashboard');
             case "client":
-                return redirect()->route('clients.dashboard')   ;
+                if (!$user->client || !$user->client->plans()->exists()) {
+                    return redirect()->route('clients.paso-2');
+                }
+
+                return redirect()->route('clients.dashboard');
             case "entrenador":
                 return redirect()->route('entrenadors.dashboard');
         }
