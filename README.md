@@ -46,6 +46,33 @@ DB_PASSWORD=root
 9. Existe endpoint API para chatbot (`/api/dialogflow`) con respuestas por intención (saludo, planes, clases, etc.).
 10. Estado general: el núcleo funcional del sistema (roles, CRUD principal, reservas, planes/pagos y seguimiento) está operativo y consolidado para demostración funcional.
 
+### Integración de APIs y capa visual
+
+En esta fase se ha trabajado especialmente la integración con servicios externos y el acabado visual del frontend.
+
+#### Integraciones API activas
+
+- **Stripe Checkout**
+  - Flujo implementado en `PaymentController`: creación de sesión de pago, redirección a Stripe, retorno por `success`/`cancel` y activación del plan en `client_plan`.
+  - Rutas principales: `POST /checkout/{plan}`, `GET /success/{plan}`, `GET /cancel`.
+  - Configuración esperada en `.env`: `STRIPE_KEY` y `STRIPE_SECRET`.
+
+- **Contentful (CMS)**
+  - La home pública (`/`) carga cabeceras, planes y entrenamientos desde Contentful en `ContentfulController`.
+  - Esto permite actualizar contenido de portada sin tocar código.
+  - Variables de entorno usadas por la integración: `CONTENTFUL_SPACE_ID`, `CONTENTFUL_ENVIRONMENT_ID`, `CONTENTFUL_DELIVERY_TOKEN`, `CONTENTFUL_USE_PREVIEW`.
+
+- **Dialogflow / chatbot**
+  - Endpoint backend disponible en `POST /api/dialogflow` para responder por intención.
+  - Widget de mensajería integrado en layouts (`df-messenger`) para acceso directo al asistente desde la UI.
+
+#### Estilos y frontend (Tailwind)
+
+- Se mantiene una UI consistente en modo oscuro con utilidades de **Tailwind CSS** sobre Blade.
+- El proyecto usa `tailwind.config.js` con paleta extendida (base/surface/accent/muted), tipografía Geist y plugin `@tailwindcss/forms`.
+- En `resources/css/app.css` se han añadido componentes reutilizables (`fit-card`, `fit-button-primary`, `fit-button-ghost`, etc.) y ajustes visuales del chatbot.
+- El frontend se compila con Vite (`resources/css/app.css` + `resources/js/app.js`) y se han aplicado animaciones de entrada/scroll con GSAP para mejorar la experiencia en la home.
+
 
 **Comandos Artisan utilizados**
 
