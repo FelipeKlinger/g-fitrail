@@ -17,6 +17,18 @@ $client->objetivo,
     </x-slot>
 
     <div class="mx-auto w-full max-w-[1600px] px-4 py-6 sm:px-6 lg:px-8">
+        @if (session('status'))
+            <div class="mb-6 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+                {{ session('status') }}
+            </div>
+        @endif
+
+        @if (session('error'))
+            <div class="mb-6 rounded-xl border border-rose-500/30 bg-rose-500/10 px-4 py-3 text-sm text-rose-200">
+                {{ session('error') }}
+            </div>
+        @endif
+
         <div class="grid grid-cols-1 gap-6 lg:grid-cols-12">
             <aside class="rounded-2xl border border-white/10 bg-zinc-950 p-5 lg:col-span-3 xl:col-span-2">
                 <p class="text-xs font-semibold uppercase tracking-wider text-zinc-500">Área cliente</p>
@@ -104,6 +116,49 @@ $client->objetivo,
                         <p class="mt-2 text-sm text-emerald-300">Con plazas abiertas</p>
                     </article>
                 </div>
+
+                <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5">
+                    <div class="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white">Relación peso · sesiones completadas</h3>
+                            <p class="mt-1 text-sm text-zinc-400">
+                                Eje X: número de sesiones completadas · Eje Y: peso registrado (kg).
+                            </p>
+                            <p class="mt-2 text-xs text-zinc-500">
+                                El gráfico parte en la sesión 0 con tu peso actual.
+                            </p>
+                        </div>
+
+                        <form action="{{ route('clients.peso.registrar') }}" method="POST"
+                            class="w-full max-w-md rounded-xl border border-white/10 bg-black/20 p-4">
+                            @csrf
+                            <p class="text-sm font-medium text-white">Registrar peso tras sesión</p>
+                            <p class="mt-1 text-xs text-zinc-400">
+                                Sesiones completadas: {{ $sesionesCompletadas }} · Registros pendientes: {{ $registrosPesoPendientes }}
+                            </p>
+
+                            <div class="mt-3">
+                                <label for="peso" class="mb-1 block text-xs uppercase tracking-wide text-zinc-400">Peso actual (kg)</label>
+                                <input id="peso" name="peso" type="number" step="0.01" min="30" max="300"
+                                    value="{{ old('peso', $user->client->peso) }}"
+                                    class="w-full rounded-lg border border-white/10 bg-zinc-950 px-3 py-2 text-sm text-white focus:border-violet-400 focus:outline-none"
+                                    required>
+                                @error('peso')
+                                    <p class="mt-1 text-xs text-rose-300">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <button type="submit"
+                                class="mt-4 inline-flex w-full items-center justify-center rounded-lg bg-violet-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-violet-500">
+                                Guardar peso de sesión
+                            </button>
+                        </form>
+                    </div>
+
+                    <div class="mt-5 h-[360px] rounded-xl border border-white/10 bg-black/20 p-4">
+                        <x-chartjs-component :chart="$chart" />
+                    </div>
+                </article>
 
                 <div class="grid grid-cols-1 gap-6 xl:grid-cols-3">
                     <article class="rounded-2xl border border-white/10 bg-zinc-900 p-5 xl:col-span-2">

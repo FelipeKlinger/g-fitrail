@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Entrenamiento;
 use App\Models\Reserva;
+use App\Models\Seguimiento;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use IcehouseVentures\LaravelChartjs\Facades\Chartjs;
 
 class ClientDashboardController extends Controller
 {
@@ -42,8 +44,147 @@ class ClientDashboardController extends Controller
             return view('plans.planClient', compact('planes'))->with('error', 'Tu plan no está activo. Por favor, contacta con el gimnasio para más información.');
         }
 
-        return view('clients.dashboard', compact('entrenamientos', 'reservas'))->with('error', 'Tu plan no está activo. Por favor, contacta con el gimnasio para más información.');
+        $sesionesCompletadas = Reserva::where('client_id', $client->id)
+            ->where('estado', 'asistio')
+            ->count();
 
+        $registrosPeso = Seguimiento::where('client_id', $client->id)
+            ->whereNull('entrenador_id')
+            ->where('observaciones', 'like', 'Auto-registro de peso%')
+            ->orderBy('fecha_seguimiento')
+            ->orderBy('id')
+            ->get(['peso']);
+
+        $labels = ['Sesión 0'];
+        $pesoSerie = [(float) $client->peso];
+
+        $registrosUtiles = min($sesionesCompletadas, $registrosPeso->count());
+
+        for ($i = 1; $i <= $registrosUtiles; $i++) {
+            $labels[] = 'Sesión ' . $i;
+            $pesoSerie[] = (float) $registrosPeso[$i - 1]->peso;
+        }
+
+        $chart = Chartjs::build()
+            ->name('PesoSesionesChart')
+            ->type('line')
+            ->size(['width' => 400, 'height' => 200])
+            ->labels($labels)
+            ->datasets([
+                [
+                    'label' => 'Peso (kg)',
+                    'backgroundColor' => 'rgba(139, 92, 246, 0.2)',
+                    'borderColor' => 'rgba(139, 92, 246, 1)',
+                    'pointBackgroundColor' => 'rgba(99, 102, 241, 1)',
+                    'pointBorderColor' => '#fff',
+                    'pointRadius' => 4,
+                    'tension' => 0.25,
+                    'fill' => true,
+                    'data' => $pesoSerie,
+                ],
+            ])
+            ->options([
+                'responsive' => true,
+                'maintainAspectRatio' => false,
+                'scales' => [
+                    'x' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Número de sesiones completadas',
+                        ],
+                    ],
+                    'y' => [
+                        'title' => [
+                            'display' => true,
+                            'text' => 'Peso (kg)',
+                        ],
+                        'beginAtZero' => false,
+                    ],
+                ],
+                'plugins' => [
+                    'title' => [
+                        'display' => true,
+                        'text' => 'Evolución de peso por sesiones completadas',
+                    ],
+                ],
+            ]);
+
+        $registrosPesoPendientes = max(0, $sesionesCompletadas - $registrosPeso->count());
+
+        return view('clients.dashboard', compact('entrenamientos', 'reservas', 'chart', 'sesionesCompletadas', 'registrosPesoPendientes'));
+
+    }
+
+    public function registrarPesoSesion(Request $request)
+    {
+        $user = Auth::user();
+        $client = $user->client;
+
+        $validated = $request->validate([
+            'peso' => 'required|numeric|min:30|max:300',
+        ]);
+
+        $sesionesCompletadas = Reserva::where('client_id', $client->id)
+            ->where('estado', 'asistio')
+            ->count();
+
+        if ($sesionesCompletadas === 0) {
+            return redirect()->route('clients.dashboard')->with('error', 'Aún no tienes sesiones completadas para registrar peso.');
+        }
+
+        $registrosPesoQuery = Seguimiento::where('client_id', $client->id)
+            ->whereNull('entrenador_id')
+            ->where('observaciones', 'like', 'Auto-registro de peso%');
+
+        $registrosPesoCount = $registrosPesoQuery->count();
+
+        if ($registrosPesoCount >= $sesionesCompletadas) {
+            return redirect()->route('clients.dashboard')->with('error', 'Ya has registrado peso para todas tus sesiones completadas.');
+        }
+
+        $ultimoSeguimiento = (clone $registrosPesoQuery)
+            ->latest('fecha_seguimiento')
+            ->latest('id')
+            ->first();
+
+        $pesoAnterior = $ultimoSeguimiento?->peso ?? $client->peso;
+        $nuevoPeso = (float) $validated['peso'];
+
+        Seguimiento::create([
+            'client_id' => $client->id,
+            'entrenador_id' => null,
+            'fecha_seguimiento' => now()->toDateString(),
+            'peso' => $nuevoPeso,
+            'altura' => $client->altura,
+            'imc' => $this->calculateImc($nuevoPeso, $client->altura),
+            'nivel_energia' => 3,
+            'adherencia' => 3,
+            'progreso' => $this->determineProgress($pesoAnterior, $nuevoPeso),
+            'observaciones' => 'Auto-registro de peso tras sesión completada',
+            'proximos_pasos' => null,
+        ]);
+
+        $client->update(['peso' => $nuevoPeso]);
+
+        return redirect()->route('clients.dashboard')->with('status', 'Peso registrado correctamente para tu siguiente sesión completada.');
+    }
+
+    private function calculateImc(?float $peso, $altura): ?float
+    {
+        if (!$peso || !$altura || $altura <= 0) {
+            return null;
+        }
+
+        return round($peso / ($altura * $altura), 2);
+    }
+
+    private function determineProgress($pesoAnterior, $pesoNuevo): string
+    {
+        if (!$pesoAnterior || $pesoAnterior == $pesoNuevo) {
+            return 'sin_cambios';
+        }
+
+        return $pesoNuevo < $pesoAnterior ? 'mejorando' : 'retroceso';
     }
 
     public function reservas()

@@ -36,6 +36,7 @@ Route::prefix('clients')->middleware(['auth', 'client'])->name('clients.')->grou
         Route::get('/dashboard', [ClientDashboardController::class, 'index'])->name('dashboard');
         Route::post('/reservar/{clientId}/{entrenamientoId}', [ClientController::class, 'reservar'])->name('reservar');
         Route::get('/reservas', [ClientDashboardController::class, 'reservas'])->name('reservas');
+        Route::post('/peso-sesion', [ClientDashboardController::class, 'registrarPesoSesion'])->name('peso.registrar');
         Route::patch('/reservas/{reserva}/cancelar', [ClientDashboardController::class, 'cancelarReserva'])->name('reservas.cancelar');
     });
 });
