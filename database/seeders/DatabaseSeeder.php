@@ -7,6 +7,7 @@ use App\Models\Client;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Database\Seeders\SqlDumpSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,11 +25,6 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        User::create([
-            'name' => 'Admin',
-            'email' => 'admin@fitrail.com',
-            'password' => Hash::make('password'),
-            'role' => 'admin',
-        ]);
+        $this->call(SqlDumpSeeder::class);
     }
 }

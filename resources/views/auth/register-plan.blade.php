@@ -20,7 +20,7 @@
 
                 <div class="flex items-center gap-3">
                     <div
-                        class="h-12 w-12 rounded-full flex items-center justify-center text-sm font-bold rounded border border-white/80 bg-white/5">
+                        class="h-12 w-12 rounded-full flex items-center justify-center text-sm font-bold border border-white/80 bg-white/5">
 
                         <div class="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold
                   bg-violet-500 text-white">
@@ -99,6 +99,16 @@
                     </form>
 
                 </article>
+            </div>
+
+            <div class="pt-2 text-center">
+                <form action="{{ route('register.cancel') }}" method="POST">
+                    @csrf
+                    <button type="submit"
+                        class="inline-flex items-center justify-center rounded-xl border border-rose-400/50 bg-rose-500/10 px-5 py-2.5 text-sm font-semibold text-rose-200 transition hover:bg-rose-500/20">
+                        Cancelar registro
+                    </button>
+                </form>
             </div>
         </section>
 

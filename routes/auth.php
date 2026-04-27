@@ -36,6 +36,9 @@ Route::middleware('guest')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::post('register/cancel', [RegisteredUserController::class, 'cancelStepTwo'])
+        ->name('register.cancel');
+
     Route::get('verify-email', EmailVerificationPromptController::class)
         ->name('verification.notice');
 

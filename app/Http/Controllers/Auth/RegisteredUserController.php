@@ -72,4 +72,33 @@ class RegisteredUserController extends Controller
         // Fallback por si no tiene rol definido
         return redirect()->route('dashboard');
     }
+
+    /**
+     * Cancel registration flow from step 2 and remove user if no plan is assigned.
+     */
+    public function cancelStepTwo(Request $request): RedirectResponse
+    {
+        $user = $request->user();
+
+        if (!$user || $user->role !== 'client') {
+            return redirect()->route('login');
+        }
+
+        $client = $user->client;
+        $hasPlan = $client ? $client->plans()->exists() : false;
+
+        if ($hasPlan) {
+            return redirect()->route('clients.dashboard')
+                ->with('error', 'No puedes cancelar porque ya tienes un plan activo o registrado.');
+        }
+
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        $user->delete();
+
+        return redirect()->route('register')
+            ->with('status', 'Registro cancelado correctamente.');
+    }
 }
