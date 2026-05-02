@@ -1,0 +1,1 @@
+<!-- Tips page removed -->

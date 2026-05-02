@@ -22,6 +22,37 @@
                     <span class="text-2xl font-semibold tracking-wide text-white">G-Fitrail</span>
                 </a>
 
+                <div class="hidden items-center gap-2 md:flex">
+                    <a href="{{ route('inicio') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('inicio') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Inicio
+                    </a>
+                    <a href="{{ route('planes') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('planes') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Planes
+                    </a>
+                    <a href="{{ route('clases') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('clases') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Clases
+                    </a>
+                    <a href="{{ route('entrenadores') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('entrenadores') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Entrenadores
+                    </a>
+                    <a href="{{ route('sedes') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('sedes') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Sedes
+                    </a>
+                    <a href="{{ route('faq') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('faq') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        FAQ
+                    </a>
+                    <a href="{{ route('contacto') }}"
+                        class="rounded-lg px-3 py-1.5 text-sm {{ request()->routeIs('contacto') ? 'bg-violet-500/20 text-violet-200' : 'text-zinc-300 hover:bg-white/10 hover:text-white' }}">
+                        Contacto
+                    </a>
+                </div>
+
                 @if (request()->routeIs('login'))
                 <a href="{{ route('register') }}"
                     class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
@@ -33,6 +64,17 @@
                     Iniciar sesión
                 </a>
                 @elseif (request()->routeIs('inicio'))
+                <div class="flex gap-3">
+                    <a href="{{ route('login') }}"
+                        class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                        Iniciar sesión
+                    </a>
+                    <a href="{{ route('register') }}"
+                        class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">
+                        Registrarse
+                    </a>
+                </div>
+                @else
                 <div class="flex gap-3">
                     <a href="{{ route('login') }}"
                         class="rounded-lg border border-violet-500/30 bg-violet-500/15 px-3 py-1.5 text-sm text-zinc-200 transition duration-300 hover:border-violet-400/40 hover:bg-violet-600/10">

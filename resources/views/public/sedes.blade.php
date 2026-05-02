@@ -1,0 +1,45 @@
+<x-guest-layout>
+    <style>
+        .ds-page { font-family: 'Geist', sans-serif; color: #09090B; }
+        .ds-page h1, .ds-page h2, .ds-page h3 { font-family: 'Geist', sans-serif; }
+    </style>
+    <div class="ds-page w-full rounded-[28px] border border-white/10 bg-black px-6 py-10 shadow-[0_20px_60px_rgba(15,23,42,0.35)] sm:px-10">
+        <section class="reveal text-center space-y-3">
+            <p class="text-xs uppercase tracking-[0.4em] text-violet-300">Ubicaciones</p>
+            <h1 class="text-4xl sm:text-5xl font-semibold text-white">Sedes y horarios</h1>
+            <p class="text-sm text-zinc-400 max-w-2xl mx-auto">Encuentra la sede más cercana y entrena con horarios flexibles.</p>
+        </section>
+
+        <section class="mt-10 grid grid-cols-1 gap-6 md:grid-cols-2">
+            @foreach($sedes as $sede)
+                <article class="reveal rounded-2xl border border-white/10 bg-zinc-900 p-6 shadow-[0_10px_30px_rgba(15,23,42,0.35)]">
+                    <div class="flex items-start justify-between gap-4">
+                        <div>
+                            <h3 class="text-lg font-semibold text-white">{{ $sede->ciudad }}</h3>
+                            <p class="mt-1 text-sm text-zinc-400">{{ $sede->direccion }}</p>
+                        </div>
+                        <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-zinc-300">Abierto</span>
+                    </div>
+                    <div class="mt-4 space-y-1 text-sm text-zinc-300">
+                        <p>Teléfono: {{ $sede->telefono }}</p>
+                        <p>Horario: {{ $sede->horario_apertura }} - {{ $sede->horario_cierre }}</p>
+                    </div>
+                    <div class="mt-6 flex items-center justify-between rounded-xl border border-white/10 bg-white/5 px-4 py-3">
+                        <div class="text-xs text-zinc-400">Ver ubicación en el mapa</div>
+                        <a href="https://www.google.com/maps/search/?api=1&query={{ urlencode($sede->direccion . ', ' . $sede->ciudad) }}"
+                            target="_blank"
+                            class="text-sm font-semibold text-violet-200 transition hover:text-white cursor-pointer">
+                            Abrir
+                        </a>
+                    </div>
+                </article>
+            @endforeach
+        </section>
+    </div>
+    <script src="https://unpkg.com/gsap@3.12.5/dist/gsap.min.js"></script>
+    <script>
+        if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            gsap.fromTo('.reveal', { y: 24, opacity: 0 }, { y: 0, opacity: 1, duration: 0.8, stagger: 0.12, ease: 'power2.out' });
+        }
+    </script>
+</x-guest-layout>

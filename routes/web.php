@@ -14,12 +14,20 @@ use App\Http\Controllers\ClientDashboardController;
 use App\Http\Controllers\EntrenadorDashboardController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\ContentfulController;
+use App\Http\Controllers\PublicPagesController;
 
 use Illuminate\Support\Facades\Route;
 
 
 
 Route::get('/', [ContentfulController::class, 'headers'])->middleware('guest')->name('inicio');
+Route::get('/planes', [PublicPagesController::class, 'planes'])->name('planes');
+Route::get('/clases', [PublicPagesController::class, 'clases'])->name('clases');
+Route::get('/entrenadores', [PublicPagesController::class, 'entrenadores'])->name('entrenadores');
+Route::get('/sedes', [PublicPagesController::class, 'sedes'])->name('sedes');
+Route::get('/contacto', [PublicPagesController::class, 'contacto'])->name('contacto');
+Route::post('/contacto', [PublicPagesController::class, 'enviarContacto'])->name('contacto.enviar');
+Route::get('/faq', [PublicPagesController::class, 'faq'])->name('faq');
 
 
 //Rutas con Middleware Admin
