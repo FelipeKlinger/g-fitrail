@@ -1,0 +1,3 @@
+/bootstrap/cache/*
+/database/database.sqlite
+/storage/*
