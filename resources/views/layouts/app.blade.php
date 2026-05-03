@@ -6,7 +6,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    @php
+        $appName = 'Fitrail';
+        $pageTitle = match (true) {
+            request()->routeIs('admin.dashboard') => 'Panel administrador',
+            request()->routeIs('admin.users.index') => 'Usuarios',
+            request()->routeIs('admin.entrenadors.index') => 'Entrenadores',
+            request()->routeIs('admin.entrenamientos.index') => 'Entrenamientos',
+            request()->routeIs('admin.reservas.index') => 'Reservas',
+            request()->routeIs('admin.seguimientos.index') => 'Seguimientos',
+            request()->routeIs('admin.plans.index') => 'Planes',
+            request()->routeIs('admin.sedes.index') => 'Sedes',
+            request()->routeIs('clients.dashboard') => 'Mi panel',
+            request()->routeIs('clients.reservas') => 'Mis reservas',
+            request()->routeIs('entrenadors.dashboard') => 'Panel entrenador',
+            request()->routeIs('profile.edit') => 'Perfil',
+            default => null,
+        };
+    @endphp
+
+    <title>{{ $pageTitle ? "$pageTitle | $appName" : $appName }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

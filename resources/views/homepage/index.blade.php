@@ -36,10 +36,18 @@
 
 
 		<section id="" class="space-y-20">
-			<div class="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+			<div class="flex flex-col items-center justify-between gap-3 text-center md:flex-row md:items-end md:text-left">
 				<div>
-					<h2 class="text-4xl font-semibold text-white">Simple y efectivo.</h2>
+					<h2 class="text-3xl font-semibold text-white sm:text-4xl">Simple y efectivo.</h2>
 				</div>
+				<a href="{{ route('sedes') }}"
+					class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10 sm:text-sm sm:px-4">
+					Ver sedes
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+							stroke-width="2" d="M5 12h14m-7 7V5" />
+					</svg>
+				</a>
 			</div>
 
 			<section class="home-preview relative overflow-hidden rounded-3xl border border-white/10 bg-zinc-950">
@@ -101,14 +109,24 @@
 			</section>
 
 			<section id="planes" class="space-y-20">
-				<div class="flex flex-col justify-between gap-3 md:flex-row md:items-end">
+				<div class="flex flex-col items-center justify-between gap-3 text-center md:flex-row md:items-end md:text-left">
 					<div>
 						<p class="text-sm text-violet-300">Membresías</p>
-						<h2 class="text-4xl font-semibold text-white">Planes para cada objetivo</h2>
+						<h2 class="text-3xl font-semibold text-white sm:text-4xl">Planes para cada objetivo</h2>
 					</div>
-					<p class="max-w-xl text-sm text-zinc-400">Precios y beneficios de ejemplo para mostrar la estructura
-						de
-						una sección comercial.</p>
+					<div class="flex flex-col items-center gap-3 text-center md:items-end md:text-right">
+						<p class="max-w-xl text-sm text-zinc-400">Precios y beneficios de ejemplo para mostrar la estructura
+							de
+							una sección comercial.</p>
+						<a href="{{ route('planes') }}"
+							class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10 sm:text-sm sm:px-4">
+							Ver planes
+							<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+								<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+									stroke-width="2" d="M5 12h14m-7 7V5" />
+							</svg>
+						</a>
+					</div>
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 lg:grid-cols-3">
@@ -169,9 +187,19 @@
 
 
 			<section id="clases" class="space-y-20">
-				<div>
-					<p class="text-sm text-violet-300">Entrenamientos</p>
-					<h2 class="text-4xl font-semibold text-white">Clases destacadas de la semana</h2>
+				<div class="flex flex-col items-center justify-between gap-3 text-center md:flex-row md:items-end md:text-left">
+					<div>
+						<p class="text-sm text-violet-300">Entrenamientos</p>
+						<h2 class="text-3xl font-semibold text-white sm:text-4xl">Clases destacadas de la semana</h2>
+					</div>
+					<a href="{{ route('clases') }}"
+						class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10 sm:text-sm sm:px-4">
+						Ver clases
+						<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+							<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+								stroke-width="2" d="M5 12h14m-7 7V5" />
+						</svg>
+					</a>
 				</div>
 
 				<div class="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-3">
@@ -214,8 +242,16 @@
 				<div
 					class="logros max-w-7xl mx-auto p-5 pb-12 bg-zinc-900 rounded-2xl border border-white/10 border-b-0 [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]">
 
-					<div class="px-4">
-						<h2 class="text-3xl mt-3 font-semibold text-white">Nuestros logros</h2>
+					<div class="flex flex-col items-center justify-between gap-3 px-4 text-center md:flex-row md:items-end md:text-left">
+						<h2 class="text-2xl mt-3 font-semibold text-white sm:text-3xl">Nuestros logros</h2>
+						<a href="{{ route('entrenadores') }}"
+							class="inline-flex items-center gap-2 rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-xs font-semibold text-zinc-200 transition hover:border-violet-400/40 hover:bg-violet-500/10 sm:px-4">
+							Ver entrenadores
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+								<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+									stroke-width="2" d="M5 12h14m-7 7V5" />
+							</svg>
+						</a>
 					</div>
 					<div class="mt-8 grid grid-cols-3 gap-3 text-center">
 						<div class="rounded-xl border border-white/10 bg-white/5 px-3 py-3">
@@ -253,8 +289,16 @@
 	<div class="max-w-7xl mx-auto space-y-8">
 
 		<section class="space-y-6">
-			<div>
-				<h2 class="text-3xl text-black font-semibold">Caso de éxito de nuestros clientes</h2>
+			<div class="flex flex-col items-center justify-between gap-3 text-center md:flex-row md:items-end md:text-left">
+				<h2 class="text-2xl font-semibold text-black sm:text-3xl">Caso de éxito de nuestros clientes</h2>
+				<a href="{{ route('faq') }}"
+					class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-3 py-2 text-xs font-semibold text-violet-700 transition hover:border-violet-500/50 hover:bg-violet-500/20 sm:text-sm sm:px-4">
+					Ver FAQ
+					<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+						<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+							stroke-width="2" d="M5 12h14m-7 7V5" />
+					</svg>
+				</a>
 			</div>
 
 			<div class="grid grid-cols-1 gap-4 lg:grid-cols-3" id="casos-exito">
@@ -291,8 +335,16 @@
 			</div>
 		</section>
 
-		<div class="mt-8">
-			<h2 class="text-3xl text-black font-semibold">Nuestras campañas de apoyo</h2>
+		<div class="mt-8 flex flex-col items-center justify-between gap-3 text-center md:flex-row md:items-end md:text-left">
+			<h2 class="text-2xl font-semibold text-black sm:text-3xl">Nuestras campañas de apoyo</h2>
+			<a href="{{ route('contacto') }}"
+				class="inline-flex items-center gap-2 rounded-xl border border-violet-500/30 bg-violet-500/10 px-3 py-2 text-xs font-semibold text-violet-700 transition hover:border-violet-500/50 hover:bg-violet-500/20 sm:text-sm sm:px-4">
+				Ir a contacto
+				<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+					<path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+						stroke-width="2" d="M5 12h14m-7 7V5" />
+				</svg>
+			</a>
 		</div>
 
 		<div class="testimonial-card  grid grid-cols-2 gap-5 pb-6 mb-10 lg:grid-cols-2" id="campañas">

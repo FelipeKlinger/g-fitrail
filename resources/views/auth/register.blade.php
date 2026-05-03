@@ -1,38 +1,36 @@
 <x-guest-layout>
     <div class="w-full max-w-2xl pt-6">
-        <div class="mx-auto mb-2 flex items-center justify-center gap-2 text-4xl font-semibold tracking-tight">
-            <div class="w-full max-w-2xl mx-auto mb-8">
-                <div class="w-full max-w-2xl mx-auto mb-8">
-                    <div class="flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="h-12 w-12 rounded-full flex items-center justify-center text-sm font-bold rounded border border-white/80 bg-white/5">
-
-                                <div class="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold
-                  bg-violet-500 text-white">
-                                    <span>1</span>
-                                </div>
-
-                            </div>
-
-                            <span class="text-sm font-semibold text-violet-300">Tu información</span>
+        <div class="mx-auto mb-8 w-full max-w-2xl">
+            <div class="rounded-2xl border border-white/10 bg-gradient-to-b from-white/5 to-transparent p-4 shadow-[0_0_30px_0_rgba(255,255,255,0.08)]">
+                <div class="flex items-center justify-between gap-4">
+                    <div class="flex items-center gap-3">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-full border border-violet-400/50 bg-violet-500/25 text-sm font-bold text-white shadow-[0_0_18px_rgba(139,92,246,0.35)]">
+                            1
                         </div>
-
-                        <div class="flex-1 h-1 mx-4 rounded bg-violet-500/60"></div>
-
-                        <div class="flex items-center gap-3">
-                            <div
-                                class="h-12 w-12 rounded-full flex items-center justify-center text-sm font-bold ">
-
-                                <div class="h-9 w-9 rounded-full flex items-center justify-center text-sm font-bold
-                  bg-violet-500 text-white">
-                                    <span>2</span>
-                                </div>
-
-                            </div>
-                            <span class="text-sm font-semibold text-violet-300">Membresía</span>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-violet-200">Paso 1</p>
+                            <p class="text-sm font-semibold text-white">Tu información</p>
                         </div>
                     </div>
+
+                    <div class="hidden items-center gap-3 sm:flex">
+                        <div class="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-sm font-bold text-zinc-400">
+                            2
+                        </div>
+                        <div>
+                            <p class="text-xs uppercase tracking-[0.3em] text-zinc-500">Paso 2</p>
+                            <p class="text-sm font-semibold text-zinc-400">Membresía</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 h-2 w-full overflow-hidden rounded-full bg-white/10">
+                    <div class="h-full w-1/2 rounded-full bg-gradient-to-r from-violet-400 via-fuchsia-400 to-violet-500 shadow-[0_0_20px_rgba(139,92,246,0.6)]"></div>
+                </div>
+
+                <div class="mt-3 flex items-center justify-between text-xs text-zinc-400 sm:hidden">
+                    <span>Tu información</span>
+                    <span>Membresía</span>
                 </div>
             </div>
         </div>
