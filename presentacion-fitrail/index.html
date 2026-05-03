@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Defensa de Proyecto — G-Fitrail</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+
+  <div class="app-shell relative z-10">
+    <aside class="sidebar">
+      <div class="brand-block">
+        <div class="brand">G-FITRAIL</div>
+        <p class="brand-subtitle text-violet-300">Defensa Módulo 0616</p>
+      </div>
+
+      <nav class="sidebar-nav" aria-label="Secciones de la presentación">
+        <ul class="toc" id="toc">
+          <li><a href="#portada">1. Portada</a></li>
+          <li><a href="#proposito">2. El Proyecto</a></li>
+          <li><a href="#metodologia">3. Trabajo en Equipo</a></li>
+          <li><a href="#arquitectura">4. Arquitectura</a></li>
+          <li><a href="#apis">5. Integraciones y APIs</a></li>
+          <li><a href="#mer">6. Modelo de Datos</a></li>
+          <li><a href="#decisiones">7. Retos y Decisiones</a></li>
+          <li><a href="#aportaciones">8. Aportaciones Individuales</a></li>
+          <li><a href="#reflexion">9. Reflexión Crítica</a></li>
+          <li><a href="#cierre">10. Conclusión</a></li>
+        </ul>
+      </nav>
+
+      <div class="sidebar-footer">
+        <div class="pill">Equipo de 4 personas</div>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">Plataforma integral de gestión deportiva</p>
+          <h1>Defensa del Sistema Fitrail</h1>
+          <p class="page-summary">Análisis de arquitectura, toma de decisiones y organización del desarrollo del MVP por parte del equipo.</p>
+        </div>
+        <div class="summary-strip">
+          <div class="summary-item">
+            <span class="summary-label">Framework</span>
+            <strong>Laravel 12</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Estilos</span>
+            <strong>Tailwind CSS</strong>
+          </div>
+          <div class="summary-item">
+            <span class="summary-label">Infraestructura</span>
+            <strong>Docker</strong>
+          </div>
+        </div>
+      </header>
+
+      <div class="deck">
+
+        <section id="portada" class="slide cover">
+          <div class="cover-inner">
+            <span class="pill-badge mb-4">Proyecto Final 2024</span>
+            <h1 class="hero-title">G-Fitrail</h1>
+            <p class="subtitle">Transformando la gestión de centros deportivos</p>
+            
+            <div class="team-grid mt-10">
+              <div class="team-member">Integrante 1<br><span class="role">Backend Lead</span></div>
+              <div class="team-member">Integrante 2<br><span class="role">Frontend & UX</span></div>
+              <div class="team-member">Integrante 3<br><span class="role">DB & DevOps</span></div>
+              <div class="team-member">Integrante 4<br><span class="role">API Integrations</span></div>
+            </div>
+          </div>
+        </section>
+
+        <section id="proposito" class="slide">
+          <header><h2>Propósito y Visión del Producto</h2></header>
+          <div class="content two-cols">
+            <div>
+              <h3>El Problema Detectado</h3>
+              <p class="text-muted">Los gimnasios tradicionales sufren de fragmentación: usan un software para cobros, Excel para reservas y WhatsApp para atención. Esto genera descontrol y mala experiencia de usuario.</p>
+            </div>
+            <div>
+              <h3>La Solución: Fitrail</h3>
+              <p class="text-muted">Una plataforma web centralizada diseñada en torno a <strong>3 roles clave</strong>:</p>
+              <ul class="feature-list">
+                <li><strong>Administrador:</strong> Panel de métricas y CRUD global.</li>
+                <li><strong>Entrenador:</strong> Gestión de tiempo, clases y seguimiento físico.</li>
+                <li><strong>Cliente:</strong> Autonomía total (pagos, reservas, evolución).</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="metodologia" class="slide">
+          <header><h2>Metodología y Trabajo de Equipo</h2></header>
+          <div class="content">
+            <p class="text-muted mb-6">Al ser un equipo de 4 personas, la coordinación fue el pilar fundamental para no pisarnos el código y avanzar en paralelo.</p>
+            <div class="grid-cards cols-3">
+              <div class="card">
+                <h4>División del Trabajo</h4>
+                <p>Estructuramos el proyecto en 4 áreas core: Base de datos, Lógica MVC (Controladores), Vistas UI/UX, e Integraciones de terceros.</p>
+              </div>
+              <div class="card">
+                <h4>Control de Versiones</h4>
+                <p>Uso estricto de ramas en <strong>Git (Feature Branches)</strong>. Nadie subía a <code>main</code> sin que otro compañero revisara el código (Pull Requests).</p>
+              </div>
+              <div class="card">
+                <h4>Entorno Homogéneo</h4>
+                <p>Implementamos <strong>Docker + Makefile</strong>. Así los 4 trabajamos con las mismas versiones de PHP y MySQL, evitando el "en mi máquina sí funciona".</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="arquitectura" class="slide">
+          <header><h2>Arquitectura del Sistema</h2></header>
+          
+          <div class="architecture-diagram text-center mb-6">
+            <img src="./ArquitecturaDiagramaFitrail.png" alt="Diagrama de Arquitectura de Fitrail" class="rounded-xl border border-white/10 w-full object-cover">
+          </div>
+
+          <div class="content two-cols mt-6">
+            <div>
+              <h3>Patrón MVC y Seguridad</h3>
+              <p class="text-muted">Desarrollado sobre Laravel 12. La seguridad se gestiona a través de <strong>Middlewares</strong> que interceptan las peticiones y redirigen según el rol (Admin, Client, Entrenador).</p>
+            </div>
+            <div>
+              <h3>Frontend Utilitario</h3>
+              <p class="text-muted">Uso intensivo de <strong>Tailwind CSS</strong> para mantener un diseño oscuro y coherente, junto con Alpine.js para reactividad ligera sin sobrecargar el cliente.</p>
+            </div>
+          </div>
+        </section>
+
+        <section id="apis" class="slide">
+          <header><h2>Integraciones y APIs</h2></header>
+          <div class="content">
+            <p class="text-muted mb-8">Para no reinventar la rueda en áreas críticas, delegamos responsabilidades a servicios líderes del mercado.</p>
+            
+            <div class="grid-cards cols-3">
+              <div class="card text-center api-card">
+                <div class="api-logo flex justify-center mb-4">
+                  <svg viewBox="0 0 60 25" width="80" height="35" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#635BFF" d="M59.64 14.28h-8.06c.19 1.93 1.6 2.55 3.2 2.55 1.64 0 2.96-.37 4.05-.95v3.32a8.33 8.33 0 0 1-4.56 1.1c-4.01 0-6.83-2.5-6.83-7.48 0-4.19 2.39-7.52 6.3-7.52 3.92 0 5.96 3.28 5.96 7.5v1.48zm-5.92-5.62c-1.03 0-2.17.73-2.17 2.58h4.25c0-1.89-.95-2.58-2.08-2.58zM43.7 20.3V5.59h-4.22v14.71h4.22zm-7.67-9.6c0-4.74-2.48-5.4-4.83-5.4-1.27 0-2.45.29-3.26.69V.44h-4.22v19.86h4.22v-2.81c.8.52 2.01.83 3.32.83 2.58 0 4.77-1.4 4.77-5.12V10.7zm-4.22.95v3.13c0 1.62-.83 2.1-1.91 2.1-1.01 0-1.89-.41-1.89-1.95V10.4c0-1.42.76-1.95 1.81-1.95 1.1 0 1.99.55 1.99 3.2zM21.73 20.3v-14.7h-4.22v14.7h4.22zm-2.11-16.71a2.43 2.43 0 1 0 0-4.86 2.43 2.43 0 0 0 0 4.86zm-4.17 6.4c0-4.66-2.55-5.32-4.9-5.32-1.27 0-2.47.28-3.26.68V.44H3.07v19.86h4.22v-2.81c.8.52 2 .83 3.31.83 2.58 0 4.77-1.4 4.77-5.12V10.7zm-4.22.95v3.13c0 1.62-.83 2.1-1.91 2.1-1.01 0-1.89-.41-1.89-1.95V10.4c0-1.42.76-1.95 1.81-1.95 1.1 0 1.99.55 1.99 3.2z"/>
+                  </svg>
+                </div>
+                <h4>Pagos (Stripe)</h4>
+                <p class="text-sm text-muted">Gestión de suscripciones y pagos seguros. Utilizamos Webhooks para activar planes en la base de datos tras el pago exitoso.</p>
+              </div>
+
+              <div class="card text-center api-card">
+                <div class="api-logo flex justify-center mb-4">
+                  <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle cx="12" cy="12" r="10" stroke="#06B6D4" stroke-width="3"/>
+                    <circle cx="12" cy="12" r="3" fill="#06B6D4"/>
+                  </svg>
+                </div>
+                <h4>CMS (Contentful)</h4>
+                <p class="text-sm text-muted">CMS Headless para que la administración del gimnasio pueda cambiar textos e imágenes de la Landing Page sin tocar código.</p>
+              </div>
+
+              <div class="card text-center api-card">
+                <div class="api-logo flex justify-center mb-4">
+                  <svg width="35" height="35" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 2L22 7.5L12 13L2 7.5L12 2Z" fill="#F97316"/>
+                    <path d="M22 16.5L12 22L2 16.5" stroke="#F97316" stroke-width="2" stroke-linecap="round"/>
+                  </svg>
+                </div>
+                <h4>Chatbot (Dialogflow)</h4>
+                <p class="text-sm text-muted">Endpoint conversacional inteligente mediante la API de Google para responder dudas comunes de los clientes 24/7.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="mer" class="slide">
+          <header><h2>Modelo de Datos Transaccional</h2></header>
+          <div class="content">
+            <p class="text-muted mb-6">El diseño relacional fue la primera piedra angular del proyecto. Separamos la lógica de usuarios genéricos de los perfiles específicos.</p>
+            <div class="grid-cards cols-2">
+              <div class="card border-l-4 border-l-violet-500">
+                <h4>Perfiles (1:1)</h4>
+                <p class="text-sm text-muted">La tabla <code>users</code> maneja la autenticación. De ahí derivamos relaciones 1:1 estables hacia <code>clients</code> o <code>entrenadors</code>, permitiendo campos específicos sin ensuciar la auth.</p>
+              </div>
+              <div class="card border-l-4 border-l-cyan-500">
+                <h4>Transacciones (Reservas)</h4>
+                <p class="text-sm text-muted">La tabla <code>reservas</code> une Clientes con Entrenamientos. Implementamos un trigger por software que altera la "capacidad" del entrenamiento al reservar o cancelar.</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="decisiones" class="slide">
+          <header><h2>Toma de Decisiones y Retos</h2></header>
+          <div class="content">
+            
+            <div class="feature-box mb-6">
+              <div class="feature-icon bg-violet-500/20 text-violet-300">1</div>
+              <div>
+                <h4 class="text-white">Concurrencia en Reservas</h4>
+                <p class="text-sm text-muted"><strong>El Problema:</strong> Evitar que dos clientes reserven la última plaza a la vez.<br><strong>La Solución:</strong> Gestión atómica de la tabla <code>Entrenamientos</code>. Cuando se crea una reserva, se decrementa la capacidad; si se cancela, se incrementa. Validado mediante middlewares previos a la inserción.</p>
+              </div>
+            </div>
+
+            <div class="feature-box">
+              <div class="feature-icon bg-cyan-500/20 text-cyan-300">2</div>
+              <div>
+                <h4 class="text-white">Despliegue y Pruebas</h4>
+                <p class="text-sm text-muted"><strong>El Problema:</strong> Testear el Webhook de Stripe en entorno local.<br><strong>La Solución:</strong> Utilizamos Cloudflare Tunnels para exponer el servicio local de forma segura mediante HTTPS público sin necesidad de abrir puertos en el router.</p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section id="aportaciones" class="slide">
+          <header><h2>Aportaciones Individuales</h2></header>
+          <div class="content">
+            <p class="text-muted mb-6">Cada integrante asumió el liderazgo de una parcela técnica del proyecto.</p>
+            
+            <div class="grid-cards cols-2">
+              <div class="card bg-zinc-900/80">
+                <h4 class="text-violet-300">[Nombre Alumno 1]</h4>
+                <p class="text-sm text-white mb-2 font-bold">Líder Backend y Base de Datos</p>
+                <ul class="text-sm text-muted list-disc pl-4">
+                  <li>Diseño del Modelo de Relaciones (MER).</li>
+                  <li>Creación de Migraciones y Seeders (SqlDump).</li>
+                  <li>Lógica CRUD de Controladores base.</li>
+                </ul>
+              </div>
+              <div class="card bg-zinc-900/80">
+                <h4 class="text-violet-300">[Nombre Alumno 2]</h4>
+                <p class="text-sm text-white mb-2 font-bold">Líder Frontend y UX</p>
+                <ul class="text-sm text-muted list-disc pl-4">
+                  <li>Implementación del diseño oscuro con Tailwind.</li>
+                  <li>Integración de layouts dinámicos (Blade).</li>
+                  <li>Vistas adaptativas para Dashboards.</li>
+                </ul>
+              </div>
+              <div class="card bg-zinc-900/80">
+                <h4 class="text-violet-300">[Nombre Alumno 3]</h4>
+                <p class="text-sm text-white mb-2 font-bold">Gestor de Lógica de Negocio</p>
+                <ul class="text-sm text-muted list-disc pl-4">
+                  <li>Lógica de control de aforos en Reservas.</li>
+                  <li>Sistema de Seguimiento Físico.</li>
+                  <li>Control de roles y Middlewares.</li>
+                </ul>
+              </div>
+              <div class="card bg-zinc-900/80">
+                <h4 class="text-violet-300">[Nombre Alumno 4]</h4>
+                <p class="text-sm text-white mb-2 font-bold">Integraciones Externas (APIs)</p>
+                <ul class="text-sm text-muted list-disc pl-4">
+                  <li>Implementación de Checkout con Stripe.</li>
+                  <li>Conexión con CMS Contentful.</li>
+                  <li>Configuración del Chatbot (Dialogflow).</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="reflexion" class="slide">
+          <header><h2>Reflexión Crítica del Equipo</h2></header>
+          <div class="content two-cols">
+            <div>
+              <h3>¿Qué nos funcionó muy bien?</h3>
+              <ul class="feature-list">
+                <li>La división de tareas evitó bloqueos; mientras unos hacían BD, otros avanzaban vistas.</li>
+                <li>La paleta de colores restringida (Tailwind) aceleró mucho el diseño frontend.</li>
+                <li>Usar Contentful le dio un acabado muy profesional al sistema sin añadir peso a la BD.</li>
+              </ul>
+            </div>
+            <div>
+              <h3>¿Qué mejoraríamos en el futuro?</h3>
+              <ul class="feature-list">
+                <li>Implementar <strong>Tests Automatizados</strong> (PHPUnit). En este MVP la verificación fue manual, lo que quita tiempo al final.</li>
+                <li>Refinar la gestión asíncrona de Stripe mediante Webhooks completos en vez de depender solo de redirecciones success/cancel.</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section id="cierre" class="slide cover small text-center">
+          <div class="cover-inner w-full">
+            <h2 class="text-4xl font-bold text-white mb-4">G-Fitrail</h2>
+            <p class="text-violet-300 text-xl">Gracias por su atención</p>
+            <p class="text-muted mt-6">Abrimos turno de preguntas para el tribunal.</p>
+            
+            <div class="mt-8 flex justify-center gap-4">
+              <span class="pill-badge">[Alumno 1]</span>
+              <span class="pill-badge">[Alumno 2]</span>
+              <span class="pill-badge">[Alumno 3]</span>
+              <span class="pill-badge">[Alumno 4]</span>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+  </div>
+
+  <script>
+    // Navegación Sidebar Activa
+    const tocLinks = document.querySelectorAll('.toc a');
+    const sections = document.querySelectorAll('.slide');
+
+    function markActive() {
+      const top = window.scrollY + 150;
+      let idx = 0;
+      sections.forEach((s, i) => {
+        if (s.offsetTop <= top) idx = i + 1;
+      });
+      
+      tocLinks.forEach(a => a.classList.remove('active'));
+      const cur = sections[idx - 1];
+      if (!cur) return;
+      const id = cur.id;
+      const link = document.querySelector('.toc a[href="#' + id + '"]');
+      if (link) link.classList.add('active');
+    }
+
+    window.addEventListener('scroll', markActive);
+    window.addEventListener('load', markActive);
+
+    // Controles por teclado
+    document.addEventListener('keydown', (e) => {
+      const active = document.querySelector('.toc a.active');
+      const links = Array.from(document.querySelectorAll('.toc a'));
+      let idx = links.indexOf(active);
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') { e.preventDefault(); idx++; }
+      if (e.key === 'ArrowUp' || e.key === 'PageUp') { e.preventDefault(); idx--; }
+      if (idx >= 0 && idx < links.length) {
+        links[idx].scrollIntoView({behavior: 'smooth', block: 'start'});
+      }
+    });
+  </script>
+</body>
+</html>
