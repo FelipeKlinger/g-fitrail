@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react"
 import { Sidebar } from "@/components/Sidebar"
 import { PageHeader } from "@/components/PageHeader"
-import { SlideCover } from "@/components/slides/SlideCover"
 import { SlidePropósito } from "@/components/slides/SlidePropósito"
 import { SlideMetodología } from "@/components/slides/SlideMetodología"
 import { SlideArquitectura } from "@/components/slides/SlideArquitectura"

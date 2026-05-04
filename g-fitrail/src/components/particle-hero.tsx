@@ -17,7 +17,7 @@ export function ParticleHero() {
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const [isGoldMode, setIsGoldMode] = useState(false)
   const particlesRef = useRef<Particle[]>([])
-  const animationRef = useRef<number>()
+  const animationRef = useRef<number | null>(null)
 
   const createParticle = (canvas: HTMLCanvasElement): Particle => {
     const particle = {
@@ -138,7 +138,7 @@ export function ParticleHero() {
         scrollBehavior: "smooth",
       }}
     >
-      <style jsx>{`
+      <style>{`
          
         .gold-mode .header h2,
         .gold-mode p,
@@ -419,7 +419,6 @@ export function ParticleHero() {
               style={{
                 position: "absolute",
                 top: 0,
-                right: 0,
                 left: left > 0 ? `${left}em` : "auto",
                 right: left < 0 ? `${Math.abs(left)}em` : "auto",
                 margin: "auto",
