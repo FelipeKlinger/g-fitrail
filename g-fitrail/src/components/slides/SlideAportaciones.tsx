@@ -1,30 +1,46 @@
 export function SlideAportaciones() {
-  const members = [
+const members = [
     {
-      name: '[Nombre Alumno 1]',
-      role: 'Líder Backend y Base de Datos',
+      name: 'Felipe Klinger',
+      role: 'Arquitectura de Sistema y Seguridad',
       color: 'text-violet-300',
-      tasks: ['Diseño del Modelo de Relaciones (MER).', 'Creación de Migraciones y Seeders (SqlDump).', 'Lógica CRUD de Controladores base.'],
+      tasks: [
+        'Planificación del modelo relacional (MER) y control de migraciones.',
+        'Definición de políticas de acceso y roles (Middlewares).',
+        'Gestión y orquestación de servicios externos (Stripe, Contentful).'
+      ],
     },
     {
-      name: '[Nombre Alumno 2]',
-      role: 'Líder Frontend y UX',
-      color: 'text-violet-300',
-      tasks: ['Implementación del diseño oscuro con Tailwind.', 'Integración de layouts dinámicos (Blade).', 'Vistas adaptativas para Dashboards.'],
+      name: 'Andrés Iordachiusi y Felipe Klinger',
+      role: 'Líder de UX y Flujos Funcionales',
+      color: 'text-cyan-300',
+      tasks: [
+        'Estandarización de la usabilidad y diseño del sistema.',
+        'Planificación de la navegación y dashboards por tipo de usuario.',
+        'Supervisión y resolución de conflictos de versiones en UI.'
+      ],
     },
     {
-      name: '[Nombre Alumno 3]',
-      role: 'Gestor de Lógica de Negocio',
-      color: 'text-violet-300',
-      tasks: ['Lógica de control de aforos en Reservas.', 'Sistema de Seguimiento Físico.', 'Control de roles y Middlewares.'],
+      name: 'Daniel Massó y Felipe Klinger',
+      role: 'Control de Calidad (QA) y Validaciones',
+      color: 'text-emerald-300',
+      tasks: [
+        'Testeo de los flujos de autenticación (Breeze) y casos de uso.',
+        'Validación funcional de las restricciones de rutas y accesibilidad.',
+        'Pruebas de estrés en reservas y asignación de entrenadores.'
+      ],
     },
     {
-      name: '[Nombre Alumno 4]',
-      role: 'Integraciones Externas (APIs)',
-      color: 'text-violet-300',
-      tasks: ['Implementación de Checkout con Stripe.', 'Conexión con CMS Contentful.', 'Configuración del Chatbot (Dialogflow).'],
-    },
-  ]
+      name: 'Daniel Massó, Óscar Ruiz y Andrés Iordachiusi',
+      role: 'Documentación Técnica y Auditoría',
+      color: 'text-orange-300',
+      tasks: [
+        'Redacción de informes de validación y actas de seguimiento.',
+        'Gestión de Revisiones Cruzadas (Code Reviews de otros proyectos).',
+        'Planificación de métricas operativas (Dashboard Admin).'
+      ],
+    }
+  ];
 
   return (
     <section id="aportaciones" className="rounded-3xl border border-white/10 bg-zinc-900 p-12">
