@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/Sidebar"
 import { PageHeader } from "@/components/PageHeader"
 import { SlidePropósito } from "@/components/slides/SlidePropósito"
 import { SlideMetodología } from "@/components/slides/SlideMetodología"
-import { SlideArquitectura } from "@/components/slides/SlideArquitectura"
+// import { SlideArquitectura } from "@/components/slides/SlideArquitectura"
 import { SlideAPIs } from "@/components/slides/SlideAPIs"
 import { SlideDatos } from "@/components/slides/SlideDatos"
 import { SlideDecisiones } from "@/components/slides/SlideDecisiones"
@@ -93,7 +93,7 @@ export function App() {
           <ParticleHero />
           <SlidePropósito />
           <SlideMetodología />
-          <SlideArquitectura />
+          {/* <SlideArquitectura /> */}
           <SlideAPIs />
           <SlideDatos />
           <SlideDecisiones />
