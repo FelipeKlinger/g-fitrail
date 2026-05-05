@@ -9,7 +9,7 @@ export function Sidebar({ activeSection }: SidebarProps) {
     { id: 'metodologia', label: '3. Trabajo en Equipo' },
     { id: 'arquitectura', label: '4. Arquitectura' },
     { id: 'apis', label: '5. Integraciones y APIs' },
-    { id: 'mer', label: '6. Modelo de Datos' },
+    { id: 'mer', label: '6. Despliegue y Validación' },
     { id: 'decisiones', label: '7. Retos y Decisiones' },
     { id: 'aportaciones', label: '8. Aportaciones Individuales' },
     { id: 'reflexion', label: '9. Reflexión Crítica' },
