@@ -2,11 +2,17 @@ export function SlideCierre() {
   return (
     <section
       id="cierre"
-      className="flex min-h-[50vh] flex-col items-center justify-center rounded-3xl border border-white/10 bg-zinc-900 p-12 text-center"
+      className="flex min-h-[50vh] flex-col items-center justify-center rounded-3xl border border-white/10 bg-zinc-900 p-8 text-center md:p-12"
     >
-      <h2 className="text-5xl font-bold text-white tracking-tight mb-6">G-Fitrail</h2>
-      <p className="text-2xl text-violet-300 mb-8">Gracias por su atención</p>
-      <p className="text-lg text-zinc-400 mb-12">Abrimos turno de preguntas.</p>
+      <h2 className="mb-6 text-4xl font-bold tracking-tight text-white sm:text-5xl">
+        G-Fitrail
+      </h2>
+      <p className="mb-8 text-xl text-violet-300 sm:text-2xl">
+        Gracias por su atención
+      </p>
+      <p className="mb-12 text-base text-zinc-400 sm:text-lg">
+        Abrimos turno de preguntas.
+      </p>
 
       <div className="flex flex-wrap justify-center gap-4">
         {['Felipe Klinger', 'Andres Iordachiusi', 'Oscar Ruíz', 'Daniel Masso'].map((name, idx) => (

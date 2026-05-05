@@ -1,6 +1,9 @@
 export function SlideDatos() {
   return (
-    <section id="mer" className="rounded-3xl border border-white/10 bg-zinc-900 p-12">
+    <section
+      id="mer"
+      className="rounded-3xl border border-white/10 bg-zinc-900 p-8 md:p-12"
+    >
           <header className="mb-8">
             <p className="text-sm font-semibold tracking-widest text-emerald-400 uppercase mb-2">
               Despliegue y Validación 

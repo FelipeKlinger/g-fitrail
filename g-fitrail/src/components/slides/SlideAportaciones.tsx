@@ -43,7 +43,10 @@ const members = [
   ];
 
   return (
-    <section id="aportaciones" className="rounded-3xl border border-white/10 bg-zinc-900 p-12">
+    <section
+      id="aportaciones"
+      className="rounded-3xl border border-white/10 bg-zinc-900 p-8 md:p-12"
+    >
       <header className="mb-8 pb-4 border-b border-white/10">
         <h2 className="text-3xl font-semibold text-white">Aportaciones Individuales</h2>
       </header>
@@ -52,7 +55,7 @@ const members = [
         Cada integrante asumió el liderazgo de una parcela técnica del proyecto.
       </p>
 
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
         {members.map((member, idx) => (
           <div key={idx} className="rounded-2xl border border-white/10 bg-zinc-800 p-6">
             <h4 className={`font-semibold ${member.color} mb-2`}>{member.name}</h4>
