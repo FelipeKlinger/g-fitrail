@@ -24,7 +24,7 @@ export function SlideAPIs() {
       </header>
 
       <p className="text-zinc-400 mb-10 leading-relaxed">
-        Para no reinventar la rueda en áreas críticas, delegamos responsabilidades a servicios líderes del mercado.
+        Para la implementación de la solución en áreas críticas, delegamos responsabilidades a servicios líderes del mercado (Open Source).
       </p>
 
       <div className="grid grid-cols-3 gap-6">
