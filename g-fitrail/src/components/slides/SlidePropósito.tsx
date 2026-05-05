@@ -13,6 +13,102 @@ export function SlidePropósito() {
         </h2>
       </header>
 
+      {/* ==========================================
+            BLOQUE 0: ¿QUÉ ES FITRAIL? (INTRODUCCIÓN)
+            ========================================== */}
+        <div className="mb-12 rounded-2xl bg-gradient-to-r from-violet-500/10 via-transparent to-cyan-500/10 border border-white/10 p-8 md:p-10 shadow-lg relative overflow-hidden">
+          {/* Acento visual izquierdo */}
+          <div className="absolute top-0 left-0 w-1.5 h-full bg-gradient-to-b from-violet-500 to-cyan-500"></div>
+          
+          <h3 className="text-2xl font-bold text-white mb-4 flex items-center gap-3">
+            <svg className="w-7 h-7 text-violet-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path></svg>
+            ¿Qué es Fitrail y para qué sirve?
+          </h3>
+          
+          <div className="space-y-4 max-w-5xl">
+            <p className="text-zinc-300 leading-relaxed text-sm md:text-base">
+              <strong className="text-white">Fitrail Software</strong> es una plataforma web escalable diseñada para la gestión integral de Gimnasios. No se concibe únicamente como una herramienta de administración interna, sino como un producto orientado al usuario final, priorizando la experiencia, la accesibilidad y la eficiencia operativa.
+            </p>
+            <p className="text-zinc-400 leading-relaxed text-sm md:text-base">
+              Su propósito principal es centralizar y automatizar los procesos de negocio críticos de un gimnasio: desde la suscripción a planes y el control de aforos mediante un motor de reservas, hasta la asignación de sedes y la planificación del personal de entrenamiento.
+            </p>
+          </div>
+        </div>
+
+        {/* ==========================================
+            BLOQUE PREVIO: EL PROCESO (INGENIERÍA Y PLANIFICACIÓN)
+            ========================================== */}
+        <div className="mt-16 border-t border-white/10 pt-12">
+          <header className="mb-10">
+            <p className="text-sm font-semibold tracking-widest text-indigo-400 uppercase mb-2">
+              Ingeniería de Software
+            </p>
+            <h2 className="text-3xl font-bold text-white">El Proceso: Del Benchmarking a la Arquitectura</h2>
+            <p className="mt-3 text-zinc-400 max-w-3xl leading-relaxed">
+              Como equipo, tuvimos claro que el código es solo la consecuencia de una buena planificación. Antes de configurar nuestro entorno Docker o iniciar el desarrollo en MVC, ejecutamos una fase rigurosa de análisis y diseño de sistemas.
+            </p>
+          </header>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+            
+            {/* Paso 1 */}
+            <div className="relative rounded-2xl border border-white/5 bg-zinc-900/50 p-6 hover:bg-zinc-800/80 transition duration-300 group overflow-hidden shadow-lg">
+              <div className="absolute -top-4 -right-2 text-white/20 font-black text-7xl group-hover:text-white/30 transition duration-300">
+                01
+              </div>
+              <div className="relative z-10">
+                <h4 className="text-white font-semibold mb-3">Ideación y Benchmarking</h4>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  El proyecto nació analizando a competidores reales como TraininGym y SportMember. Identificamos carencias en sus interfaces y definimos nuestros objetivos SMART orientados a 3 públicos clave: Administradores, Entrenadores y Clientes.
+                </p>
+              </div>
+            </div>
+
+            {/* Paso 2 */}
+            <div className="relative rounded-2xl border border-white/5 bg-zinc-900/50 p-6 hover:bg-zinc-800/80 transition duration-300 group overflow-hidden shadow-lg">
+              <div className="absolute -top-4 -right-2 text-white/20 font-black text-7xl group-hover:text-white/30 transition duration-300">
+                02
+              </div>
+              <div className="relative z-10">
+                <h4 className="text-white font-semibold mb-3">Ingeniería de Requisitos</h4>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  Tradujimos la visión comercial en Requerimientos Funcionales (RF) y No Funcionales (RNF). A partir de ahí, estructuramos 12 Casos de Uso Core (CU) que mapeaban exactamente qué podía hacer cada actor en el sistema.
+                </p>
+              </div>
+            </div>
+
+            {/* Paso 3 */}
+            <div className="relative rounded-2xl border border-white/5 bg-zinc-900/50 p-6 hover:bg-zinc-800/80 transition duration-300 group overflow-hidden shadow-lg">
+              <div className="absolute -top-4 -right-2 text-white/20 font-black text-7xl group-hover:text-white/30 transition duration-300">
+                03
+              </div>
+              <div className="relative z-10">
+                <h4 className="text-white font-semibold mb-3">Modelado de Datos (MER)</h4>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  No creamos tablas a ciegas. Diseñamos el Diagrama Entidad-Relación (MER) para asegurar la consistencia entre Usuarios, Planes y Reservas. Además, trazamos la migración arquitectónica: de un MVC manual en PHP nativo hacia Laravel.
+                </p>
+              </div>
+            </div>
+
+            {/* Paso 4 */}
+            <div className="relative rounded-2xl border border-white/5 bg-zinc-900/50 p-6 hover:bg-zinc-800/80 transition duration-300 group overflow-hidden shadow-lg">
+              <div className="absolute -top-4 -right-2 text-white/20 font-black text-7xl group-hover:text-white/30 transition duration-300">
+                04
+              </div>
+              <div className="relative z-10">
+                <h4 className="text-white font-semibold mb-3">Planificación Ágil</h4>
+                <p className="text-sm text-zinc-400 leading-relaxed">
+                  Para no pisarnos el trabajo, configuramos un tablero Kanban en GitLab (Backlog ➔ En Proceso ➔ Hecho ➔ Mejoras). Establecimos iteraciones cortas de 1 a 2 semanas con responsables claros para mantener el control del avance.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+
+        
+
       <div className="mb-10 grid grid-cols-1 gap-12 lg:grid-cols-2">
         {/* Bloque 1: Problema y Solución Funcional */}
         <div className="space-y-8">
@@ -209,6 +305,7 @@ export function SlidePropósito() {
           </div>
         </div>
       </div>
+      
 
       {/* ==========================================
             BLOQUE X: LÓGICA DE NEGOCIO Y FLUJO DE LA APP
