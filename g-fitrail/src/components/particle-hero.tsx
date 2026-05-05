@@ -128,7 +128,7 @@ export function ParticleHero() {
 
   return (
     <div
-      className={`relative h-[700px] w-full overflow-hidden rounded-3xl ${isGoldMode ? "gold-mode" : ""}`}
+      className={`relative h-[520px] w-full overflow-hidden rounded-3xl sm:h-[650px] lg:h-[700px] ${isGoldMode ? "gold-mode" : ""}`}
       style={{ 
         background: "#05060f",
         backgroundImage: "linear-gradient(0deg,rgba(216,236,248,.06),rgba(152,192,239,.06))",
